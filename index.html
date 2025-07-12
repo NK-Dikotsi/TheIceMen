@@ -5,8 +5,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>pillloMart</title>
-    <link rel="icon" href="img/favicon.png">
+    <title>The Icemen</title>
+    <link rel="icon" href="img/logo.jpeg">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- animate CSS -->
@@ -24,6 +24,328 @@
     <link rel="stylesheet" href="css/slick.css">
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Custom styles for logo and footer */
+        .navbar-brand img {
+            height: 40px;
+            width: 40px;
+            object-fit: contain;
+        }
+        
+        .footer_part {
+            background-color: #0f4286 !important;
+            color: white !important;
+        }
+        
+        .copyright_text {
+            color: white !important;
+        }
+        .copyright_text {
+            text-align: center !important;
+            width: 100%;
+        }
+        
+        .copyright_text a {
+            color: white !important;
+        }
+        
+        /* Video background section - more professional size */
+        .video-background {
+            position: relative;
+            width: 100%;
+            height: 60vh; /* Reduced from 80vh */
+            min-height: 400px; /* Minimum height */
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .video-background video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        
+        .video-content {
+            text-align: center;
+            z-index: 1;
+            color: white;
+            padding: 20px;
+        }
+        
+        .video-content h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        .changing-text {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0f4286; /* Blue color */
+            text-shadow: 1px 1px 4px rgba(255,255,255,0.5);
+            min-height: 60px;
+            display: inline-block;
+            padding: 0 10px;
+        }
+        
+        .question-mark {
+            color: #0f4286; /* Blue color */
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-left: 5px;
+            text-shadow: 1px 1px 4px rgba(255,255,255,0.5);
+        }
+        
+        @media (max-width: 768px) {
+            .video-background {
+                height: 50vh;
+                min-height: 300px;
+            }
+            
+            .video-content h1 {
+                font-size: 2rem;
+            }
+            
+            .changing-text {
+                font-size: 1.5rem;
+                min-height: 50px;
+            }
+            
+            .question-mark {
+                font-size: 2rem;
+            }
+        }
+
+        .how-to-order {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            color: #0f4286;
+            font-size: 2.2rem;
+        }
+        
+        .order-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin: 0 auto;
+            max-width: 1200px;
+            gap: 20px;
+        }
+        
+        .order-steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 10%;
+            right: 10%;
+            height: 3px;
+            background: #0f4286;
+            z-index: 1;
+        }
+        
+        .step {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            width: 23%;
+            transition: all 0.3s ease;
+        }
+        
+        .step:hover {
+            transform: translateY(-10px);
+        }
+        
+        .step-icon {
+            width: 70px;
+            height: 70px;
+            background-color: #0f4286;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(15, 66, 134, 0.2);
+        }
+        
+        .step-content {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-top: 4px solid #0f4286;
+            height: 180px; /* Fixed height for equal boxes */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+        }
+        
+        .step:hover .step-content {
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            border-top-width: 6px;
+        }
+        
+        .step-title {
+            color: #0f4286;
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .step-description {
+            color: #555;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+        
+        @media (max-width: 992px) {
+            .order-steps {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .step {
+                width: 45%;
+                margin-bottom: 40px;
+            }
+            
+            .order-steps::before {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .step {
+                width: 100%;
+                max-width: 350px;
+            }
+            
+            .step-content {
+                height: auto;
+                min-height: 160px;
+            }
+        }
+        .order-button-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        .order-now-btn {
+            background-color: #0f4286;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(15, 66, 134, 0.3);
+        }
+        
+        .order-now-btn:hover {
+            background-color: #0d3a75;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(15, 66, 134, 0.4);
+        }
+        
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 4rem 0;
+            background-color: #f8f9fa;
+        }
+        
+        .testimonials-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            padding: 1rem 0;
+        }
+        
+        .testimonials-track {
+            display: flex;
+            gap: 2rem;
+            animation: scroll 40s linear infinite;
+            width: calc(300% + 6rem);
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 350px;
+            min-width: 300px;
+            transition: transform 0.3s ease;
+            border: 1px solid #eaeaea;
+            flex-shrink: 0;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .testimonial-icon {
+            color: #0f4286;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .testimonial-header {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        
+        .testimonial-text {
+            color: #555;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-100% - 2rem));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .testimonials-track {
+                animation: scroll 60s linear infinite;
+                gap: 1.5rem;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .testimonial-card {
+                min-width: 250px;
+                scroll-snap-align: start;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -33,7 +355,9 @@
             <div class="row align-items-center justify-content-center">
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="index.html"> <img src="img/logo.png" alt="logo"> </a>
+                        <a class="navbar-brand" href="index.html"> 
+                            <img src="img/logo.jpeg" alt="logo"> 
+                        </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -46,54 +370,15 @@
                                     <a class="nav-link" href="index.html">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="about.html">about</a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_1"
-                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        product
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
-                                        <a class="dropdown-item" href="product_list.html"> product list</a>
-                                        <a class="dropdown-item" href="single-product.html">product details</a>
-                                        
-                                    </div>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_3"
-                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        pages
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="login.html"> 
-                                            login
-                                            
-                                        </a>
-                                        <a class="dropdown-item" href="checkout.html">product checkout</a>
-                                        <a class="dropdown-item" href="cart.html">shopping cart</a>
-                                        <a class="dropdown-item" href="confirmation.html">confirmation</a>
-                                        <a class="dropdown-item" href="elements.html">elements</a>
-                                    </div>
-                                </li>
+                                    <a class="nav-link" href="about.html">shop</a>
                                 
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_2"
-                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        blog
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="blog.html"> blog</a>
-                                        <a class="dropdown-item" href="single-blog.html">Single blog</a>
-                                    </div>
-                                </li>
-                                
+                               
                                 <li class="nav-item">
                                     <a class="nav-link" href="contact.html">Contact</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="hearer_icon d-flex align-items-center">
-                            <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
                             <a href="cart.html">
                                 <i class="flaticon-shopping-cart-black-shape"></i>
                             </a>
@@ -102,318 +387,177 @@
                 </div>
             </div>
         </div>
-        <div class="search_input" id="search_input_box">
-            <div class="container ">
-                <form class="d-flex justify-content-between search-inner">
-                    <input type="text" class="form-control" id="search_input" placeholder="Search Here">
-                    <button type="submit" class="btn"></button>
-                    <span class="ti-close" id="close_search" title="Close Search"></span>
-                </form>
-            </div>
-        </div>
     </header>
     <!-- Header part end-->
 
-    <!-- banner part start-->
-    <section class="banner_part">
+    <!-- Video Background Section -->
+    <section class="video-background">
+        <video autoplay muted loop>
+            <source src="vid/vid1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="video-content">
+            <h1>NEED ICE FOR</h1>
+            <div class="changing-text" id="changingText">EVENTS</div>
+            <span class="question-mark">?</span>
+        </div>
+    </section>
+
+    <section class="how-to-order">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-5">
-                    <div class="banner_text">
-                        <div class="banner_text_iner">
-                            <h1>Best quality
-                                pillow</h1>
-                            <p>Seamlessly empower fully researched 
-                                growth strategies and interoperable internal</p>
-                            <a href="product_list.html" class="btn_1">shop now</a>
-                        </div>
+            <h2 class="section-title">How To Order</h2>
+            <div class="order-steps">
+                <!-- Step 1 -->
+                <div class="step">
+                    <div class="step-icon">1</div>
+                    <div class="step-content">
+                        <h4 class="step-title">Select Quantity</h4>
+                        <p class="step-description">Choose from our range of ice quantities to match your event size and needs.</p>
+                    </div>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="step">
+                    <div class="step-icon">2</div>
+                    <div class="step-content">
+                        <h4 class="step-title">Provide Location</h4>
+                        <p class="step-description">Enter your exact delivery address and contact details. We'll confirm availability for your area and delivery timing.</p>
+                    </div>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="step">
+                    <div class="step-icon">3</div>
+                    <div class="step-content">
+                        <h4 class="step-title">Make Payment</h4>
+                        <p class="step-description">Complete your order with our secure payment system. We accept all major credit cards and mobile payment options.</p>
+                    </div>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="step">
+                    <div class="step-icon">4</div>
+                    <div class="step-content">
+                        <h4 class="step-title">Receive Order</h4>
+                        <p class="step-description">Get your ice delivered fresh and on schedule. We ensure proper packaging to maintain quality during transit.</p>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="banner_img">
-            <img src="img/banner.png" alt="#" class="img-fluid">
-            <img src="img/banner_pattern.png " alt="#" class="pattern_img img-fluid">
-        </div>
-    </section>
-    <!-- banner part start-->
 
-    <!-- product list start-->
-    <section class="single_product_list">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="single_product_iner">
-                        <div class="row align-items-center justify-content-between">
-                            <div class="col-lg-6 col-sm-6">
-                                <div class="single_product_img">
-                                    <img src="img/single_product_1.png" class="img-fluid" alt="#">
-                                    <img src="img/product_overlay.png" alt="#" class="product_overlay img-fluid">
-                                </div>
-                            </div>
-                            <div class="col-lg-5 col-sm-6">
-                                <div class="single_product_content">
-                                    <h5>Started from $10</h5>
-                                    <h2> <a href="single-product.html">Printed memory foam 
-                                        brief modern throw 
-                                        pillow case</a> </h2>
-                                    <a href="product_list.html" class="btn_3">Explore Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="single_product_iner">
-                        <div class="row align-items-center justify-content-between">
-                            <div class="col-lg-6 col-sm-6">
-                                <div class="single_product_img">
-                                    <img src="img/single_product_2.png" class="img-fluid" alt="#">
-                                    <img src="img/product_overlay.png" alt="#" class="product_overlay img-fluid">
-                                </div>
-                            </div>
-                            <div class="col-lg-5 col-sm-6">
-                                <div class="single_product_content">
-                                    <h5>Started from $10</h5>
-                                    <h2> <a href="single-product.html">Printed memory foam 
-                                        brief modern throw 
-                                        pillow case</a> </h2>
-                                    <a href="product_list.html" class="btn_3">Explore Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="single_product_iner">
-                        <div class="row align-items-center justify-content-between">
-                            <div class="col-lg-6 col-sm-6">
-                                <div class="single_product_img">
-                                    <img src="img/single_product_3.png" class="img-fluid" alt="#">
-                                    <img src="img/product_overlay.png" alt="#" class="product_overlay img-fluid">
-                                </div>
-                            </div>
-                            <div class="col-lg-5 col-sm-6">
-                                <div class="single_product_content">
-                                    <h5>Started from $10</h5>
-                                    <h2> <a href="single-product.html">Printed memory foam 
-                                            brief modern throw 
-                                            pillow case</a> </h2>
-                                    <a href="product_list.html" class="btn_3">Explore Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+             <div class="order-button-container">
+                <button class="order-now-btn">Order Ice Now</button>
             </div>
         </div>
     </section>
-    <!-- product list end-->
 
-
-    <!-- trending item start-->
-    <section class="trending_items">
+    <section class="testimonials-section">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section_tittle text-center">
-                        <h2>Trending Items</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-sm-6">
-                    <div class="single_product_item">
-                        <div class="single_product_item_thumb">
-                            <img src="img/tranding_item/tranding_item_1.png" alt="#" class="img-fluid">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: #0f4286;">What Our Customers Say</h2>
+            
+            <div class="testimonials-container">
+                <div class="testimonials-track">
+                    <!-- Sesotho Testimonial 1 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-icon">
+                            <i class="fas fa-quote-left"></i>
                         </div>
-                        <h3> <a href="single-product.html">Cervical pillow for airplane
-                        car office nap pillow</a> </h3>
-                        <p>From $5</p>
+                        <div class="testimonial-header">Thabo Mokoena</div>
+                        <p class="testimonial-text">"Ice Men ba nkadile ka lehlohonolo mabapi le theko le tšebeletso. Ke tla ba khothalletsa ho mang kapa mang ea hlokang ice."</p>
                     </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="single_product_item">
-                        <img src="img/tranding_item/tranding_item_2.png" alt="#" class="img-fluid">
-                        <h3> <a href="single-product.html">Foam filling cotton slow rebound pillows</a> </h3>
-                        <p>From $5</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="single_product_item">
-                        <img src="img/tranding_item/tranding_item_3.png" alt="#" class="img-fluid">
-                        <h3> <a href="single-product.html">Memory foam filling cotton Slow rebound pillows</a> </h3>
-                        <p>From $5</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="single_product_item">
-                        <img src="img/tranding_item/tranding_item_4.png" alt="#" class="img-fluid">
-                        <h3> <a href="single-product.html">Cervical pillow for airplane
-                        car office nap pillow</a> </h3>
-                        <p>From $5</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="single_product_item">
-                        <img src="img/tranding_item/tranding_item_5.png" alt="#" class="img-fluid">
-                        <h3> <a href="single-product.html">Foam filling cotton slow rebound pillows</a> </h3>
-                        <p>From $5</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="single_product_item">
-                        <img src="img/tranding_item/tranding_item_6.png" alt="#" class="img-fluid">
-                        <h3> <a href="single-product.html">Memory foam filling cotton Slow rebound pillows</a> </h3>
-                        <p>From $5</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- trending item end-->
-
-    <!-- client review part here -->
-    <section class="client_review">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="client_review_slider owl-carousel">
-                        <div class="single_client_review">
-                            <div class="client_img">
-                                <img src="img/client.png" alt="#">
-                            </div>
-                            <p>"Working in conjunction with humanitarian aid agencies, we have supported programmes to help alleviate human suffering.</p>
-                            <h5>- Micky Mouse</h5>
+                    
+                    <!-- Sesotho Testimonial 2 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-icon">
+                            <i class="fas fa-quote-left"></i>
                         </div>
-                        <div class="single_client_review">
-                            <div class="client_img">
-                                <img src="img/client_1.png" alt="#">
-                            </div>
-                            <p>"Working in conjunction with humanitarian aid agencies, we have supported programmes to help alleviate human suffering.</p>
-                            <h5>- Micky Mouse</h5>
+                        <div class="testimonial-header">Lerato Moloi</div>
+                        <p class="testimonial-text">"Ke ile ka fumana ice ka potlako le ka nako e nepahetseng. Ba nka leeto la bona ka hloko."</p>
+                    </div>
+                    
+                    <!-- Sesotho Testimonial 3 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-icon">
+                            <i class="fas fa-quote-left"></i>
                         </div>
-                        <div class="single_client_review">
-                            <div class="client_img">
-                                <img src="img/client_2.png" alt="#">
-                            </div>
-                            <p>"Working in conjunction with humanitarian aid agencies, we have supported programmes to help alleviate human suffering.</p>
-                            <h5>- Micky Mouse</h5>
+                        <div class="testimonial-header">Teboho Khumalo</div>
+                        <p class="testimonial-text">"Ice e ne e le tšoeu haholo, e sa lele. Ke tla sebelisa Ice Men hape bakeng sa mokete oa ka oa mosali."</p>
+                    </div>
+                    
+                    <!-- Sesotho Testimonial 4 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-icon">
+                            <i class="fas fa-quote-left"></i>
                         </div>
+                        <div class="testimonial-header">Mpho Dlamini</div>
+                        <p class="testimonial-text">"Ba ile ba nka boikokobetso ba nka hlokomela ka mokhoa o motle haholo. Ice e ne e le tšepehali."</p>
+                    </div>
+                    
+                    <!-- Sesotho Testimonial 5 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <div class="testimonial-header">Kgotso Nkosi</div>
+                        <p class="testimonial-text">"Ke ile ka etsa odara ka Sontaha mantsiboea, 'me ka Mona Ice Men ba ile ba tla ka Moesetsanyana. Tšebeletso e phahameng!"</p>
+                    </div>
+                    
+                    <!-- English Testimonial 1 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <div class="testimonial-header">Naledi Mofokeng</div>
+                        <p class="testimonial-text">"Ice Men delivered my order within 30 minutes! The ice was perfectly clear and lasted all night at my party. Highly recommended!"</p>
+                    </div>
+                    
+                    <!-- English Testimonial 2 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <div class="testimonial-header">Tumelo Pule</div>
+                        <p class="testimonial-text">"I've used Ice Men for three events now. Their prices are fair and the delivery is always on time. Professional service!"</p>
+                    </div>
+                    
+                    <!-- English Testimonial 3 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <div class="testimonial-header">Refiloe Motsepe</div>
+                        <p class="testimonial-text">"The ice was crystal clear and didn't melt quickly like others I've tried. Will definitely order again for my next braai."</p>
+                    </div>
+                    
+                    <!-- English Testimonial 4 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <div class="testimonial-header">Katleho Mohapi</div>
+                        <p class="testimonial-text">"Excellent customer service! They helped me calculate exactly how much ice I needed for my wedding. Saved me money!"</p>
+                    </div>
+                    
+                    <!-- English Testimonial 5 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <div class="testimonial-header">Thato Mokone</div>
+                        <p class="testimonial-text">"Late night emergency order and they still delivered within the hour. Lifesavers for our corporate event!"</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- client review part end -->
-
-
-    <!-- feature part here -->
-    <section class="feature_part section_padding">
-        <div class="container">
-            <div class="row justify-content-between">
-                <div class="col-lg-6">
-                    <div class="feature_part_tittle">
-                        <h3>Credibly innovate granular
-                        internal or organic sources
-                        whereas standards.</h3>
-                    </div>
-                </div>
-                <div class="col-lg-5">
-                    <div class="feature_part_content">
-                        <p>Seamlessly empower fully researched growth strategies and interoperable internal or “organic” sources. Credibly innovate granular internal or “organic” sources whereas high standards in web-readiness.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single_feature_part">
-                        <img src="img/icon/feature_icon_1.svg" alt="#">
-                        <h4>Credit Card Support</h4>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single_feature_part">
-                        <img src="img/icon/feature_icon_2.svg" alt="#">
-                        <h4>Online Order</h4>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single_feature_part">
-                        <img src="img/icon/feature_icon_3.svg" alt="#">
-                        <h4>Free Delivery</h4>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single_feature_part">
-                        <img src="img/icon/feature_icon_4.svg" alt="#">
-                        <h4>Product with Gift</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- feature part end -->
-
-    <!-- subscribe part here -->
-    <section class="subscribe_part section_padding">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="subscribe_part_content">
-                        <h2>Get promotions & updates!</h2>
-                        <p>Seamlessly empower fully researched growth strategies and interoperable internal or “organic” sources credibly innovate granular internal .</p>
-                        <div class="subscribe_form">
-                            <input type="email" placeholder="Enter your mail">
-                            <a href="#" class="btn_1">Subscribe</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- subscribe part end -->
 
     <!--::footer_part start::-->
     <footer class="footer_part">
-        <div class="footer_iner">
-            <div class="container">
-                <div class="row justify-content-between align-items-center">
-                    <div class="col-lg-8">
-                        <div class="footer_menu">
-                            <div class="footer_logo">
-                                <a href="index.html"><img src="img/logo.png" alt="#"></a>
-                            </div>
-                            <div class="footer_menu_item">
-                                <a href="index.html">Home</a>
-                                <a href="about.html">About</a>
-                                <a href="product_list.html">Products</a>
-                                <a href="#">Pages</a>
-                                <a href="blog.html">Blog</a>
-                                <a href="contact.html">Contact</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="social_icon">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-google-plus-g"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
         <div class="copyright_part">
             <div class="container">
                 <div class="row ">
                     <div class="col-lg-12">
-                        <div class="copyright_text">
-                            <P><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></P>
-                            <div class="copyright_link">
-                                <a href="#">Turms & Conditions</a>
-                                <a href="#">FAQ</a>
-                            </div>
+                        <div class="copyright_text" style="text-align:center">
+                            <P>Ice Men Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved</P>
                         </div>
                     </div>
                 </div>
@@ -444,6 +588,161 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/mail-script.js"></script>
     <!-- custom js -->
     <script src="js/custom.js"></script>
+    
+    <script>
+        // Dynamic text changing for events
+        const eventTypes = [
+            "EVENTS",
+            "MONATE",
+            "GROOVE",
+            "BRAAI",
+            "WEDDINGS",
+            "FUNCTIONS",
+            "FESTIVALS",
+            "NOMA-YINI",
+            "ICE MEN GOT YOU"  // Added as the final message
+        ];
+        
+          let currentIndex = 0;
+        const changingText = document.getElementById('changingText');
+        const questionMark = document.querySelector('.question-mark');
+        
+        function changeText() {
+            changingText.style.opacity = 0;
+            setTimeout(() => {
+                currentIndex = (currentIndex + 1) % eventTypes.length;
+                changingText.textContent = eventTypes[currentIndex];
+                
+                // Hide question mark when showing "ICE MEN GOT YOU"
+                if (eventTypes[currentIndex] === "ICE MEN GOT YOU") {
+                    questionMark.style.display = 'none';
+                } else {
+                    questionMark.style.display = 'inline-block';
+                }
+                
+                changingText.style.opacity = 1;
+                
+                // Reset to beginning after showing "ICE MEN GOT YOU"
+                if (eventTypes[currentIndex] === "ICE MEN GOT YOU !") {
+                    setTimeout(() => {
+                        currentIndex = -1; // Will become 0 after increment
+                    }, 2000); // Show for 2 seconds before resetting
+                }
+            }, 500);
+        }
+        
+        // Change text every 3 seconds
+        setInterval(changeText, 2000);
+        
+        // Initialize first text
+        changingText.textContent = eventTypes[0];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const steps = document.querySelectorAll('.step');
+            
+            steps.forEach(step => {
+                // Add mouseenter event
+                step.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                    this.querySelector('.step-content').style.boxShadow = '0 15px 30px rgba(0,0,0,0.15)';
+                    this.querySelector('.step-content').style.borderTopWidth = '6px';
+                });
+                
+                // Add mouseleave event
+                step.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.querySelector('.step-content').style.boxShadow = '0 5px 15px rgba(0,0,0,0.08)';
+                    this.querySelector('.step-content').style.borderTopWidth = '4px';
+                });
+                
+                // Add touch effect for mobile
+                step.addEventListener('touchstart', function() {
+                    this.classList.add('hover-effect');
+                });
+                
+                step.addEventListener('touchend', function() {
+                    this.classList.remove('hover-effect');
+                });
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const track = document.querySelector('.testimonials-track');
+            if (!track) return;
+
+            let isDragging = false;
+            let startX;
+            let scrollLeft;
+            let isPaused = false;
+
+            // Pause animation on interaction
+            function pauseAnimation() {
+                if (isPaused) return;
+                track.style.animationPlayState = 'paused';
+                isPaused = true;
+            }
+
+            // Resume animation after delay
+            function resumeAnimation() {
+                if (!isPaused) return;
+                setTimeout(() => {
+                    track.style.animationPlayState = 'running';
+                    isPaused = false;
+                }, 3000);
+            }
+
+            // Mouse/touch events
+            track.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                startX = e.pageX - track.offsetLeft;
+                scrollLeft = track.scrollLeft;
+                pauseAnimation();
+                track.style.cursor = 'grabbing';
+            });
+
+            track.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                startX = e.touches[0].pageX - track.offsetLeft;
+                scrollLeft = track.scrollLeft;
+                pauseAnimation();
+                track.style.cursor = 'grabbing';
+            });
+
+            document.addEventListener('mouseup', () => {
+                if (!isDragging) return;
+                isDragging = false;
+                track.style.cursor = 'grab';
+                resumeAnimation();
+            });
+
+            document.addEventListener('touchend', () => {
+                if (!isDragging) return;
+                isDragging = false;
+                track.style.cursor = 'grab';
+                resumeAnimation();
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+                const x = e.pageX - track.offsetLeft;
+                const walk = (x - startX) * 2;
+                track.scrollLeft = scrollLeft - walk;
+            });
+
+            track.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+                const x = e.touches[0].pageX - track.offsetLeft;
+                const walk = (x - startX) * 2;
+                track.scrollLeft = scrollLeft - walk;
+            });
+
+            // Pause on hover for desktop
+            track.addEventListener('mouseenter', pauseAnimation);
+            track.addEventListener('mouseleave', resumeAnimation);
+        });
+    </script>
 </body>
 
 </html>
