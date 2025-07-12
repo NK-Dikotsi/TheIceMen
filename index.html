@@ -392,7 +392,7 @@
 
     <!-- Video Background Section -->
     <section class="video-background">
-        <video autoplay muted loop>
+        <video autoplay muted loop  playsinline>
             <source src="vid/vid1.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
@@ -741,6 +741,28 @@
             // Pause on hover for desktop
             track.addEventListener('mouseenter', pauseAnimation);
             track.addEventListener('mouseleave', resumeAnimation);
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Force video playback on mobile
+            const video = document.querySelector('.video-background video');
+            if (video) {
+                video.setAttribute('playsinline', '');
+                video.setAttribute('webkit-playsinline', '');
+                video.setAttribute('muted', 'muted');
+                
+                // iOS requires explicit play() call
+                const playPromise = video.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        // Auto-play was prevented, show fallback
+                        console.log('Video autoplay prevented:', error);
+                        video.muted = true;
+                        video.play().catch(e => console.log('Fallback play failed:', e));
+                    });
+                }
+            }
         });
     </script>
 </body>
