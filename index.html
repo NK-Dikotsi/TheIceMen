@@ -273,30 +273,42 @@
         }
         
         .testimonials-container {
-            width: 100%;
-            overflow: hidden;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
             position: relative;
-            padding: 1rem 0;
+        }
+        
+        .testimonials-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #0f4286;
+            font-size: 2rem;
         }
         
         .testimonials-track {
             display: flex;
-            gap: 2rem;
-            animation: scroll 40s linear infinite;
-            width: calc(300% + 6rem);
+            gap: 20px;
+            padding: 20px 0;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Hide scrollbar for Firefox */
+        }
+        
+        .testimonials-track::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Chrome/Safari */
         }
         
         .testimonial-card {
+            flex: 0 0 350px;
+            scroll-snap-align: start;
             background: white;
             border-radius: 12px;
             padding: 2rem;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            width: 100%;
-            max-width: 350px;
-            min-width: 300px;
             transition: transform 0.3s ease;
             border: 1px solid #eaeaea;
-            flex-shrink: 0;
         }
         
         .testimonial-card:hover {
@@ -322,27 +334,45 @@
             font-size: 0.95rem;
         }
         
-        @keyframes scroll {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(calc(-100% - 2rem));
-            }
+        /* Navigation arrows */
+        .testimonial-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 10;
+            border: none;
+            outline: none;
+        }
+        
+        .testimonial-nav.prev {
+            left: -20px;
+        }
+        
+        .testimonial-nav.next {
+            right: -20px;
+        }
+        
+        .testimonial-nav i {
+            color: #0f4286;
+            font-size: 1.2rem;
         }
         
         @media (max-width: 768px) {
-            .testimonials-track {
-                animation: scroll 60s linear infinite;
-                gap: 1.5rem;
-                overflow-x: auto;
-                scroll-snap-type: x mandatory;
-                -webkit-overflow-scrolling: touch;
+            .testimonial-card {
+                flex: 0 0 280px;
             }
             
-            .testimonial-card {
-                min-width: 250px;
-                scroll-snap-align: start;
+            .testimonial-nav {
+                display: none;
             }
         }
     </style>
@@ -392,7 +422,7 @@
 
     <!-- Video Background Section -->
     <section class="video-background">
-        <video autoplay muted loop  playsinline>
+        <video autoplay muted loop playsinline>
             <source src="vid/vid1.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
@@ -451,102 +481,108 @@
     </section>
 
     <section class="testimonials-section">
-        <div class="container">
-            <h2 style="text-align: center; margin-bottom: 2rem; color: #0f4286;">What Our Customers Say</h2>
+        <div class="testimonials-container">
+            <h2 class="testimonials-title">What Our Customers Say</h2>
             
-            <div class="testimonials-container">
-                <div class="testimonials-track">
-                    <!-- Sesotho Testimonial 1 -->
-                    <div class="testimonial-card">
-                        <div class="testimonial-icon">
-                            <i class="fas fa-quote-left"></i>
-                        </div>
-                        <div class="testimonial-header">Thabo Mokoena</div>
-                        <p class="testimonial-text">"Ice Men ba nkadile ka lehlohonolo mabapi le theko le tšebeletso. Ke tla ba khothalletsa ho mang kapa mang ea hlokang ice."</p>
+            <button class="testimonial-nav prev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            
+            <div class="testimonials-track" id="testimonialsTrack">
+                <!-- Sesotho Testimonial 1 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-icon">
+                        <i class="fas fa-quote-left"></i>
                     </div>
-                    
-                    <!-- Sesotho Testimonial 2 -->
-                    <div class="testimonial-card">
-                        <div class="testimonial-icon">
-                            <i class="fas fa-quote-left"></i>
-                        </div>
-                        <div class="testimonial-header">Lerato Moloi</div>
-                        <p class="testimonial-text">"Ke ile ka fumana ice ka potlako le ka nako e nepahetseng. Ba nka leeto la bona ka hloko."</p>
+                    <div class="testimonial-header">Thabo Mokoena</div>
+                    <p class="testimonial-text">"Ice Men ba nkadile ka lehlohonolo mabapi le theko le tšebeletso. Ke tla ba khothalletsa ho mang kapa mang ea hlokang ice."</p>
+                </div>
+                
+                <!-- Sesotho Testimonial 2 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-icon">
+                        <i class="fas fa-quote-left"></i>
                     </div>
-                    
-                    <!-- Sesotho Testimonial 3 -->
-                    <div class="testimonial-card">
-                        <div class="testimonial-icon">
-                            <i class="fas fa-quote-left"></i>
-                        </div>
-                        <div class="testimonial-header">Teboho Khumalo</div>
-                        <p class="testimonial-text">"Ice e ne e le tšoeu haholo, e sa lele. Ke tla sebelisa Ice Men hape bakeng sa mokete oa ka oa mosali."</p>
+                    <div class="testimonial-header">Lerato Moloi</div>
+                    <p class="testimonial-text">"Ke ile ka fumana ice ka potlako le ka nako e nepahetseng. Ba nka leeto la bona ka hloko."</p>
+                </div>
+                
+                <!-- Sesotho Testimonial 3 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-icon">
+                        <i class="fas fa-quote-left"></i>
                     </div>
-                    
-                    <!-- Sesotho Testimonial 4 -->
-                    <div class="testimonial-card">
-                        <div class="testimonial-icon">
-                            <i class="fas fa-quote-left"></i>
-                        </div>
-                        <div class="testimonial-header">Mpho Dlamini</div>
-                        <p class="testimonial-text">"Ba ile ba nka boikokobetso ba nka hlokomela ka mokhoa o motle haholo. Ice e ne e le tšepehali."</p>
+                    <div class="testimonial-header">Teboho Khumalo</div>
+                    <p class="testimonial-text">"Ice e ne e le tšoeu haholo, e sa lele. Ke tla sebelisa Ice Men hape bakeng sa mokete oa ka oa mosali."</p>
+                </div>
+                
+                <!-- Sesotho Testimonial 4 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-icon">
+                        <i class="fas fa-quote-left"></i>
                     </div>
-                    
-                    <!-- Sesotho Testimonial 5 -->
-                    <div class="testimonial-card">
-                        <div class="testimonial-icon">
-                            <i class="fas fa-quote-left"></i>
-                        </div>
-                        <div class="testimonial-header">Kgotso Nkosi</div>
-                        <p class="testimonial-text">"Ke ile ka etsa odara ka Sontaha mantsiboea, 'me ka Mona Ice Men ba ile ba tla ka Moesetsanyana. Tšebeletso e phahameng!"</p>
+                    <div class="testimonial-header">Mpho Dlamini</div>
+                    <p class="testimonial-text">"Ba ile ba nka boikokobetso ba nka hlokomela ka mokhoa o motle haholo. Ice e ne e le tšepehali."</p>
+                </div>
+                
+                <!-- Sesotho Testimonial 5 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-icon">
+                        <i class="fas fa-quote-left"></i>
                     </div>
-                    
-                    <!-- English Testimonial 1 -->
-                    <div class="testimonial-card">
-                        <div class="testimonial-icon">
-                            <i class="fas fa-quote-left"></i>
-                        </div>
-                        <div class="testimonial-header">Naledi Mofokeng</div>
-                        <p class="testimonial-text">"Ice Men delivered my order within 30 minutes! The ice was perfectly clear and lasted all night at my party. Highly recommended!"</p>
+                    <div class="testimonial-header">Kgotso Nkosi</div>
+                    <p class="testimonial-text">"Ke ile ka etsa odara ka Sontaha mantsiboea, 'me ka Mona Ice Men ba ile ba tla ka Moesetsanyana. Tšebeletso e phahameng!"</p>
+                </div>
+                
+                <!-- English Testimonial 1 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-icon">
+                        <i class="fas fa-quote-left"></i>
                     </div>
-                    
-                    <!-- English Testimonial 2 -->
-                    <div class="testimonial-card">
-                        <div class="testimonial-icon">
-                            <i class="fas fa-quote-left"></i>
-                        </div>
-                        <div class="testimonial-header">Tumelo Pule</div>
-                        <p class="testimonial-text">"I've used Ice Men for three events now. Their prices are fair and the delivery is always on time. Professional service!"</p>
+                    <div class="testimonial-header">Naledi Mofokeng</div>
+                    <p class="testimonial-text">"Ice Men delivered my order within 30 minutes! The ice was perfectly clear and lasted all night at my party. Highly recommended!"</p>
+                </div>
+                
+                <!-- English Testimonial 2 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-icon">
+                        <i class="fas fa-quote-left"></i>
                     </div>
-                    
-                    <!-- English Testimonial 3 -->
-                    <div class="testimonial-card">
-                        <div class="testimonial-icon">
-                            <i class="fas fa-quote-left"></i>
-                        </div>
-                        <div class="testimonial-header">Refiloe Motsepe</div>
-                        <p class="testimonial-text">"The ice was crystal clear and didn't melt quickly like others I've tried. Will definitely order again for my next braai."</p>
+                    <div class="testimonial-header">Tumelo Pule</div>
+                    <p class="testimonial-text">"I've used Ice Men for three events now. Their prices are fair and the delivery is always on time. Professional service!"</p>
+                </div>
+                
+                <!-- English Testimonial 3 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-icon">
+                        <i class="fas fa-quote-left"></i>
                     </div>
-                    
-                    <!-- English Testimonial 4 -->
-                    <div class="testimonial-card">
-                        <div class="testimonial-icon">
-                            <i class="fas fa-quote-left"></i>
-                        </div>
-                        <div class="testimonial-header">Katleho Mohapi</div>
-                        <p class="testimonial-text">"Excellent customer service! They helped me calculate exactly how much ice I needed for my wedding. Saved me money!"</p>
+                    <div class="testimonial-header">Refiloe Motsepe</div>
+                    <p class="testimonial-text">"The ice was crystal clear and didn't melt quickly like others I've tried. Will definitely order again for my next braai."</p>
+                </div>
+                
+                <!-- English Testimonial 4 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-icon">
+                        <i class="fas fa-quote-left"></i>
                     </div>
-                    
-                    <!-- English Testimonial 5 -->
-                    <div class="testimonial-card">
-                        <div class="testimonial-icon">
-                            <i class="fas fa-quote-left"></i>
-                        </div>
-                        <div class="testimonial-header">Thato Mokone</div>
-                        <p class="testimonial-text">"Late night emergency order and they still delivered within the hour. Lifesavers for our corporate event!"</p>
+                    <div class="testimonial-header">Katleho Mohapi</div>
+                    <p class="testimonial-text">"Excellent customer service! They helped me calculate exactly how much ice I needed for my wedding. Saved me money!"</p>
+                </div>
+                
+                <!-- English Testimonial 5 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-icon">
+                        <i class="fas fa-quote-left"></i>
                     </div>
+                    <div class="testimonial-header">Thato Mokone</div>
+                    <p class="testimonial-text">"Late night emergency order and they still delivered within the hour. Lifesavers for our corporate event!"</p>
                 </div>
             </div>
+            
+            <button class="testimonial-nav next">
+                <i class="fas fa-chevron-right"></i>
+            </button>
         </div>
     </section>
 
@@ -603,7 +639,7 @@
             "ICE MEN GOT YOU"  // Added as the final message
         ];
         
-          let currentIndex = 0;
+        let currentIndex = 0;
         const changingText = document.getElementById('changingText');
         const questionMark = document.querySelector('.question-mark');
         
@@ -623,7 +659,7 @@
                 changingText.style.opacity = 1;
                 
                 // Reset to beginning after showing "ICE MEN GOT YOU"
-                if (eventTypes[currentIndex] === "ICE MEN GOT YOU !") {
+                if (eventTypes[currentIndex] === "ICE MEN GOT YOU") {
                     setTimeout(() => {
                         currentIndex = -1; // Will become 0 after increment
                     }, 2000); // Show for 2 seconds before resetting
@@ -666,81 +702,137 @@
             });
         });
 
+        // Testimonials carousel functionality
         document.addEventListener('DOMContentLoaded', function() {
-            const track = document.querySelector('.testimonials-track');
-            if (!track) return;
-
-            let isDragging = false;
+            const track = document.getElementById('testimonialsTrack');
+            const prevBtn = document.querySelector('.testimonial-nav.prev');
+            const nextBtn = document.querySelector('.testimonial-nav.next');
+            const cards = document.querySelectorAll('.testimonial-card');
+            const cardWidth = cards[0].offsetWidth + 20; // width + gap
+            
+            let autoScrollInterval;
+            
+            // Function to scroll to specific position
+            function scrollToPosition(position) {
+                track.scrollTo({
+                    left: position,
+                    behavior: 'smooth'
+                });
+            }
+            
+            // Next button click
+            nextBtn.addEventListener('click', function() {
+                const currentScroll = track.scrollLeft;
+                const maxScroll = track.scrollWidth - track.clientWidth;
+                const nextScroll = currentScroll + cardWidth;
+                
+                if (nextScroll >= maxScroll) {
+                    scrollToPosition(0); // Loop back to start
+                } else {
+                    scrollToPosition(nextScroll);
+                }
+                
+                // Reset autoscroll timer
+                resetAutoScroll();
+            });
+            
+            // Previous button click
+            prevBtn.addEventListener('click', function() {
+                const currentScroll = track.scrollLeft;
+                const prevScroll = currentScroll - cardWidth;
+                
+                if (prevScroll <= 0) {
+                    scrollToPosition(track.scrollWidth); // Loop to end
+                } else {
+                    scrollToPosition(prevScroll);
+                }
+                
+                // Reset autoscroll timer
+                resetAutoScroll();
+            });
+            
+            // Auto-scroll functionality
+            function startAutoScroll() {
+                autoScrollInterval = setInterval(function() {
+                    const currentScroll = track.scrollLeft;
+                    const maxScroll = track.scrollWidth - track.clientWidth;
+                    const nextScroll = currentScroll + cardWidth;
+                    
+                    if (nextScroll >= maxScroll) {
+                        scrollToPosition(0); // Loop back to start
+                    } else {
+                        scrollToPosition(nextScroll);
+                    }
+                }, 3000); // Scroll every 3 seconds
+            }
+            
+            function resetAutoScroll() {
+                clearInterval(autoScrollInterval);
+                startAutoScroll();
+            }
+            
+            // Pause auto-scroll on hover
+            track.addEventListener('mouseenter', function() {
+                clearInterval(autoScrollInterval);
+            });
+            
+            track.addEventListener('mouseleave', function() {
+                startAutoScroll();
+            });
+            
+            // Initialize auto-scroll
+            startAutoScroll();
+            
+            // Enable touch scrolling
+            let isDown = false;
             let startX;
             let scrollLeft;
-            let isPaused = false;
-
-            // Pause animation on interaction
-            function pauseAnimation() {
-                if (isPaused) return;
-                track.style.animationPlayState = 'paused';
-                isPaused = true;
-            }
-
-            // Resume animation after delay
-            function resumeAnimation() {
-                if (!isPaused) return;
-                setTimeout(() => {
-                    track.style.animationPlayState = 'running';
-                    isPaused = false;
-                }, 3000);
-            }
-
-            // Mouse/touch events
+            
             track.addEventListener('mousedown', (e) => {
-                isDragging = true;
+                isDown = true;
                 startX = e.pageX - track.offsetLeft;
                 scrollLeft = track.scrollLeft;
-                pauseAnimation();
-                track.style.cursor = 'grabbing';
+                clearInterval(autoScrollInterval);
             });
-
-            track.addEventListener('touchstart', (e) => {
-                isDragging = true;
-                startX = e.touches[0].pageX - track.offsetLeft;
-                scrollLeft = track.scrollLeft;
-                pauseAnimation();
-                track.style.cursor = 'grabbing';
+            
+            track.addEventListener('mouseleave', () => {
+                isDown = false;
+                startAutoScroll();
             });
-
-            document.addEventListener('mouseup', () => {
-                if (!isDragging) return;
-                isDragging = false;
-                track.style.cursor = 'grab';
-                resumeAnimation();
+            
+            track.addEventListener('mouseup', () => {
+                isDown = false;
+                startAutoScroll();
             });
-
-            document.addEventListener('touchend', () => {
-                if (!isDragging) return;
-                isDragging = false;
-                track.style.cursor = 'grab';
-                resumeAnimation();
-            });
-
-            document.addEventListener('mousemove', (e) => {
-                if (!isDragging) return;
+            
+            track.addEventListener('mousemove', (e) => {
+                if(!isDown) return;
                 e.preventDefault();
                 const x = e.pageX - track.offsetLeft;
-                const walk = (x - startX) * 2;
+                const walk = (x - startX) * 2; // Scroll faster
                 track.scrollLeft = scrollLeft - walk;
             });
-
+            
+            // Touch events for mobile
+            track.addEventListener('touchstart', (e) => {
+                isDown = true;
+                startX = e.touches[0].pageX - track.offsetLeft;
+                scrollLeft = track.scrollLeft;
+                clearInterval(autoScrollInterval);
+            }, {passive: false});
+            
+            track.addEventListener('touchend', () => {
+                isDown = false;
+                startAutoScroll();
+            });
+            
             track.addEventListener('touchmove', (e) => {
-                if (!isDragging) return;
+                if(!isDown) return;
                 e.preventDefault();
                 const x = e.touches[0].pageX - track.offsetLeft;
                 const walk = (x - startX) * 2;
                 track.scrollLeft = scrollLeft - walk;
-            });
-
-            // Pause on hover for desktop
-            track.addEventListener('mouseenter', pauseAnimation);
-            track.addEventListener('mouseleave', resumeAnimation);
+            }, {passive: false});
         });
 
         document.addEventListener('DOMContentLoaded', function() {
