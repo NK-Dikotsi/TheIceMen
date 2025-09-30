@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>The Icemen</title>
-    <link rel="icon" href="img/logo.jpeg">
+    <link rel="icon" href="img/logofront.png">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- animate CSS -->
@@ -27,14 +27,31 @@
     <style>
         /* Custom styles for logo and footer */
         .navbar-brand img {
-            height: 40px;
-            width: 40px;
+            height: 120px; /* Increased from 80px */
+            width: auto;
             object-fit: contain;
+            max-height: 120px;
+        }
+        
+        /* Minimize navbar height */
+        .main_menu {
+            padding: 5px 0; /* Reduced padding */
+        }
+        
+        .navbar {
+            padding: 5px 0; /* Reduced navbar padding */
+            min-height: auto;
+        }
+        
+        .navbar-brand {
+            margin: 0;
+            padding: 0;
         }
         
         .footer_part {
             background-color: #0f4286 !important;
             color: white !important;
+            padding: 50px 0 20px;
         }
         
         .copyright_text {
@@ -47,6 +64,56 @@
         
         .copyright_text a {
             color: white !important;
+        }
+        
+        .footer-logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .footer-logo img {
+            height: 100px; /* Increased from 60px */
+            width: auto;
+            max-height: 100px;
+        }
+        
+        .footer-contact {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .footer-contact h5 {
+            color: white;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .contact-info {
+            margin-bottom: 15px;
+        }
+        
+        .contact-info i {
+            width: 20px;
+            color: white;
+            margin-right: 10px;
+        }
+        
+        .social-icons {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            margin: 0 10px;
+            color: white;
+            font-size: 24px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            color: #ccc;
+            transform: translateY(-3px);
         }
         
         /* Video background section - more professional size */
@@ -106,6 +173,22 @@
         }
         
         @media (max-width: 768px) {
+            .navbar-brand img {
+                height: 90px; /* Responsive size for mobile */
+            }
+            
+            .main_menu {
+                padding: 3px 0; /* Even smaller padding on mobile */
+            }
+            
+            .navbar {
+                padding: 3px 0;
+            }
+            
+            .footer-logo img {
+                height: 80px;
+            }
+            
             .video-background {
                 height: 50vh;
                 min-height: 300px;
@@ -122,6 +205,11 @@
             
             .question-mark {
                 font-size: 2rem;
+            }
+            
+            .social-icons a {
+                font-size: 20px;
+                margin: 0 8px;
             }
         }
 
@@ -265,8 +353,244 @@
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(15, 66, 134, 0.4);
         }
+
+        /* What Makes Ice Men Special Section */
+        .what-makes-special {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            overflow: hidden;
+        }
         
-        /* Testimonials Section */
+        .special-title {
+            text-align: center;
+            margin-bottom: 60px;
+            color: #0f4286;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        
+        .features-carousel {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .feature-card {
+            position: relative;
+            width: 380px;
+            height: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transform-style: preserve-3d;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+        }
+        
+        .feature-card.center {
+            transform: scale(1.1);
+            z-index: 2;
+        }
+        
+        .feature-card.center:hover {
+            transform: scale(1.15) translateY(-10px);
+        }
+        
+        .feature-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+        
+        .feature-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(15, 66, 134, 0.1) 0%,
+                rgba(15, 66, 134, 0.3) 50%,
+                rgba(15, 66, 134, 0.8) 100%
+            );
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover .feature-overlay {
+            background: linear-gradient(
+                to bottom,
+                rgba(15, 66, 134, 0.2) 0%,
+                rgba(15, 66, 134, 0.5) 50%,
+                rgba(15, 66, 134, 0.9) 100%
+            );
+        }
+        
+        .feature-category {
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+        
+        .feature-title {
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 15px;
+        }
+        
+        .feature-description {
+            color: #ffffff;
+            font-size: 16px;
+            line-height: 1.5;
+            opacity: 0.95;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover .feature-description {
+            transform: translateY(0);
+        }
+        
+        .feature-icon {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            z-index: 3;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover .feature-icon {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .feature-icon i {
+            color: #ffffff;
+            font-size: 24px;
+        }
+        
+        /* Navigation arrows */
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(15, 66, 134, 0.8);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .carousel-nav:hover {
+            background: rgba(15, 66, 134, 1);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .carousel-nav.prev {
+            left: -25px;
+        }
+        
+        .carousel-nav.next {
+            right: -25px;
+        }
+        
+        @media (max-width: 1200px) {
+            .features-carousel {
+                gap: 20px;
+            }
+            
+            .feature-card {
+                width: 320px;
+                height: 450px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .features-carousel {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .feature-card {
+                width: 100%;
+                max-width: 400px;
+                height: 400px;
+            }
+            
+            .feature-card.center {
+                transform: none;
+            }
+            
+            .feature-card.center:hover {
+                transform: translateY(-10px) scale(1.02);
+            }
+            
+            .carousel-nav {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .special-title {
+                font-size: 2rem;
+                margin-bottom: 40px;
+            }
+            
+            .feature-card {
+                height: 350px;
+            }
+            
+            .feature-overlay {
+                padding: 20px;
+            }
+            
+            .feature-title {
+                font-size: 20px;
+            }
+            
+            .feature-description {
+                font-size: 14px;
+            }
+        }
+        
         /* Testimonials Section */
         .testimonials-section {
             padding: 4rem 0;
@@ -389,7 +713,7 @@
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg navbar-light">
                         <a class="navbar-brand" href="index.html"> 
-                            <img src="img/logo.jpeg" alt="logo"> 
+                            <img src="img/logofront.png" alt="logo"> 
                         </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -482,6 +806,67 @@
 
              <div class="order-button-container">
                 <button class="order-now-btn">Order Ice Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- What Makes Ice Men Special Section -->
+    <section class="what-makes-special">
+        <div class="container">
+            <h2 class="special-title">What makes Ice Men special?</h2>
+            <div class="features-carousel" id="featuresCarousel">
+                <button class="carousel-nav prev" id="prevBtn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                
+                <!-- Feature Card 1 -->
+                <div class="feature-card" data-video="vid/c1.mp4">
+                    <video class="feature-video" muted loop playsinline>
+                        <source src="vid/c1.mp4" type="video/mp4">
+                    </video>
+                    <div class="feature-overlay">
+                        <div class="feature-icon">
+                            <i class="fas fa-snowflake"></i>
+                        </div>
+                        <div class="feature-category">Local</div>
+                        <h3 class="feature-title">Proudly Local</h3>
+                        <p class="feature-description">Produced right here in the Free State to support our community and ensure fresh, quality ice.</p>
+                    </div>
+                </div>
+                
+                <!-- Feature Card 2 (Center) -->
+                <div class="feature-card center" data-video="vid/c2.mp4">
+                    <video class="feature-video" muted loop playsinline>
+                        <source src="vid/c2.mp4" type="video/mp4">
+                    </video>
+                    <div class="feature-overlay">
+                        <div class="feature-icon">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <div class="feature-category">Convenience</div>
+                        <h3 class="feature-title">Convenience Every Time</h3>
+                        <p class="feature-description"> Quick, reliable deliveries straight to your door so you’re always stocked and stress-free.</p>
+                    </div>
+                </div>
+                
+                <!-- Feature Card 3 -->
+                <div class="feature-card" data-video="vid/c3.mp4">
+                    <video class="feature-video" muted loop playsinline>
+                        <source src="vid/c3.mp4" type="video/mp4">
+                    </video>
+                    <div class="feature-overlay">
+                        <div class="feature-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="feature-category">Reliable</div>
+                        <h3 class="feature-title">Reliable Supply</h3>
+                        <p class="feature-description">Consistent ice availability even in peak season to keep your business and events running smoothly.</p>
+                    </div>
+                </div>
+                
+                <button class="carousel-nav next" id="nextBtn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
         </div>
     </section>
@@ -618,12 +1003,41 @@
 
     <!--::footer_part start::-->
     <footer class="footer_part">
+        <div class="container">
+            <div class="footer-logo">
+                <img src="img/logoback.png" alt="Ice Men Logo">
+            </div>
+            
+            <div class="footer-contact">
+                <h5>Contact Us</h5>
+                <div class="contact-info">
+                    <i class="fas fa-phone"></i>
+                    <span>+27 12 345 6789</span>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-envelope"></i>
+                    <span>info@icemen.co.za</span>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Bethlehem, Free State, South Africa,9701</span>
+                </div>
+            </div>
+            
+            <div class="social-icons">
+                <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
         <div class="copyright_part">
             <div class="container">
                 <div class="row ">
                     <div class="col-lg-12">
                         <div class="copyright_text" style="text-align:center">
-                            <P>Ice Men Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved</P>
+                            <P>Ice Men Group Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved</P>
                         </div>
                     </div>
                 </div>
@@ -729,6 +1143,105 @@
                 
                 step.addEventListener('touchend', function() {
                     this.classList.remove('hover-effect');
+                });
+            });
+        });
+
+        // Features Carousel Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const featureCards = document.querySelectorAll('.feature-card');
+            const videos = document.querySelectorAll('.feature-video');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            let currentFeature = 1; // Start with center card (index 1)
+
+            // Initialize videos
+            function initializeVideos() {
+                videos.forEach((video, index) => {
+                    video.load();
+                    if (index === currentFeature) {
+                        video.play().catch(e => console.log('Video play failed:', e));
+                    }
+                });
+            }
+
+            // Update carousel
+            function updateCarousel() {
+                featureCards.forEach((card, index) => {
+                    card.classList.remove('center');
+                    const video = card.querySelector('.feature-video');
+                    
+                    if (index === currentFeature) {
+                        card.classList.add('center');
+                        video.play().catch(e => console.log('Video play failed:', e));
+                    } else {
+                        video.pause();
+                    }
+                });
+            }
+
+            // Navigation functions
+            function nextFeature() {
+                currentFeature = (currentFeature + 1) % featureCards.length;
+                updateCarousel();
+            }
+
+            function prevFeature() {
+                currentFeature = (currentFeature - 1 + featureCards.length) % featureCards.length;
+                updateCarousel();
+            }
+
+            // Event listeners
+            nextBtn.addEventListener('click', nextFeature);
+            prevBtn.addEventListener('click', prevFeature);
+
+            // Auto-play carousel
+            let autoPlayInterval = setInterval(nextFeature, 5000);
+
+            // Pause auto-play on hover
+            const carousel = document.querySelector('.features-carousel');
+            carousel.addEventListener('mouseenter', () => {
+                clearInterval(autoPlayInterval);
+            });
+
+            carousel.addEventListener('mouseleave', () => {
+                autoPlayInterval = setInterval(nextFeature, 5000);
+            });
+
+            // Touch/Swipe support for mobile
+            let startX = 0;
+            let startY = 0;
+
+            carousel.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+            });
+
+            carousel.addEventListener('touchend', (e) => {
+                const endX = e.changedTouches[0].clientX;
+                const endY = e.changedTouches[0].clientY;
+                const diffX = startX - endX;
+                const diffY = startY - endY;
+
+                // Check if horizontal swipe is more significant than vertical
+                if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+                    if (diffX > 0) {
+                        nextFeature();
+                    } else {
+                        prevFeature();
+                    }
+                }
+            });
+
+            // Initialize
+            initializeVideos();
+            updateCarousel();
+
+            // Play video on card hover
+            featureCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    const video = card.querySelector('.feature-video');
+                    video.play().catch(e => console.log('Video play failed:', e));
                 });
             });
         });
