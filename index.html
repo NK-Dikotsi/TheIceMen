@@ -76,9 +76,6 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://www.icemengroup.com">
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="favicon.png">
-    
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
@@ -87,23 +84,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Analytics -->
-    <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "u0ti2qjsdz");
-    </script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0TQDNZWE0P"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-0TQDNZWE0P');
-    </script>
     
     <style>
         :root {
@@ -605,8 +585,33 @@
             display: none;
         }
 
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .cancel-btn {
+            flex: 1;
+            background: #f8f9fa;
+            color: #666;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 16px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .cancel-btn:hover {
+            background: #e9ecef;
+            border-color: #ccc;
+        }
+
         .submit-btn {
-            width: 100%;
+            flex: 2;
             background: var(--primary-blue);
             color: white;
             border: none;
@@ -617,7 +622,6 @@
             cursor: pointer;
             transition: all 0.3s ease;
             font-family: 'Montserrat', sans-serif;
-            margin-top: 10px;
         }
 
         .submit-btn:hover {
@@ -649,30 +653,167 @@
             to { transform: rotate(360deg); }
         }
 
-        .notification {
+        /* Status Modal Styles */
+        .status-modal {
+            display: none;
             position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 15px 20px;
-            border-radius: 8px;
-            color: white;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
             z-index: 3000;
-            transform: translateX(120%);
-            transition: transform 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .status-modal.active {
+            display: flex;
+        }
+
+        .status-modal-content {
+            background: white;
+            border-radius: 12px;
+            width: 90%;
             max-width: 400px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: modalSlideIn 0.3s ease-out;
         }
 
-        .notification.show {
-            transform: translateX(0);
+        .status-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 80px;
         }
 
-        .notification.success {
-            background-color: var(--success-green);
+        .status-icon.success {
+            color: var(--success-green);
         }
 
-        .notification.error {
-            background-color: var(--error-red);
+        .status-icon.error {
+            color: var(--error-red);
+        }
+
+        .status-icon.location {
+            color: var(--primary-blue);
+        }
+
+        .checkmark {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: block;
+            stroke-width: 2;
+            stroke: var(--success-green);
+            stroke-miterlimit: 10;
+            margin: 0 auto;
+            box-shadow: inset 0px 0px 0px var(--success-green);
+            animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+        }
+
+        .checkmark-circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 2;
+            stroke-miterlimit: 10;
+            stroke: var(--success-green);
+            fill: none;
+            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        }
+
+        .checkmark-check {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+        }
+
+        @keyframes stroke {
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes scale {
+            0%, 100% {
+                transform: none;
+            }
+            50% {
+                transform: scale3d(1.1, 1.1, 1);
+            }
+        }
+
+        @keyframes fill {
+            100% {
+                box-shadow: inset 0px 0px 0px 30px var(--success-green);
+            }
+        }
+
+        .x-mark {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: block;
+            stroke-width: 2;
+            stroke: var(--error-red);
+            stroke-miterlimit: 10;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .x-mark-circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 2;
+            stroke-miterlimit: 10;
+            stroke: var(--error-red);
+            fill: none;
+            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        }
+
+        .x-mark-line {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+        }
+
+        .status-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .status-message {
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .continue-btn {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .continue-btn:hover {
+            background: #0d376c;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(15, 66, 134, 0.3);
         }
 
         /* Extended Footer Styles */
@@ -839,6 +980,24 @@
             .location-btn {
                 padding: 12px;
             }
+
+            .form-actions {
+                flex-direction: column;
+            }
+
+            .status-modal-content {
+                padding: 30px 20px;
+            }
+
+            .status-icon {
+                font-size: 50px;
+                height: 70px;
+            }
+
+            .checkmark, .x-mark {
+                width: 70px;
+                height: 70px;
+            }
         }
         
         @media (max-width: 576px) {
@@ -903,7 +1062,7 @@
                 
                 <ul class="nav-menu" id="navMenu" role="menu">
                     <li role="none"><a class="nav-link" href="/" role="menuitem">Buy</a></li>
-                    <li role="none"><a class="nav-link" href="#shop" role="menuitem">Products</a></li>
+                    <li role="none"><a class="nav-link" href="product.html" role="menuitem">Products</a></li>
                     <li role="none"><a class="nav-link" href="about.html" role="menuitem">About Us</a></li>
                     <li role="none"><a class="nav-link" href="#contact" role="menuitem">Contact</a></li>
                 </ul>
@@ -974,9 +1133,9 @@
 
                     <div class="form-group">
                         <label class="form-label" for="customerEmail">
-                            Email Address
+                            Email Address <span class="required">*</span>
                         </label>
-                        <input type="email" class="form-control" id="customerEmail" placeholder="your.email@example.com">
+                        <input type="email" class="form-control" id="customerEmail" placeholder="your.email@example.com" required>
                         <div class="error-message" id="emailError">Please enter a valid email address</div>
                     </div>
 
@@ -1041,19 +1200,33 @@
                     </div>
 
                     <div class="location-warning" id="locationWarning">
-                        ⚠️ We currently only deliver to Bethlehem, Free State (9700, 9701, 9702)
+                         We currently only deliver to Bethlehem, Free State 
                     </div>
 
-                    <button type="submit" class="submit-btn" id="submitOrder">
-                        Place Order
-                    </button>
+                    <div class="form-actions">
+                        <button type="button" class="cancel-btn" id="cancelBtn">
+                            Cancel
+                        </button>
+                        <button type="submit" class="submit-btn" id="submitOrder">
+                            Place Order
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 
-    <!-- Notification -->
-    <div class="notification" id="notification"></div>
+    <!-- Status Modal -->
+    <div class="status-modal" id="statusModal">
+        <div class="status-modal-content">
+            <div class="status-icon" id="statusIcon">
+                <!-- Success icon will be inserted here -->
+            </div>
+            <h2 class="status-title" id="statusTitle">Success!</h2>
+            <p class="status-message" id="statusMessage">Your order has been placed successfully.</p>
+            <button class="continue-btn" id="continueBtn">Continue</button>
+        </div>
+    </div>
 
     <!-- Footer Divider -->
     <div class="footer-divider"></div>
@@ -1073,7 +1246,7 @@
                     <h3 class="footer-heading">Quick Links</h3>
                     <ul class="footer-links">
                         <li><a href="#shop">Buy</a></li>
-                        <li><a href="#products">Products</a></li>
+                        <li><a href="product.html">Products</a></li>
                         <li><a href="about.html">About</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
@@ -1144,7 +1317,12 @@
     const addressSuggestions = document.getElementById('addressSuggestions');
     const locationWarning = document.getElementById('locationWarning');
     const submitOrder = document.getElementById('submitOrder');
-    const notification = document.getElementById('notification');
+    const cancelBtn = document.getElementById('cancelBtn');
+    const statusModal = document.getElementById('statusModal');
+    const statusIcon = document.getElementById('statusIcon');
+    const statusTitle = document.getElementById('statusTitle');
+    const statusMessage = document.getElementById('statusMessage');
+    const continueBtn = document.getElementById('continueBtn');
 
     // Initialize
     document.addEventListener('DOMContentLoaded', function() {
@@ -1152,6 +1330,7 @@
         loadCartFromStorage();
         initializeEventListeners();
         updatePriceDisplay();
+        updateCartDisplay();
     });
 
     function initializeSession() {
@@ -1168,11 +1347,11 @@
         if (cartData) {
             const cart = JSON.parse(cartData);
             currentQuantity = cart.quantity || MIN_QUANTITY;
-            updateCartDisplay();
+            updateQuantityDisplay();
         } else {
             // No cart data, set to minimum
             currentQuantity = MIN_QUANTITY;
-            updateCartDisplay();
+            updateQuantityDisplay();
         }
     }
 
@@ -1192,6 +1371,13 @@
         updatePriceDisplay();
     }
 
+    function resetForm() {
+        orderForm.reset();
+        clearCart();
+        locationWarning.style.display = 'none';
+        isLocationValid = false;
+    }
+
     function initializeEventListeners() {
         // Menu toggle
         menuToggle.addEventListener('click', function(e) {
@@ -1209,12 +1395,40 @@
             }
         });
 
-        // Close menu when clicking a link
+        // Navigation functionality for menu items
         const navLinks = document.querySelectorAll('.nav-link');
         navLinks.forEach(link => {
-            link.addEventListener('click', function() {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Close menu
                 navMenu.classList.remove('active');
                 menuToggle.setAttribute('aria-expanded', 'false');
+                
+                // Get the href attribute
+                const href = this.getAttribute('href');
+                
+                // Handle different navigation cases
+                if (href === '/') {
+                    // "Buy" link - open the order modal
+                    orderModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                } else if (href === 'product.html') {
+                    // Navigate to products page
+                    window.location.href = 'product.html';
+                } else if (href === 'about.html') {
+                    // Navigate to about page
+                    window.location.href = 'about.html';
+                } else if (href === '#contact') {
+                    // Scroll to contact section
+                    const contactSection = document.getElementById('contact');
+                    if (contactSection) {
+                        contactSection.scrollIntoView({ 
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
             });
         });
 
@@ -1230,6 +1444,12 @@
             if (e.target === orderModal) {
                 closeOrderModal();
             }
+        });
+
+        // Cancel button
+        cancelBtn.addEventListener('click', function() {
+            resetForm();
+            closeOrderModal();
         });
 
         // Quantity controls
@@ -1269,6 +1489,12 @@
             if (this.value.trim()) {
                 validateLocation(this.value);
             }
+        });
+
+        // Continue button in status modal
+        continueBtn.addEventListener('click', function() {
+            statusModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
         });
     }
 
@@ -1315,7 +1541,7 @@
     }
 
     function updateCartDisplay() {
-        cartBadge.textContent = currentQuantity > 0 ? currentQuantity : '0';
+        cartBadge.textContent = currentQuantity > MIN_QUANTITY ? currentQuantity : '0';
     }
 
     function debounce(func, wait) {
@@ -1405,7 +1631,7 @@
 
     function getCurrentLocation() {
         if (!navigator.geolocation) {
-            showNotification('Geolocation is not supported by your browser', false);
+            showStatusModal('Geolocation is not supported by your browser', false, 'location');
             return;
         }
 
@@ -1430,14 +1656,14 @@
                     if (data.display_name) {
                         deliveryAddress.value = data.display_name;
                         validateLocation(data.display_name);
-                        showNotification('Location detected successfully!', true);
+                        showStatusModal('Location detected successfully!', true, 'location');
                     } else {
                         throw new Error('No address found for this location');
                     }
                     
                 } catch (error) {
                     console.error('Error getting location:', error);
-                    showNotification('Could not determine your address. Please enter it manually.', false);
+                    showStatusModal('Could not determine your address. Please enter it manually.', false, 'error');
                 } finally {
                     getLocationBtn.disabled = false;
                     getLocationBtn.innerHTML = '<i class="bi bi-geo-alt"></i> Locate Me';
@@ -1461,7 +1687,7 @@
                         errorMessage += 'An unknown error occurred.';
                 }
                 
-                showNotification(errorMessage, false);
+                showStatusModal(errorMessage, false, 'error');
                 getLocationBtn.disabled = false;
                 getLocationBtn.innerHTML = '<i class="bi bi-geo-alt"></i> Locate Me';
             },
@@ -1491,8 +1717,8 @@
             isValid = false;
         }
 
-        // Validate email (optional but must be valid if provided)
-        if (email && !isValidEmail(email)) {
+        // Validate email (now required)
+        if (!email || !isValidEmail(email)) {
             document.getElementById('emailError').style.display = 'block';
             document.getElementById('customerEmail').classList.add('error');
             isValid = false;
@@ -1615,16 +1841,14 @@
                     // Continue with order success even if sheets has issues
                 }
 
-                showNotification(`Order #${orderNumber} placed successfully! We will contact you shortly.`, true);
+                showStatusModal(`Order #${orderNumber} placed successfully! We will contact you shortly.`, true, 'success');
                 orderForm.reset();
                 clearCart();
                 locationWarning.style.display = 'none';
                 isLocationValid = false;
                 
-                // Close modal after success
-                setTimeout(() => {
-                    closeOrderModal();
-                }, 3000);
+                // Close order modal after success
+                closeOrderModal();
             } else {
                 throw new Error('SMS failed: ' + smsResult.error);
             }
@@ -1634,21 +1858,44 @@
             if (error.name === 'AbortError') {
                 errorMsg = 'Service timeout. Please try again.';
             }
-            showNotification(errorMsg, false);
+            showStatusModal(errorMsg, false, 'error');
         } finally {
             submitOrder.disabled = false;
             submitOrder.textContent = 'Place Order';
         }
     }
 
-    function showNotification(message, isSuccess) {
-        notification.textContent = message;
-        notification.className = `notification ${isSuccess ? 'success' : 'error'}`;
-        notification.classList.add('show');
+    function showStatusModal(message, isSuccess, type) {
+        // Set the icon based on type and success
+        statusIcon.innerHTML = '';
         
-        setTimeout(() => {
-            notification.classList.remove('show');
-        }, 5000);
+        if (type === 'success') {
+            statusIcon.className = 'status-icon success';
+            statusIcon.innerHTML = `
+                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                    <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                    <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+            `;
+            statusTitle.textContent = 'Success!';
+        } else if (type === 'error') {
+            statusIcon.className = 'status-icon error';
+            statusIcon.innerHTML = `
+                <svg class="x-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                    <circle class="x-mark-circle" cx="26" cy="26" r="25" fill="none"/>
+                    <path class="x-mark-line" fill="none" d="M16 16l20 20M36 16L16 36"/>
+                </svg>
+            `;
+            statusTitle.textContent = 'Error';
+        } else if (type === 'location') {
+            statusIcon.className = 'status-icon location';
+            statusIcon.innerHTML = '<i class="bi bi-geo-alt-fill"></i>';
+            statusTitle.textContent = isSuccess ? 'Location Found' : 'Location Error';
+        }
+        
+        statusMessage.textContent = message;
+        statusModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
     }
 
     // Ensure video plays correctly
@@ -1666,7 +1913,7 @@
 
     if (productsListItem) {
         productsListItem.addEventListener('click', function() {
-            window.location.href = '#shop';
+            window.location.href = 'product.html';
         });
     }
 

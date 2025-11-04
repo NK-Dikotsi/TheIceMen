@@ -9,6 +9,72 @@
     <title>Premium Ice Products | Ice Men Quality Ice Supply</title>
     <meta name="description" content="Discover our premium ice products - block ice, cube ice, crushed ice, and specialty ice for all your needs in Bethlehem and the Free State.">
     <meta name="keywords" content="ice products, block ice, cube ice, crushed ice, ice bags, ice delivery, Bethlehem ice, Free State ice">
+    <meta name="author" content="Ice Men Quality Ice Supply">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Premium Ice Products | Ice Men Quality Ice Supply">
+    <meta property="og:description" content="Discover our premium ice products - block ice, cube ice, crushed ice, and specialty ice for all your needs in Bethlehem and the Free State.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.icemengroup.com/products.html">
+    <meta property="og:image" content="https://www.icemengroup.com/logo1.png">
+    <meta property="og:locale" content="en_ZA">
+    
+    <!-- Local Business Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Ice Men Quality Ice Supply",
+      "image": "https://www.icemengroup.com/logo1.png",
+      "description": "Premium quality ice supplier with reliable delivery service in Bethlehem and the Free State, South Africa.",
+      "@id": "https://www.icemengroup.com",
+      "url": "https://www.icemengroup.com",
+      "telephone": "+27672939603",
+      "email": "icemengroup@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Bethlehem",
+        "addressLocality": "Bethlehem",
+        "addressRegion": "Free State",
+        "postalCode": "9701",
+        "addressCountry": "ZA"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -28.2314,
+        "longitude": 28.3067
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "opens": "08:00",
+        "closes": "17:00"
+      },
+      "priceRange": "$$",
+      "areaServed": {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+          "@type": "GeoCoordinates",
+          "latitude": -28.2314,
+          "longitude": 28.3067
+        },
+        "geoRadius": "100000"
+      }
+    }
+    </script>
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.icemengroup.com/products.html">
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -23,6 +89,8 @@
         :root {
             --primary-blue: #0f4286;
             --light-blue: #e8f0fe;
+            --success-green: #28a745;
+            --error-red: #dc3545;
         }
         
         * {
@@ -112,6 +180,37 @@
             background-color: var(--primary-blue);
             color: white !important;
             transform: translateX(5px);
+        }
+        
+        .cart-icon {
+            position: relative;
+            font-size: 20px;
+            color: #333333;
+            transition: all 0.3s ease;
+            padding: 8px;
+            border-radius: 6px;
+            margin-right: 15px;
+        }
+        
+        .cart-icon:hover {
+            color: var(--primary-blue);
+            background-color: var(--light-blue);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--primary-blue);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
         }
         
         /* Main Content */
@@ -287,6 +386,526 @@
             margin-top: auto;
         }
         
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .order-modal {
+            background: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal-header {
+            padding: 25px 25px 15px;
+            border-bottom: none;
+            position: relative;
+            text-align: center;
+        }
+
+        .modal-logo {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .modal-logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .modal-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #999;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--primary-blue);
+        }
+
+        .modal-body {
+            padding: 0 25px 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        .form-label .required {
+            color: var(--error-red);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(15, 66, 134, 0.1);
+        }
+
+        .form-control.error {
+            border-color: var(--error-red);
+        }
+
+        .error-message {
+            color: var(--error-red);
+            font-size: 0.8rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .location-group {
+            position: relative;
+        }
+
+        .location-input-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .location-input-group .form-control {
+            flex: 1;
+        }
+
+        .location-btn {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .location-btn:hover {
+            background: #0d376c;
+        }
+
+        .location-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .address-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 0 0 8px 8px;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 100;
+            display: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .address-suggestion {
+            padding: 12px 15px;
+            cursor: pointer;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background-color 0.2s ease;
+        }
+
+        .address-suggestion:hover {
+            background-color: var(--light-blue);
+        }
+
+        .address-suggestion:last-child {
+            border-bottom: none;
+        }
+
+        .quantity-section {
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .quantity-group {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 10px;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .quantity-btn {
+            width: 45px;
+            height: 45px;
+            border: 2px solid var(--primary-blue);
+            background: white;
+            color: var(--primary-blue);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .quantity-btn:hover {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .quantity-btn:disabled {
+            border-color: #ccc;
+            color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .quantity-btn:disabled:hover {
+            background: white;
+            color: #ccc;
+        }
+
+        .quantity-display {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .price-display {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+            text-align: center;
+        }
+
+        .price-breakdown {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .price-row.total {
+            border-top: 1px solid #dee2e6;
+            padding-top: 12px;
+            margin-top: 12px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary-blue);
+        }
+
+        .location-warning {
+            color: var(--error-red);
+            font-size: 0.8rem;
+            text-align: center;
+            margin: 10px 0;
+            display: none;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .cancel-btn {
+            flex: 1;
+            background: #f8f9fa;
+            color: #666;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 16px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .cancel-btn:hover {
+            background: #e9ecef;
+            border-color: #ccc;
+        }
+
+        .submit-btn {
+            flex: 2;
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 16px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .submit-btn:hover {
+            background: #0d376c;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(15, 66, 134, 0.3);
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Status Modal Styles */
+        .status-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 3000;
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .status-modal.active {
+            display: flex;
+        }
+
+        .status-modal-content {
+            background: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 400px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        .status-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 80px;
+        }
+
+        .status-icon.success {
+            color: var(--success-green);
+        }
+
+        .status-icon.error {
+            color: var(--error-red);
+        }
+
+        .status-icon.location {
+            color: var(--primary-blue);
+        }
+
+        .checkmark {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: block;
+            stroke-width: 2;
+            stroke: var(--success-green);
+            stroke-miterlimit: 10;
+            margin: 0 auto;
+            box-shadow: inset 0px 0px 0px var(--success-green);
+            animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+        }
+
+        .checkmark-circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 2;
+            stroke-miterlimit: 10;
+            stroke: var(--success-green);
+            fill: none;
+            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        }
+
+        .checkmark-check {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+        }
+
+        @keyframes stroke {
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes scale {
+            0%, 100% {
+                transform: none;
+            }
+            50% {
+                transform: scale3d(1.1, 1.1, 1);
+            }
+        }
+
+        @keyframes fill {
+            100% {
+                box-shadow: inset 0px 0px 0px 30px var(--success-green);
+            }
+        }
+
+        .x-mark {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: block;
+            stroke-width: 2;
+            stroke: var(--error-red);
+            stroke-miterlimit: 10;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .x-mark-circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 2;
+            stroke-miterlimit: 10;
+            stroke: var(--error-red);
+            fill: none;
+            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        }
+
+        .x-mark-line {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+        }
+
+        .status-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .status-message {
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .continue-btn {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .continue-btn:hover {
+            background: #0d376c;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(15, 66, 134, 0.3);
+        }
+        
         /* Footer Styles */
         .footer-divider {
             width: 100%;
@@ -409,13 +1028,39 @@
                 font-size: 1.8rem;
             }
             
-            .filter-container {
-                flex-direction: column;
-                align-items: center;
+            .order-modal {
+                width: 95%;
+                margin: 20px;
             }
-            
-            .filter-btn {
-                width: 200px;
+
+            .modal-body {
+                padding: 0 20px 20px;
+            }
+
+            .location-input-group {
+                flex-direction: column;
+            }
+
+            .location-btn {
+                padding: 12px;
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+
+            .status-modal-content {
+                padding: 30px 20px;
+            }
+
+            .status-icon {
+                font-size: 50px;
+                height: 70px;
+            }
+
+            .checkmark, .x-mark {
+                width: 70px;
+                height: 70px;
             }
         }
         
@@ -450,11 +1095,15 @@
     <header>
         <nav class="navbar navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand" href="/">
+                <a class="navbar-brand" href="index.html">
                     <img src="logo1.png" alt="Ice Men Quality Ice Supply Logo">
                 </a>
                 
                 <div class="d-flex align-items-center">
+                    <a href="#" class="cart-icon" aria-label="Shopping cart" id="cartIcon">
+                        <i class="bi bi-cart"></i>
+                        <span class="cart-badge" id="cartBadge">0</span>
+                    </a>
                     <button class="menu-btn" id="menuToggle">
                         Menu
                     </button>
@@ -462,7 +1111,7 @@
                 
                 <ul class="nav-menu" id="navMenu">
                     <li><a class="nav-link" href="index.html">Home</a></li>
-                    <li><a class="nav-link" href="products.html">Products</a></li>
+                    <li><a class="nav-link" href="#productsGrid">Products</a></li>
                     <li><a class="nav-link" href="about.html">About Us</a></li>
                     <li><a class="nav-link" href="#contact">Contact</a></li>
                 </ul>
@@ -472,24 +1121,27 @@
 
     <!-- Main Content -->
     <main class="main-content">
+        <!-- Page Header -->
+      
+
         <!-- Products Section -->
         <section class="products-section">
             <div class="container">
-                <h2 class="section-heading">Our Products</h2>
+                <h2 class="section-heading">Featured Products</h2>
                 <div class="products-grid" id="productsGrid">
-                    <!-- Steel Bottle T -->
-                     <div class="product-card" data-category="ice">
+                    <!-- Standard Ice 2kg Bags -->
+                    <div class="product-card" data-category="ice">
                         <img src="icebag.webp" alt="Standard Ice 2kg Bags" class="product-img">
                         <div class="product-body">
                             <h3 class="product-title">Standard Ice 2kg Bags</h3>
                             <p class="product-description">Premium quality ice in convenient 2kg bags. Perfect for parties, events, and everyday use.</p>
                             <div class="product-price">ZAR 7.00</div>
                             <div class="delivery-available">Delivery Available</div>
-                            <button class="btn-primary-custom">Order Now</button>
+                            <button class="btn-primary-custom order-now-btn" data-product="Standard Ice 2kg Bags" data-price="7.00">Order Now</button>
                         </div>
                     </div>
 
-
+                    <!-- Steel Bottle T -->
                     <div class="product-card" data-category="accessories">
                         <img src="section1.png" alt="Steel Bottle T" class="product-img">
                         <div class="product-body">
@@ -512,13 +1164,128 @@
                             <button class="btn-disabled">Create Plan</button>
                         </div>
                     </div>
-                    
-                    <!-- Standard Ice 2kg Bags -->
-            
                 </div>
             </div>
         </section>
     </main>
+
+    <!-- Order Modal -->
+    <div class="modal-overlay" id="orderModal">
+        <div class="order-modal">
+            <div class="modal-header">
+                <div class="modal-logo">
+                    <img src="logofooter.png" alt="Ice Men Logo">
+                </div>
+                <p class="modal-subtitle">Fill in your details for fast delivery</p>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <form id="orderForm">
+                    <div class="form-group">
+                        <label class="form-label" for="customerName">
+                            Full Name <span class="required">*</span>
+                        </label>
+                        <input type="text" class="form-control" id="customerName" required>
+                        <div class="error-message" id="nameError">Please enter your full name</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="customerEmail">
+                            Email Address <span class="required">*</span>
+                        </label>
+                        <input type="email" class="form-control" id="customerEmail" placeholder="your.email@example.com" required>
+                        <div class="error-message" id="emailError">Please enter a valid email address</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="customerPhone">
+                            Phone Number <span class="required">*</span>
+                        </label>
+                        <input type="tel" class="form-control" id="customerPhone" required>
+                        <div class="error-message" id="phoneError">Please enter a valid phone number</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="deliveryAddress">
+                            Delivery Address <span class="required">*</span>
+                        </label>
+                        <div class="location-group">
+                            <div class="location-input-group">
+                                <input type="text" class="form-control" id="deliveryAddress" placeholder="Enter your address" required>
+                                <button type="button" class="location-btn" id="getLocationBtn">
+                                    <i class="bi bi-geo-alt"></i> Locate Me
+                                </button>
+                            </div>
+                            <div class="address-suggestions" id="addressSuggestions"></div>
+                            <div class="error-message" id="addressError">Please enter your delivery address</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="deliveryInstructions">
+                            Delivery Instructions (Optional)
+                        </label>
+                        <textarea class="form-control" id="deliveryInstructions" placeholder="Any special delivery instructions..." rows="2"></textarea>
+                    </div>
+
+                    <div class="quantity-section">
+                        <label class="form-label">Quantity (Ice Bags)</label>
+                        <div class="quantity-group">
+                            <div class="quantity-controls">
+                                <button type="button" class="quantity-btn" id="decreaseBtn">-</button>
+                                <span class="quantity-display" id="quantityDisplay">10</span>
+                                <button type="button" class="quantity-btn" id="increaseBtn">+</button>
+                            </div>
+                        </div>
+                        <div class="price-display" id="icePrice">R 70.00</div>
+                        <small style="color: #666;">Minimum order: 10 bags</small>
+                    </div>
+
+                    <!-- Price Breakdown -->
+                    <div class="price-breakdown">
+                        <div class="price-row">
+                            <span>Ice Bags (10 × R7.00):</span>
+                            <span id="subtotalPrice">R 70.00</span>
+                        </div>
+                        <div class="price-row">
+                            <span>Delivery Fee:</span>
+                            <span>R 15.00</span>
+                        </div>
+                        <div class="price-row total">
+                            <span>Total Amount:</span>
+                            <span id="totalPrice">R 85.00</span>
+                        </div>
+                    </div>
+
+                    <div class="location-warning" id="locationWarning">
+                        ⚠️ We currently only deliver to Bethlehem, Free State (9700, 9701, 9702)
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="cancel-btn" id="cancelBtn">
+                            Cancel
+                        </button>
+                        <button type="submit" class="submit-btn" id="submitOrder">
+                            Place Order
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Status Modal -->
+    <div class="status-modal" id="statusModal">
+        <div class="status-modal-content">
+            <div class="status-icon" id="statusIcon">
+                <!-- Success icon will be inserted here -->
+            </div>
+            <h2 class="status-title" id="statusTitle">Success!</h2>
+            <p class="status-message" id="statusMessage">Your order has been placed successfully.</p>
+            <button class="continue-btn" id="continueBtn">Continue</button>
+        </div>
+    </div>
 
     <!-- Footer Divider -->
     <div class="footer-divider"></div>
@@ -537,9 +1304,9 @@
                 <div class="col-lg-4 mb-4">
                     <h3 class="footer-heading">Quick Links</h3>
                     <ul class="footer-links">
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/products">Products</a></li>
-                        <li><a href="/about">About</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#productsGrid">Products</a></li>
+                        <li><a href="about.html">About</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
@@ -573,52 +1340,629 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
+        // Constants - UPDATED WITH LATEST GOOGLE SHEETS URL
+        const ICE_PRICE_PER_BAG = 7.00;
+        const DELIVERY_FEE = 15.00;
+        const MIN_QUANTITY = 10;
+        const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwd8juhd2QyCd0ElkyxMMKw4GYOV21a0hJYUl8mMuG65FQKuTopYcjN9BW-Suu7oKuDKA/exec';
+        const SMS_SERVER_URL = 'https://icemenserver.onrender.com';
+        const BETHLEHEM_POSTAL_CODES = ['9700', '9701', '9702'];
+        const BETHLEHEM_KEYWORDS = ['bethlehem', 'free state'];
+
+        // State
+        let currentQuantity = MIN_QUANTITY;
+        let sessionId = '';
+        let isLocationValid = false;
+        let orderNumber = '';
+
+        // DOM Elements
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        const cartIcon = document.getElementById('cartIcon');
+        const cartBadge = document.getElementById('cartBadge');
+        const orderModal = document.getElementById('orderModal');
+        const closeModal = document.getElementById('closeModal');
+        const quantityDisplay = document.getElementById('quantityDisplay');
+        const decreaseBtn = document.getElementById('decreaseBtn');
+        const increaseBtn = document.getElementById('increaseBtn');
+        const icePrice = document.getElementById('icePrice');
+        const subtotalPrice = document.getElementById('subtotalPrice');
+        const totalPrice = document.getElementById('totalPrice');
+        const orderForm = document.getElementById('orderForm');
+        const getLocationBtn = document.getElementById('getLocationBtn');
+        const deliveryAddress = document.getElementById('deliveryAddress');
+        const deliveryInstructions = document.getElementById('deliveryInstructions');
+        const addressSuggestions = document.getElementById('addressSuggestions');
+        const locationWarning = document.getElementById('locationWarning');
+        const submitOrder = document.getElementById('submitOrder');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const statusModal = document.getElementById('statusModal');
+        const statusIcon = document.getElementById('statusIcon');
+        const statusTitle = document.getElementById('statusTitle');
+        const statusMessage = document.getElementById('statusMessage');
+        const continueBtn = document.getElementById('continueBtn');
+        const orderNowButtons = document.querySelectorAll('.order-now-btn');
+
+        // Initialize
         document.addEventListener('DOMContentLoaded', function() {
-            const menuToggle = document.getElementById('menuToggle');
-            const navMenu = document.getElementById('navMenu');
-            const filterBtns = document.querySelectorAll('.filter-btn');
-            const products = document.querySelectorAll('.product-card');
-            
+            initializeSession();
+            loadCartFromStorage();
+            initializeEventListeners();
+            updatePriceDisplay();
+            updateCartDisplay();
+        });
+
+        function initializeSession() {
+            // Generate or retrieve session ID
+            sessionId = localStorage.getItem('iceMenSessionId');
+            if (!sessionId) {
+                sessionId = 'ice_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                localStorage.setItem('iceMenSessionId', sessionId);
+            }
+        }
+
+        function loadCartFromStorage() {
+            const cartData = localStorage.getItem(`iceMenCart_${sessionId}`);
+            if (cartData) {
+                const cart = JSON.parse(cartData);
+                currentQuantity = cart.quantity || MIN_QUANTITY;
+                updateQuantityDisplay();
+            } else {
+                // No cart data, set to minimum
+                currentQuantity = MIN_QUANTITY;
+                updateQuantityDisplay();
+            }
+        }
+
+        function saveCartToStorage() {
+            const cartData = {
+                quantity: currentQuantity,
+                timestamp: Date.now()
+            };
+            localStorage.setItem(`iceMenCart_${sessionId}`, JSON.stringify(cartData));
+        }
+
+        function clearCart() {
+            currentQuantity = MIN_QUANTITY;
+            localStorage.removeItem(`iceMenCart_${sessionId}`);
+            updateCartDisplay();
+            updateQuantityDisplay();
+            updatePriceDisplay();
+        }
+
+        function resetForm() {
+            orderForm.reset();
+            clearCart();
+            locationWarning.style.display = 'none';
+            isLocationValid = false;
+        }
+
+        function initializeEventListeners() {
             // Menu toggle
             menuToggle.addEventListener('click', function(e) {
-                e.stopPropagation();
+                e.preventDefault();
+                const isExpanded = navMenu.classList.contains('active');
                 navMenu.classList.toggle('active');
+                menuToggle.setAttribute('aria-expanded', !isExpanded);
             });
-            
+
             // Close menu when clicking outside
             document.addEventListener('click', function(e) {
                 if (!menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
                     navMenu.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
                 }
             });
-            
-            // Close menu when clicking a link
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.addEventListener('click', function() {
+
+            // Navigation functionality for menu items
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Close menu
                     navMenu.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    
+                    // Get the href attribute
+                    const href = this.getAttribute('href');
+                    
+                    // Handle different navigation cases
+                    if (href === 'index.html') {
+                        // Navigate to home page
+                        window.location.href = 'index.html';
+                    } else if (href === '#productsGrid') {
+                        // Scroll to products section
+                        const productsSection = document.getElementById('productsGrid');
+                        if (productsSection) {
+                            productsSection.scrollIntoView({ 
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    } else if (href === 'about.html') {
+                        // Navigate to about page
+                        window.location.href = 'about.html';
+                    } else if (href === '#contact') {
+                        // Scroll to contact section
+                        const contactSection = document.getElementById('contact');
+                        if (contactSection) {
+                            contactSection.scrollIntoView({ 
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
                 });
+            });
+
+            // Order Now buttons
+            orderNowButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    orderModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            // Close modal
+            closeModal.addEventListener('click', closeOrderModal);
+            orderModal.addEventListener('click', function(e) {
+                if (e.target === orderModal) {
+                    closeOrderModal();
+                }
+            });
+
+            // Cart icon
+            cartIcon.addEventListener('click', function(e) {
+                e.preventDefault();
+                orderModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+
+            // Cancel button
+            cancelBtn.addEventListener('click', function() {
+                resetForm();
+                closeOrderModal();
+            });
+
+            // Quantity controls
+            decreaseBtn.addEventListener('click', decreaseQuantity);
+            increaseBtn.addEventListener('click', increaseQuantity);
+
+            // Location detection
+            getLocationBtn.addEventListener('click', getCurrentLocation);
+
+            // Address input with autocomplete
+            deliveryAddress.addEventListener('input', debounce(handleAddressInput, 500));
+            deliveryAddress.addEventListener('focus', function() {
+                if (deliveryAddress.value.length >= 3) {
+                    handleAddressInput();
+                }
+            });
+
+            // Close suggestions when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!deliveryAddress.contains(e.target) && !addressSuggestions.contains(e.target)) {
+                    addressSuggestions.style.display = 'none';
+                }
+            });
+
+            // Form submission
+            orderForm.addEventListener('submit', handleOrderSubmission);
+
+            // Validate address on input
+            deliveryAddress.addEventListener('blur', function() {
+                if (this.value.trim()) {
+                    validateLocation(this.value);
+                }
+            });
+
+            // Continue button in status modal
+            continueBtn.addEventListener('click', function() {
+                statusModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        }
+
+        function closeOrderModal() {
+            orderModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            saveCartToStorage();
+        }
+
+        function decreaseQuantity() {
+            if (currentQuantity > MIN_QUANTITY) {
+                currentQuantity--;
+                updateQuantityDisplay();
+                updatePriceDisplay();
+                updateCartDisplay();
+                saveCartToStorage();
+            }
+        }
+
+        function increaseQuantity() {
+            currentQuantity++;
+            updateQuantityDisplay();
+            updatePriceDisplay();
+                updateCartDisplay();
+            saveCartToStorage();
+        }
+
+        function updateQuantityDisplay() {
+            quantityDisplay.textContent = currentQuantity;
+            decreaseBtn.disabled = currentQuantity <= MIN_QUANTITY;
+        }
+
+        function updatePriceDisplay() {
+            const subtotal = currentQuantity * ICE_PRICE_PER_BAG;
+            const total = subtotal + DELIVERY_FEE;
+
+            icePrice.textContent = `R ${subtotal.toFixed(2)}`;
+            subtotalPrice.textContent = `R ${subtotal.toFixed(2)}`;
+            totalPrice.textContent = `R ${total.toFixed(2)}`;
+            
+            // Update price breakdown text
+            document.querySelector('.price-row:first-child span:first-child').textContent = 
+                `Ice Bags (${currentQuantity} × R${ICE_PRICE_PER_BAG.toFixed(2)}):`;
+        }
+
+        function updateCartDisplay() {
+            cartBadge.textContent = currentQuantity > MIN_QUANTITY ? currentQuantity : '0';
+        }
+
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        async function handleAddressInput() {
+            const query = deliveryAddress.value.trim();
+            if (query.length < 3) {
+                addressSuggestions.style.display = 'none';
+                return;
+            }
+
+            try {
+                const response = await fetch(
+                    `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query + ', Bethlehem, Free State')}&countrycodes=za&limit=5`
+                );
+                
+                if (!response.ok) {
+                    throw new Error('Failed to fetch address suggestions');
+                }
+                
+                const data = await response.json();
+                displayAddressSuggestions(data);
+                
+            } catch (error) {
+                console.error('Error fetching address suggestions:', error);
+                addressSuggestions.style.display = 'none';
+            }
+        }
+
+        function displayAddressSuggestions(addresses) {
+            if (addresses.length === 0) {
+                addressSuggestions.style.display = 'none';
+                return;
+            }
+
+            addressSuggestions.innerHTML = '';
+            addresses.forEach(address => {
+                const suggestion = document.createElement('div');
+                suggestion.className = 'address-suggestion';
+                suggestion.textContent = address.display_name;
+                suggestion.addEventListener('click', function() {
+                    deliveryAddress.value = address.display_name;
+                    addressSuggestions.style.display = 'none';
+                    validateLocation(address.display_name);
+                });
+                addressSuggestions.appendChild(suggestion);
             });
             
-            // Filter functionality
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // Update active button
-                    filterBtns.forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    const filter = this.getAttribute('data-filter');
-                    
-                    // Filter products
-                    products.forEach(product => {
-                        if (filter === 'all' || product.getAttribute('data-category') === filter) {
-                            product.style.display = 'flex';
-                        } else {
-                            product.style.display = 'none';
+            addressSuggestions.style.display = 'block';
+        }
+
+        function validateLocation(address) {
+            const addressLower = address.toLowerCase();
+            
+            // Check for Bethlehem keywords
+            const hasBethlehem = BETHLEHEM_KEYWORDS.some(keyword => 
+                addressLower.includes(keyword.toLowerCase())
+            );
+            
+            // Check for postal codes
+            const hasPostalCode = BETHLEHEM_POSTAL_CODES.some(code => 
+                addressLower.includes(code)
+            );
+
+            isLocationValid = hasBethlehem || hasPostalCode;
+            
+            if (isLocationValid) {
+                locationWarning.style.display = 'none';
+                submitOrder.disabled = false;
+            } else {
+                locationWarning.style.display = 'block';
+                submitOrder.disabled = true;
+            }
+            
+            return isLocationValid;
+        }
+
+        function getCurrentLocation() {
+            if (!navigator.geolocation) {
+                showStatusModal('Geolocation is not supported by your browser', false, 'location');
+                return;
+            }
+
+            getLocationBtn.disabled = true;
+            getLocationBtn.innerHTML = '<div class="loading-spinner"></div> Locating...';
+
+            navigator.geolocation.getCurrentPosition(
+                async (position) => {
+                    try {
+                        const { latitude, longitude } = position.coords;
+                        
+                        const response = await fetch(
+                            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1`
+                        );
+                        
+                        if (!response.ok) {
+                            throw new Error('Failed to fetch location data');
                         }
-                    });
+                        
+                        const data = await response.json();
+                        
+                        if (data.display_name) {
+                            deliveryAddress.value = data.display_name;
+                            validateLocation(data.display_name);
+                            showStatusModal('Location detected successfully!', true, 'location');
+                        } else {
+                            throw new Error('No address found for this location');
+                        }
+                        
+                    } catch (error) {
+                        console.error('Error getting location:', error);
+                        showStatusModal('Could not determine your address. Please enter it manually.', false, 'error');
+                    } finally {
+                        getLocationBtn.disabled = false;
+                        getLocationBtn.innerHTML = '<i class="bi bi-geo-alt"></i> Locate Me';
+                    }
+                },
+                (error) => {
+                    console.error('Error getting position:', error);
+                    let errorMessage = 'Location access denied. ';
+                    
+                    switch (error.code) {
+                        case error.PERMISSION_DENIED:
+                            errorMessage += 'Please enable location permissions in your browser settings.';
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            errorMessage += 'Location information is unavailable.';
+                            break;
+                        case error.TIMEOUT:
+                            errorMessage += 'Location request timed out.';
+                            break;
+                        default:
+                            errorMessage += 'An unknown error occurred.';
+                    }
+                    
+                    showStatusModal(errorMessage, false, 'error');
+                    getLocationBtn.disabled = false;
+                    getLocationBtn.innerHTML = '<i class="bi bi-geo-alt"></i> Locate Me';
+                },
+                { 
+                    enableHighAccuracy: true,
+                    timeout: 10000,
+                    maximumAge: 60000
+                }
+            );
+        }
+
+        function validateForm() {
+            let isValid = true;
+            const name = document.getElementById('customerName').value.trim();
+            const email = document.getElementById('customerEmail').value.trim();
+            const phone = document.getElementById('customerPhone').value.trim();
+            const address = document.getElementById('deliveryAddress').value.trim();
+
+            // Reset errors
+            document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.form-control').forEach(el => el.classList.remove('error'));
+
+            // Validate name
+            if (!name) {
+                document.getElementById('nameError').style.display = 'block';
+                document.getElementById('customerName').classList.add('error');
+                isValid = false;
+            }
+
+            // Validate email (now required)
+            if (!email || !isValidEmail(email)) {
+                document.getElementById('emailError').style.display = 'block';
+                document.getElementById('customerEmail').classList.add('error');
+                isValid = false;
+            }
+
+            // Validate phone (South African format)
+            const phoneRegex = /^(\+27|0)[6-8][0-9]{8}$/;
+            const cleanPhone = phone.replace(/\s/g, '');
+            if (!phone || !phoneRegex.test(cleanPhone)) {
+                document.getElementById('phoneError').style.display = 'block';
+                document.getElementById('customerPhone').classList.add('error');
+                isValid = false;
+            }
+
+            // Validate address
+            if (!address) {
+                document.getElementById('addressError').style.display = 'block';
+                document.getElementById('deliveryAddress').classList.add('error');
+                isValid = false;
+            }
+
+            // Validate location
+            if (!validateLocation(address)) {
+                locationWarning.style.display = 'block';
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        async function handleOrderSubmission(e) {
+            e.preventDefault();
+            
+            if (!validateForm()) {
+                return;
+            }
+
+            const orderData = {
+                name: document.getElementById('customerName').value.trim(),
+                email: document.getElementById('customerEmail').value.trim(),
+                phone: document.getElementById('customerPhone').value.trim(),
+                address: document.getElementById('deliveryAddress').value.trim(),
+                instructions: document.getElementById('deliveryInstructions').value.trim(),
+                quantity: currentQuantity,
+                total: (currentQuantity * ICE_PRICE_PER_BAG) + DELIVERY_FEE
+            };
+
+            submitOrder.disabled = true;
+            submitOrder.innerHTML = '<div class="loading-spinner"></div> Processing...';
+
+            try {
+                // Generate order number first
+                orderNumber = 'ICE-' + Date.now() + '-' + Math.random().toString(36).substr(2, 5).toUpperCase();
+                
+                // Prepare SMS message with proper structure
+                const smsMessage = `NEW ICE ORDER #${orderNumber}\n${currentQuantity} bags\nTotal: R ${orderData.total.toFixed(2)}\nLocation: ${orderData.address}\nCustomer: ${orderData.name}\nPhone: ${orderData.phone}${orderData.instructions ? '\nInstructions: ' + orderData.instructions : ''}`;
+
+                // Add timeout to SMS fetch - increased to 60 seconds for Render cold starts
+                const smsController = new AbortController();
+                const smsTimeoutId = setTimeout(() => smsController.abort(), 60000);
+
+                // Send SMS to delivery guy FIRST
+                const smsResponse = await fetch(`${SMS_SERVER_URL}/send-sms`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        to: '+27672939603',
+                        message: smsMessage
+                    }),
+                    signal: smsController.signal
                 });
-            });
-        });
+
+                clearTimeout(smsTimeoutId);
+
+                const smsResult = await smsResponse.json();
+
+                if (smsResult.success) {
+                    // Try to save to Google Sheets with improved error handling
+                    try {
+                        // Create form data to avoid CORS preflight
+                        const formData = new URLSearchParams();
+                        formData.append('name', orderData.name);
+                        formData.append('email', orderData.email);
+                        formData.append('phone', orderData.phone);
+                        formData.append('quantity', orderData.quantity);
+                        formData.append('address', orderData.address);
+                        formData.append('instructions', orderData.instructions);
+                        formData.append('orderStatus', 'Pending');
+                        formData.append('orderId', orderNumber);
+
+                        // Add timeout to Sheets fetch as well
+                        const sheetsController = new AbortController();
+                        const sheetsTimeoutId = setTimeout(() => sheetsController.abort(), 10000); // 10-second timeout
+
+                        const sheetResponse = await fetch(GOOGLE_SHEET_URL, {
+                            method: 'POST',
+                            body: formData,
+                            signal: sheetsController.signal
+                        });
+
+                        clearTimeout(sheetsTimeoutId);
+
+                        // Try to parse response, but don't fail if it doesn't work
+                        try {
+                            const sheetResult = await sheetResponse.json();
+                            console.log('Google Sheets response:', sheetResult);
+                        } catch (parseError) {
+                            console.log('Google Sheets data saved (response not parseable)');
+                        }
+                        
+                    } catch (sheetError) {
+                        console.warn('Google Sheets save had issues, but order was placed:', sheetError);
+                        // Continue with order success even if sheets has issues
+                    }
+
+                    showStatusModal(`Order #${orderNumber} placed successfully! We will contact you shortly.`, true, 'success');
+                    orderForm.reset();
+                    clearCart();
+                    locationWarning.style.display = 'none';
+                    isLocationValid = false;
+                    
+                    // Close order modal after success
+                    closeOrderModal();
+                } else {
+                    throw new Error('SMS failed: ' + smsResult.error);
+                }
+            } catch (error) {
+                console.error('Error placing order:', error);
+                let errorMsg = 'Failed to place order. Please try again or call us directly.';
+                if (error.name === 'AbortError') {
+                    errorMsg = 'Service timeout. Please try again.';
+                }
+                showStatusModal(errorMsg, false, 'error');
+            } finally {
+                submitOrder.disabled = false;
+                submitOrder.textContent = 'Place Order';
+            }
+        }
+
+        function showStatusModal(message, isSuccess, type) {
+            // Set the icon based on type and success
+            statusIcon.innerHTML = '';
+            
+            if (type === 'success') {
+                statusIcon.className = 'status-icon success';
+                statusIcon.innerHTML = `
+                    <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                        <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                        <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                    </svg>
+                `;
+                statusTitle.textContent = 'Success!';
+            } else if (type === 'error') {
+                statusIcon.className = 'status-icon error';
+                statusIcon.innerHTML = `
+                    <svg class="x-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                        <circle class="x-mark-circle" cx="26" cy="26" r="25" fill="none"/>
+                        <path class="x-mark-line" fill="none" d="M16 16l20 20M36 16L16 36"/>
+                    </svg>
+                `;
+                statusTitle.textContent = 'Error';
+            } else if (type === 'location') {
+                statusIcon.className = 'status-icon location';
+                statusIcon.innerHTML = '<i class="bi bi-geo-alt-fill"></i>';
+                statusTitle.textContent = isSuccess ? 'Location Found' : 'Location Error';
+            }
+            
+            statusMessage.textContent = message;
+            statusModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
     </script>
 </body>
 </html>

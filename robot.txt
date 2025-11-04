@@ -1,0 +1,8 @@
+# robots.txt for icemengroup.com
+
+# Allow all user agents (search engines) full access
+User-agent: *
+Disallow:
+
+# Link to the sitemap
+Sitemap: https://icemengroup.com/sitemap.xml
