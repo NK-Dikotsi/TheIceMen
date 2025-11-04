@@ -1112,7 +1112,7 @@
     const ICE_PRICE_PER_BAG = 7.00;
     const DELIVERY_FEE = 15.00;
     const MIN_QUANTITY = 10;
-    const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbyJq7_1eUAFy3c7cX_2PNo0VJt3YxXBYrrcckcD-ICPsVdAPsMfHa4lTTBfvciFfQxP5A/exec';
+    const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbyp_VH8c-RgJOhkS0fdOZlwZqcaWKCN62kja5PWRMbOds89PQoZS-ew2MBQlg7QNw2hqg/exec';
     const SMS_SERVER_URL = 'https://icemenserver.onrender.com';
     const BETHLEHEM_POSTAL_CODES = ['9700', '9701', '9702'];
     const BETHLEHEM_KEYWORDS = ['bethlehem', 'free state'];
@@ -1572,21 +1572,20 @@
             if (smsResult.success) {
                 // Try to save to Google Sheets with improved error handling
                 try {
+                    // Create form data to avoid CORS preflight
+                    const formData = new URLSearchParams();
+                    formData.append('name', orderData.name);
+                    formData.append('email', orderData.email);
+                    formData.append('phone', orderData.phone);
+                    formData.append('quantity', orderData.quantity);
+                    formData.append('address', orderData.address);
+                    formData.append('instructions', orderData.instructions);
+                    formData.append('orderStatus', 'Pending');
+                    formData.append('orderId', orderNumber);
+
                     const sheetResponse = await fetch(GOOGLE_SHEET_URL, {
                         method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            name: orderData.name,
-                            email: orderData.email,
-                            phone: orderData.phone,
-                            quantity: orderData.quantity,
-                            address: orderData.address,
-                            instructions: orderData.instructions,
-                            orderStatus: 'Pending',
-                            orderId: orderNumber
-                        })
+                        body: formData
                     });
 
                     // Try to parse response, but don't fail if it doesn't work
