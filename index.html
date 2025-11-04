@@ -1,134 +1,230 @@
-<!doctype html>
-<html lang="zxx">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>The Icemen</title>
-    <link rel="icon" href="img/logofront.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- SEO Meta Tags -->
+    <title>Ice Men Quality Ice Supply | Premium Ice Delivery in Bethlehem, Free State</title>
+    <meta name="description" content="Ice Men provides premium quality ice with reliable delivery service throughout Bethlehem and the Free State, South Africa. Order bulk ice for events, businesses, and personal use.">
+    <meta name="keywords" content="ice delivery, ice supply, bulk ice, ice supplier Bethlehem, Free State ice delivery, premium ice, quality ice, ice for events, commercial ice, ice men">
+    <meta name="author" content="Ice Men Quality Ice Supply">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    
+    <!-- Open Graph Meta Tags - Ready for when you add social media -->
+    <meta property="og:title" content="Ice Men Quality Ice Supply | Premium Ice Delivery">
+    <meta property="og:description" content="Providing premium quality ice with reliable delivery service throughout Bethlehem and the Free State, South Africa.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.icemen.co.za">
+    <meta property="og:image" content="https://www.icemen.co.za/logo1.png">
+    <meta property="og:locale" content="en_ZA">
+    
+    <!-- Local Business Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Ice Men Quality Ice Supply",
+      "image": "https://www.icemengroup.com/logo1.png",
+      "description": "Premium quality ice supplier with reliable delivery service in Bethlehem and the Free State, South Africa.",
+      "@id": "https://www.icemengroup.com",
+      "url": "https://www.icemengroup.com",
+      "telephone": "+27672939603",
+      "email": "icemengroup@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Bethlehem",
+        "addressLocality": "Bethlehem",
+        "addressRegion": "Free State",
+        "postalCode": "9701",
+        "addressCountry": "ZA"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -28.2314,
+        "longitude": 28.3067
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "opens": "08:00",
+        "closes": "17:00"
+      },
+      "priceRange": "$$",
+      "areaServed": {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+          "@type": "GeoCoordinates",
+          "latitude": -28.2314,
+          "longitude": 28.3067
+        },
+        "geoRadius": "100000"
+      }
+    }
+    </script>
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.icemen.co.za">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- animate CSS -->
-    <link rel="stylesheet" href="css/animate.css">
-    <!-- owl carousel CSS -->
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <!-- font awesome CSS -->
-    <link rel="stylesheet" href="css/all.css">
-    <!-- flaticon CSS -->
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/themify-icons.css">
-    <!-- font awesome CSS -->
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <!-- swiper CSS -->
-    <link rel="stylesheet" href="css/slick.css">
-    <!-- style CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Google Fonts - Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Analytics -->
+    <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "u0ti2qjsdz");
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0TQDNZWE0P"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-0TQDNZWE0P');
+    </script>
+    
     <style>
-        /* Custom styles for logo and footer */
-        .navbar-brand img {
-            height: 120px; /* Increased from 80px */
-            width: auto;
-            object-fit: contain;
-            max-height: 120px;
+        :root {
+            --primary-blue: #0f4286;
+            --light-blue: #e8f0fe;
         }
         
-        /* Minimize navbar height */
-        .main_menu {
-            padding: 5px 0; /* Reduced padding */
-        }
-        
-        .navbar {
-            padding: 5px 0; /* Reduced navbar padding */
-            min-height: auto;
-        }
-        
-        .navbar-brand {
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #333333;
+            padding-top: 70px;
+            background-color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
             margin: 0;
-            padding: 0;
         }
         
-        .footer_part {
-            background-color: #0f4286 !important;
-            color: white !important;
-            padding: 50px 0 20px;
+        /* Header Styles */
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            padding: 8px 0;
+            height: 70px;
+            z-index: 1001;
         }
         
-        .copyright_text {
-            color: white !important;
-        }
-        .copyright_text {
-            text-align: center !important;
-            width: 100%;
-        }
-        
-        .copyright_text a {
-            color: white !important;
-        }
-        
-        .footer-logo {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .footer-logo img {
-            height: 100px; /* Increased from 60px */
+        .navbar-brand img {
+            height: 60px;
             width: auto;
-            max-height: 100px;
+            transform: scale(1.2);
+            transform-origin: left center;
         }
         
-        .footer-contact {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .footer-contact h5 {
-            color: white;
-            margin-bottom: 20px;
+        .menu-btn {
+            background: none;
+            border: 2px solid #000;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
             font-weight: 600;
-        }
-        
-        .contact-info {
-            margin-bottom: 15px;
-        }
-        
-        .contact-info i {
-            width: 20px;
-            color: white;
-            margin-right: 10px;
-        }
-        
-        .social-icons {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        
-        .social-icons a {
-            display: inline-block;
-            margin: 0 10px;
-            color: white;
-            font-size: 24px;
+            font-size: 14px;
             transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            color: #000000;
         }
         
-        .social-icons a:hover {
-            color: #ccc;
-            transform: translateY(-3px);
+        .menu-btn:hover {
+            background-color: var(--primary-blue);
+            border-color: var(--primary-blue);
+            color: white;
         }
         
-        /* Video background section - more professional size */
-        .video-background {
+        .nav-menu {
+            position: fixed;
+            top: 110px;
+            right: 40px;
+            background-color: rgba(255, 255, 255, 0.98);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            list-style: none;
+            display: none;
+            flex-direction: column;
+            gap: 12px;
+            backdrop-filter: blur(10px);
+            min-width: 200px;
+            z-index: 1000;
+        }
+        
+        .nav-menu.active {
+            display: flex;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: #000000 !important;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            padding: 12px 18px;
+            border-radius: 6px;
+            display: block;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .nav-link:hover {
+            background-color: var(--primary-blue);
+            color: white !important;
+            transform: translateX(5px);
+        }
+        
+        .cart-icon {
             position: relative;
-            width: 100%;
-            height: 60vh; /* Reduced from 80vh */
-            min-height: 400px; /* Minimum height */
-            overflow: hidden;
+            font-size: 20px;
+            color: #333333;
+            transition: all 0.3s ease;
+            padding: 8px;
+            border-radius: 6px;
+            margin-right: 15px;
+        }
+        
+        .cart-icon:hover {
+            color: var(--primary-blue);
+            background-color: var(--light-blue);
+        }
+        
+        /* Main Content Styles with Video Background */
+        .main-content {
+            flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+            overflow: hidden;
+            height: calc(100vh - 70px); /* Full viewport height minus header */
+            min-height: 500px;
         }
         
-        .video-background video {
+        .video-background {
             position: absolute;
             top: 0;
             left: 0;
@@ -138,1277 +234,423 @@
             z-index: -1;
         }
         
-        .video-content {
-            text-align: center;
-            z-index: 1;
-            color: white;
-            padding: 20px;
-        }
-        
-        .video-content h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
-            margin-bottom: 10px;
-            color: white;
-        }
-        
-        .changing-text {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #0f4286; /* Blue color */
-            text-shadow: 1px 1px 4px rgba(255,255,255,0.5);
-            min-height: 60px;
-            display: inline-block;
-            padding: 0 10px;
-        }
-        
-        .question-mark {
-            color: #0f4286; /* Blue color */
-            font-size: 2.5rem;
-            font-weight: 700;
-            display: inline-block;
-            margin-left: 5px;
-            text-shadow: 1px 1px 4px rgba(255,255,255,0.5);
-        }
-        
-        @media (max-width: 768px) {
-            .navbar-brand img {
-                height: 90px; /* Responsive size for mobile */
-            }
-            
-            .main_menu {
-                padding: 3px 0; /* Even smaller padding on mobile */
-            }
-            
-            .navbar {
-                padding: 3px 0;
-            }
-            
-            .footer-logo img {
-                height: 80px;
-            }
-            
-            .video-background {
-                height: 50vh;
-                min-height: 300px;
-            }
-            
-            .video-content h1 {
-                font-size: 2rem;
-            }
-            
-            .changing-text {
-                font-size: 1.5rem;
-                min-height: 50px;
-            }
-            
-            .question-mark {
-                font-size: 2rem;
-            }
-            
-            .social-icons a {
-                font-size: 20px;
-                margin: 0 8px;
-            }
-        }
-
-        .how-to-order {
-            padding: 80px 0;
-            background-color: #f8f9fa;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-            color: #0f4286;
-            font-size: 2.2rem;
-        }
-        
-        .order-steps {
-            display: flex;
-            justify-content: space-between;
+        .content-overlay {
             position: relative;
-            margin: 0 auto;
-            max-width: 1200px;
-            gap: 20px;
-        }
-        
-        .order-steps::before {
-            content: '';
-            position: absolute;
-            top: 40px;
-            left: 10%;
-            right: 10%;
-            height: 3px;
-            background: #0f4286;
             z-index: 1;
-        }
-        
-        .step {
-            position: relative;
-            z-index: 2;
             text-align: center;
-            width: 23%;
-            transition: all 0.3s ease;
+            width: 100%;
         }
         
-        .step:hover {
-            transform: translateY(-10px);
+        .centered-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
         }
         
-        .step-icon {
-            width: 70px;
-            height: 70px;
-            background-color: #0f4286;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 28px;
-            font-weight: bold;
-            box-shadow: 0 4px 8px rgba(15, 66, 134, 0.2);
-        }
-        
-        .step-content {
-            background-color: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            border-top: 4px solid #0f4286;
-            height: 180px; /* Fixed height for equal boxes */
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: all 0.3s ease;
-        }
-        
-        .step:hover .step-content {
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-            border-top-width: 6px;
-        }
-        
-        .step-title {
-            color: #0f4286;
-            font-weight: 700;
-            margin-bottom: 15px;
+        .centered-list li {
+            margin-bottom: 25px;
             font-size: 1.2rem;
-        }
-        
-        .step-description {
-            color: #555;
-            font-size: 15px;
-            line-height: 1.5;
-        }
-        
-        @media (max-width: 992px) {
-            .order-steps {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .step {
-                width: 45%;
-                margin-bottom: 40px;
-            }
-            
-            .order-steps::before {
-                display: none;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .step {
-                width: 100%;
-                max-width: 350px;
-            }
-            
-            .step-content {
-                height: auto;
-                min-height: 160px;
-            }
-        }
-        .order-button-container {
-            text-align: center;
-            margin-top: 50px;
-        }
-        
-        .order-now-btn {
-            background-color: #0f4286;
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(15, 66, 134, 0.3);
-        }
-        
-        .order-now-btn:hover {
-            background-color: #0d3a75;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(15, 66, 134, 0.4);
-        }
-
-        /* What Makes Ice Men Special Section */
-        .what-makes-special {
-            padding: 80px 0;
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-            overflow: hidden;
-        }
-        
-        .special-title {
-            text-align: center;
-            margin-bottom: 60px;
-            color: #0f4286;
-            font-size: 2.5rem;
-            font-weight: 700;
-        }
-        
-        .features-carousel {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .feature-card {
-            position: relative;
-            width: 380px;
-            height: 500px;
-            border-radius: 20px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            transform-style: preserve-3d;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
-        }
-        
-        .feature-card.center {
-            transform: scale(1.1);
-            z-index: 2;
-        }
-        
-        .feature-card.center:hover {
-            transform: scale(1.15) translateY(-10px);
-        }
-        
-        .feature-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 1;
-        }
-        
-        .feature-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(
-                to bottom,
-                rgba(15, 66, 134, 0.1) 0%,
-                rgba(15, 66, 134, 0.3) 50%,
-                rgba(15, 66, 134, 0.8) 100%
-            );
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 30px;
-            transition: all 0.3s ease;
-        }
-        
-        .feature-card:hover .feature-overlay {
-            background: linear-gradient(
-                to bottom,
-                rgba(15, 66, 134, 0.2) 0%,
-                rgba(15, 66, 134, 0.5) 50%,
-                rgba(15, 66, 134, 0.9) 100%
-            );
-        }
-        
-        .feature-category {
-            color: #ffffff;
-            font-size: 14px;
             font-weight: 500;
-            text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 10px;
-            opacity: 0.9;
-        }
-        
-        .feature-title {
-            color: #ffffff;
-            font-size: 24px;
-            font-weight: 700;
-            line-height: 1.3;
-            margin-bottom: 15px;
-        }
-        
-        .feature-description {
-            color: #ffffff;
-            font-size: 16px;
-            line-height: 1.5;
-            opacity: 0.95;
-            transform: translateY(20px);
-            transition: all 0.3s ease;
-        }
-        
-        .feature-card:hover .feature-description {
-            transform: translateY(0);
-        }
-        
-        .feature-icon {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            z-index: 3;
-            transition: all 0.3s ease;
-        }
-        
-        .feature-card:hover .feature-icon {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.1);
-        }
-        
-        .feature-icon i {
-            color: #ffffff;
-            font-size: 24px;
-        }
-        
-        /* Navigation arrows */
-        .carousel-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 50px;
-            height: 50px;
-            background: rgba(15, 66, 134, 0.8);
-            border: none;
-            border-radius: 50%;
-            color: white;
-            font-size: 20px;
             cursor: pointer;
             transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 8px;
         }
         
-        .carousel-nav:hover {
-            background: rgba(15, 66, 134, 1);
-            transform: translateY(-50%) scale(1.1);
+        .centered-list li:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(15, 66, 134, 0.5);
         }
         
-        .carousel-nav.prev {
-            left: -25px;
+        .centered-list li:last-child {
+            margin-bottom: 0;
         }
         
-        .carousel-nav.next {
-            right: -25px;
-        }
-        
-        @media (max-width: 1200px) {
-            .features-carousel {
-                gap: 20px;
-            }
-            
-            .feature-card {
-                width: 320px;
-                height: 450px;
-            }
-        }
-        
-        @media (max-width: 992px) {
-            .features-carousel {
-                flex-direction: column;
-                gap: 40px;
-            }
-            
-            .feature-card {
-                width: 100%;
-                max-width: 400px;
-                height: 400px;
-            }
-            
-            .feature-card.center {
-                transform: none;
-            }
-            
-            .feature-card.center:hover {
-                transform: translateY(-10px) scale(1.02);
-            }
-            
-            .carousel-nav {
-                display: none;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .special-title {
-                font-size: 2rem;
-                margin-bottom: 40px;
-            }
-            
-            .feature-card {
-                height: 350px;
-            }
-            
-            .feature-overlay {
-                padding: 20px;
-            }
-            
-            .feature-title {
-                font-size: 20px;
-            }
-            
-            .feature-description {
-                font-size: 14px;
-            }
-        }
-        
-        /* Testimonials Section */
-        .testimonials-section {
-            padding: 4rem 0;
-            background-color: #f8f9fa;
-            overflow: hidden;
-        }
-        
-        .testimonials-container {
-            width: 100%;
-            position: relative;
-        }
-        
-        .testimonials-title {
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #0f4286;
-            font-size: 2rem;
-        }
-        
-        .testimonials-track {
-            display: flex;
-            gap: 2rem;
-            width: calc(300% + 6rem); /* Extra width for seamless looping */
-            padding: 1rem 0;
-            will-change: transform;
-        }
-        
-        .testimonial-card {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            width: 100%;
-            max-width: 350px;
-            min-width: 300px;
-            transition: transform 0.3s ease;
-            border: 1px solid #eaeaea;
-            flex-shrink: 0;
-        }
-        
-        .testimonial-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        }
-        
-        .testimonial-icon {
-            color: #0f4286;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .testimonial-header {
+        .list-number {
+            color: white;
             font-weight: 600;
-            margin-bottom: 0.5rem;
+            width: 35px;
+            text-align: right;
+            display: inline-block;
+        }
+        
+        .list-text-wrapper {
+            display: inline-block;
+            text-align: left;
+            width: 150px;
+            margin-left: 15px;
+        }
+        
+        .list-text {
+            display: inline;
+            color: white;
+        }
+        
+        .blue-dot {
+            color: var(--primary-blue);
+            font-weight: 700;
+            display: inline;
+        }
+        
+        /* Extended Footer Styles */
+        .footer-divider {
+            width: 100%;
+            height: 1px;
+            background-color: #e0e0e0;
+            margin: 0;
+        }
+        
+        .footer {
+            background-color: white;
+            padding: 60px 0 20px;
+            text-align: left;
+        }
+        
+        .footer-logo img {
+            height: 60px;
+            width: auto;
+            margin-bottom: 20px;
+        }
+        
+        .footer-heading {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+            font-weight: 600;
             color: #333;
         }
         
-        .testimonial-text {
-            color: #555;
-            line-height: 1.6;
-            font-size: 0.95rem;
-        }
-        
-        @keyframes scroll {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(calc(-100% - 2rem));
-            }
-        }
-        
-        .scroll-animation {
-            animation: scroll 40s linear infinite;
-        }
-        
-        /* Touch scrolling indicators */
-        .scroll-hint {
+        .footer-heading::after {
+            content: '';
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #0f4286;
-            font-size: 1.5rem;
-            opacity: 0.7;
-            display: none;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary-blue);
         }
         
-        .scroll-hint.left {
-            left: 10px;
+        .footer-links {
+            list-style: none;
+            padding: 0;
         }
         
-        .scroll-hint.right {
-            right: 10px;
+        .footer-links li {
+            margin-bottom: 12px;
         }
         
+        .footer-links a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+            position: relative;
+            padding-bottom: 2px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-blue);
+        }
+        
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-blue);
+            transition: width 0.3s ease;
+        }
+        
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+        
+        .contact-info {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            color: #666;
+        }
+        
+        .contact-info i {
+            margin-right: 10px;
+            margin-top: 3px;
+            color: var(--primary-blue);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #e0e0e0;
+            padding-top: 20px;
+            text-align: center;
+            color: #666;
+            font-weight: 500;
+            margin-top: 40px;
+        }
+        
+        .footer-bottom p {
+            margin-bottom: 10px;
+            color: #666;
+        }
+        
+        .footer-bottom a {
+            color: #666;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-bottom a:hover {
+            color: var(--primary-blue);
+            text-decoration: underline;
+        }
+        
+        /* Responsive Adjustments */
         @media (max-width: 768px) {
-            .scroll-hint {
-                display: block;
+            body {
+                padding-top: 60px;
             }
             
-            .testimonials-track {
-                animation: scroll 60s linear infinite;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                scroll-snap-type: x mandatory;
+            .navbar {
+                height: 60px;
             }
             
-            .testimonial-card {
-                scroll-snap-align: start;
+            .navbar-brand img {
+                height: 50px;
+                transform: scale(1.1);
+            }
+            
+            .nav-menu {
+                top: 90px;
+                right: 20px;
+            }
+            
+            .main-content {
+                height: calc(100vh - 60px);
+            }
+            
+            .centered-list li {
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .navbar-brand img {
+                height: 45px;
+                transform: scale(1);
+            }
+            
+            .nav-menu {
+                top: 85px;
+                right: 15px;
+                left: 15px;
+                min-width: auto;
+            }
+            
+            .centered-list li {
+                font-size: 1rem;
+            }
+            
+            .list-number {
+                width: 30px;
+            }
+            
+            .list-text-wrapper {
+                width: 120px;
+                margin-left: 12px;
+            }
+            
+            .footer {
+                padding: 40px 0 20px;
             }
         }
     </style>
 </head>
-
 <body>
-    <!--::header part start::-->
-    <header class="main_menu home_menu">
-        <div class="container">
-            <div class="row align-items-center justify-content-center">
-                <div class="col-lg-12">
-                    <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="index.html"> 
-                            <img src="img/logofront.png" alt="logo"> 
-                        </a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="menu_icon"><i class="fas fa-bars"></i></span>
-                        </button>
-
-                        <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
-                            <ul class="navbar-nav">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="index.html">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="about.html">Shop</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="contact.html">Packages</a>
-                                </li>
-                               
-                                <li class="nav-item">
-                                    <a class="nav-link" href="contact.html">Contact</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="hearer_icon d-flex align-items-center">
-                            <a href="cart.html">
-                                <i class="flaticon-shopping-cart-black-shape"></i>
-                            </a>
-                        </div>
-                    </nav>
+    <!-- Header -->
+    <header>
+        <nav class="navbar navbar-expand-lg fixed-top" role="navigation" aria-label="Main navigation">
+            <div class="container">
+                <a class="navbar-brand" href="/" aria-label="Ice Men Quality Ice Supply Home">
+                    <img src="logo1.png" alt="Ice Men Quality Ice Supply Logo">
+                </a>
+                
+                <div class="d-flex align-items-center">
+                    <a href="#" class="cart-icon" aria-label="Shopping cart">
+                        <i class="bi bi-cart"></i>
+                    </a>
+                    <button class="menu-btn" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navMenu">
+                        Menu
+                    </button>
                 </div>
+                
+                <ul class="nav-menu" id="navMenu" role="menu">
+                    <li role="none"><a class="nav-link" href="/" role="menuitem">Buy</a></li>
+                    <li role="none"><a class="nav-link" href="#shop" role="menuitem">Products</a></li>
+                    <li role="none"><a class="nav-link" href="#about" role="menuitem">About Us</a></li>
+                    <li role="none"><a class="nav-link" href="#contact" role="menuitem">Contact</a></li>
+                </ul>
             </div>
-        </div>
+        </nav>
     </header>
-    <!-- Header part end-->
 
-    <!-- Video Background Section -->
-    <section class="video-background">
-        <video autoplay muted loop playsinline>
-            <source src="vid/vid1.mp4" type="video/mp4">
+    <!-- Main Content with Video Background -->
+    <main class="main-content" id="home">
+        <!-- Video Background -->
+        <video class="video-background" autoplay muted loop playsinline preload="auto" aria-label="Employee serving ice to customer">
+            <source src="vid/sec1.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-        <div class="video-content">
-            <h1>NEED ICE FOR</h1>
-            <div class="changing-text" id="changingText">EVENTS</div>
-            <span class="question-mark">?</span>
+        
+        <div class="container content-overlay">
+            <nav aria-label="Main sections">
+                <ul class="centered-list">
+                    <li>
+                        <span class="list-number" aria-hidden="true">01</span>
+                        <span class="list-text-wrapper">
+                            <span class="list-text">BUY</span><span class="blue-dot" aria-hidden="true">.</span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="list-number" aria-hidden="true">02</span>
+                        <span class="list-text-wrapper">
+                            <span class="list-text">PRODUCTS</span><span class="blue-dot" aria-hidden="true">.</span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="list-number" aria-hidden="true">03</span>
+                        <span class="list-text-wrapper">
+                            <span class="list-text">ABOUT US</span><span class="blue-dot" aria-hidden="true">.</span>
+                        </span>
+                    </li>
+                    <li id="contact-list-item">
+                        <span class="list-number" aria-hidden="true">04</span>
+                        <span class="list-text-wrapper">
+                            <span class="list-text">CONTACT</span><span class="blue-dot" aria-hidden="true">.</span>
+                        </span>
+                    </li>
+                </ul>
+            </nav>
         </div>
-    </section>
+    </main>
 
-    <section class="how-to-order">
+    <!-- Footer Divider -->
+    <div class="footer-divider"></div>
+
+    <!-- Extended Footer -->
+    <footer class="footer" id="contact">
         <div class="container">
-            <h2 class="section-title">How To Order</h2>
-            <div class="order-steps">
-                <!-- Step 1 -->
-                <div class="step">
-                    <div class="step-icon">1</div>
-                    <div class="step-content">
-                        <h4 class="step-title">Select Quantity</h4>
-                        <p class="step-description">Choose from our range of ice quantities to match your event size and needs.</p>
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-logo">
+                        <img src="logofooter.png" alt="Ice Men Quality Ice Supply Footer Logo">
                     </div>
+                    <p style="color: #666;">Providing premium quality ice with reliable delivery service throughout the Free State.</p>
                 </div>
                 
-                <!-- Step 2 -->
-                <div class="step">
-                    <div class="step-icon">2</div>
-                    <div class="step-content">
-                        <h4 class="step-title">Provide Location</h4>
-                        <p class="step-description">Enter your exact delivery address and contact details. We'll confirm availability for your area and delivery timing.</p>
-                    </div>
+                <div class="col-lg-4 mb-4">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#shop">Buy</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
                 </div>
                 
-                <!-- Step 3 -->
-                <div class="step">
-                    <div class="step-icon">3</div>
-                    <div class="step-content">
-                        <h4 class="step-title">Make Payment</h4>
-                        <p class="step-description">Complete your order with our secure payment system. We accept all major credit cards and mobile payment options.</p>
-                    </div>
-                </div>
-                
-                <!-- Step 4 -->
-                <div class="step">
-                    <div class="step-icon">4</div>
-                    <div class="step-content">
-                        <h4 class="step-title">Receive Order</h4>
-                        <p class="step-description">Get your ice delivered fresh and on schedule. We ensure proper packaging to maintain quality during transit.</p>
-                    </div>
-                </div>
-            </div>
-
-             <div class="order-button-container">
-                <button class="order-now-btn">Order Ice Now</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- What Makes Ice Men Special Section -->
-    <section class="what-makes-special">
-        <div class="container">
-            <h2 class="special-title">What makes Ice Men special?</h2>
-            <div class="features-carousel" id="featuresCarousel">
-                <button class="carousel-nav prev" id="prevBtn">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                
-                <!-- Feature Card 1 -->
-                <div class="feature-card" data-video="vid/c1.mp4">
-                    <video class="feature-video" muted loop playsinline>
-                        <source src="vid/c1.mp4" type="video/mp4">
-                    </video>
-                    <div class="feature-overlay">
-                        <div class="feature-icon">
-                            <i class="fas fa-snowflake"></i>
-                        </div>
-                        <div class="feature-category">Local</div>
-                        <h3 class="feature-title">Proudly Local</h3>
-                        <p class="feature-description">Produced right here in the Free State to support our community and ensure fresh, quality ice.</p>
-                    </div>
-                </div>
-                
-                <!-- Feature Card 2 (Center) -->
-                <div class="feature-card center" data-video="vid/c2.mp4">
-                    <video class="feature-video" muted loop playsinline>
-                        <source src="vid/c2.mp4" type="video/mp4">
-                    </video>
-                    <div class="feature-overlay">
-                        <div class="feature-icon">
-                            <i class="fas fa-shipping-fast"></i>
-                        </div>
-                        <div class="feature-category">Convenience</div>
-                        <h3 class="feature-title">Convenience Every Time</h3>
-                        <p class="feature-description"> Quick, reliable deliveries straight to your door so you’re always stocked and stress-free.</p>
-                    </div>
-                </div>
-                
-                <!-- Feature Card 3 -->
-                <div class="feature-card" data-video="vid/c3.mp4">
-                    <video class="feature-video" muted loop playsinline>
-                        <source src="vid/c3.mp4" type="video/mp4">
-                    </video>
-                    <div class="feature-overlay">
-                        <div class="feature-icon">
-                            <i class="fas fa-heart"></i>
-                        </div>
-                        <div class="feature-category">Reliable</div>
-                        <h3 class="feature-title">Reliable Supply</h3>
-                        <p class="feature-description">Consistent ice availability even in peak season to keep your business and events running smoothly.</p>
-                    </div>
-                </div>
-                
-                <button class="carousel-nav next" id="nextBtn">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <section class="testimonials-section">
-        <div class="container">
-            <h2 class="testimonials-title">What Our Customers Say</h2>
-            <span class="scroll-hint left"><i class="fas fa-chevron-left"></i></span>
-            <span class="scroll-hint right"><i class="fas fa-chevron-right"></i></span>
-            
-            <div class="testimonials-container">
-                <div class="testimonials-track scroll-animation" id="testimonialsTrack">
-                    <!-- Sesotho Testimonial 1 -->
-                    <div class="testimonial-card">
-                        <div class="testimonial-icon">
-                            <i class="fas fa-quote-left"></i>
-                        </div>
-                        <div class="testimonial-header">Thabo Mokoena</div>
-                        <p class="testimonial-text">"Ice Men ba nkadile ka lehlohonolo mabapi le theko le tšebeletso. Ke tla ba khothalletsa ho mang kapa mang ea hlokang ice."</p>
-                    </div>
-                    
-                    <!-- Sesotho Testimonial 2 -->
-                    <div class="testimonial-card">
-                        <div class="testimonial-icon">
-                            <i class="fas fa-quote-left"></i>
-                        </div>
-                        <div class="testimonial-header">Lerato Moloi</div>
-                        <p class="testimonial-text">"Ke ile ka fumana ice ka potlako le ka nako e nepahetseng. Ba nka leeto la bona ka hloko."</p>
-                    </div>
-                    
-                    <!-- Sesotho Testimonial 3 -->
-                    <div class="testimonial-card">
-                        <div class="testimonial-icon">
-                            <i class="fas fa-quote-left"></i>
-                        </div>
-                        <div class="testimonial-header">Teboho Khumalo</div>
-                        <p class="testimonial-text">"Ice e ne e le tšoeu haholo, e sa lele. Ke tla sebelisa Ice Men hape bakeng sa mokete oa ka oa mosali."</p>
-                    </div>
-                    
-                    <!-- Sesotho Testimonial 4 -->
-                    <div class="testimonial-card">
-                        <div class="testimonial-icon">
-                            <i class="fas fa-quote-left"></i>
-                        </div>
-                        <div class="testimonial-header">Mpho Dlamini</div>
-                        <p class="testimonial-text">"Ba ile ba nka boikokobetso ba nka hlokomela ka mokhoa o motle haholo. Ice e ne e le tšepehali."</p>
-                    </div>
-                    
-                    <!-- Sesotho Testimonial 5 -->
-                    <div class="testimonial-card">
-                        <div class="testimonial-icon">
-                            <i class="fas fa-quote-left"></i>
-                        </div>
-                        <div class="testimonial-header">Kgotso Nkosi</div>
-                        <p class="testimonial-text">"Ke ile ka etsa odara ka Sontaha mantsiboea, 'me ka Mona Ice Men ba ile ba tla ka Moesetsanyana. Tšebeletso e phahameng!"</p>
-                    </div>
-                    
-                    <!-- English Testimonial 1 -->
-                    <div class="testimonial-card">
-                        <div class="testimonial-icon">
-                            <i class="fas fa-quote-left"></i>
-                        </div>
-                        <div class="testimonial-header">Naledi Mofokeng</div>
-                        <p class="testimonial-text">"Ice Men delivered my order within 30 minutes! The ice was perfectly clear and lasted all night at my party. Highly recommended!"</p>
-                    </div>
-                    
-                    <!-- English Testimonial 2 -->
-                    <div class="testimonial-card">
-                        <div class="testimonial-icon">
-                            <i class="fas fa-quote-left"></i>
-                        </div>
-                        <div class="testimonial-header">Tumelo Pule</div>
-                        <p class="testimonial-text">"I've used Ice Men for three events now. Their prices are fair and the delivery is always on time. Professional service!"</p>
-                    </div>
-                    
-                    <!-- English Testimonial 3 -->
-                    <div class="testimonial-card">
-                        <div class="testimonial-icon">
-                            <i class="fas fa-quote-left"></i>
-                        </div>
-                        <div class="testimonial-header">Refiloe Motsepe</div>
-                        <p class="testimonial-text">"The ice was crystal clear and didn't melt quickly like others I've tried. Will definitely order again for my next braai."</p>
-                    </div>
-                    
-                    <!-- English Testimonial 4 -->
-                    <div class="testimonial-card">
-                        <div class="testimonial-icon">
-                            <i class="fas fa-quote-left"></i>
-                        </div>
-                        <div class="testimonial-header">Katleho Mohapi</div>
-                        <p class="testimonial-text">"Excellent customer service! They helped me calculate exactly how much ice I needed for my wedding. Saved me money!"</p>
-                    </div>
-                    
-                    <!-- English Testimonial 5 -->
-                    <div class="testimonial-card">
-                        <div class="testimonial-icon">
-                            <i class="fas fa-quote-left"></i>
-                        </div>
-                        <div class="testimonial-header">Thato Mokone</div>
-                        <p class="testimonial-text">"Late night emergency order and they still delivered within the hour. Lifesavers for our corporate event!"</p>
-                    </div>
-                    
-                    <!-- Duplicate testimonials for seamless looping -->
-                    <!-- Sesotho Testimonial 1 -->
-                    <div class="testimonial-card">
-                        <div class="testimonial-icon">
-                            <i class="fas fa-quote-left"></i>
-                        </div>
-                        <div class="testimonial-header">Thabo Mokoena</div>
-                        <p class="testimonial-text">"Ice Men ba nkadile ka lehlohonolo mabapi le theko le tšebeletso. Ke tla ba khothalletsa ho mang kapa mang ea hlokang ice."</p>
-                    </div>
-                    
-                    <!-- Sesotho Testimonial 2 -->
-                    <div class="testimonial-card">
-                        <div class="testimonial-icon">
-                            <i class="fas fa-quote-left"></i>
-                        </div>
-                        <div class="testimonial-header">Lerato Moloi</div>
-                        <p class="testimonial-text">"Ke ile ka fumana ice ka potlako le ka nako e nepahetseng. Ba nka leeto la bona ka hloko."</p>
-                    </div>
-                    
-                    <!-- Sesotho Testimonial 3 -->
-                    <div class="testimonial-card">
-                        <div class="testimonial-icon">
-                            <i class="fas fa-quote-left"></i>
-                        </div>
-                        <div class="testimonial-header">Teboho Khumalo</div>
-                        <p class="testimonial-text">"Ice e ne e le tšoeu haholo, e sa lele. Ke tla sebelisa Ice Men hape bakeng sa mokete oa ka oa mosali."</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!--::footer_part start::-->
-    <footer class="footer_part">
-        <div class="container">
-            <div class="footer-logo">
-                <img src="img/logoback.png" alt="Ice Men Logo">
-            </div>
-            
-            <div class="footer-contact">
-                <h5>Contact Us</h5>
-                <div class="contact-info">
-                    <i class="fas fa-phone"></i>
-                    <span>+27 12 345 6789</span>
-                </div>
-                <div class="contact-info">
-                    <i class="fas fa-envelope"></i>
-                    <span>info@icemen.co.za</span>
-                </div>
-                <div class="contact-info">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Bethlehem, Free State, South Africa,9701</span>
+                <div class="col-lg-4 mb-4">
+                    <h3 class="footer-heading">Contact Us</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="bi bi-geo-alt" aria-hidden="true"></i>
+                            <span>Bethlehem, Free State, South Africa, 9701</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-telephone" aria-hidden="true"></i>
+                            <a href="tel:+27672939603" style="color: #666; text-decoration: none;">067 293 9603</a>
+                        </li>
+                        <li>
+                            <i class="bi bi-envelope" aria-hidden="true"></i>
+                            <a href="mailto:icemengroup@gmail.com" style="color: #666; text-decoration: none;">icemengroup@gmail.com</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
             
-            <div class="social-icons">
-                <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-        </div>
-        <div class="copyright_part">
-            <div class="container">
-                <div class="row ">
-                    <div class="col-lg-12">
-                        <div class="copyright_text" style="text-align:center">
-                            <P>Ice Men Group Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved</P>
-                        </div>
-                    </div>
-                </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Ice Men Quality Ice Supply. All rights reserved.</p>
             </div>
         </div>
     </footer>
-    <!--::footer_part end::-->
 
-    <!-- jquery plugins here-->
-    <script src="js/jquery-1.12.1.min.js"></script>
-    <!-- popper js -->
-    <script src="js/popper.min.js"></script>
-    <!-- bootstrap js -->
-    <script src="js/bootstrap.min.js"></script>
-    <!-- magnific popup js -->
-    <script src="js/jquery.magnific-popup.js"></script>
-    <!-- carousel js -->
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <!-- slick js -->
-    <script src="js/slick.min.js"></script>
-    <script src="js/jquery.counterup.min.js"></script>
-    <script src="js/waypoints.min.js"></script>
-    <script src="js/contact.js"></script>
-    <script src="js/jquery.ajaxchimp.min.js"></script>
-    <script src="js/jquery.form.js"></script>
-    <script src="js/jquery.validate.min.js"></script>
-    <script src="js/mail-script.js"></script>
-    <!-- custom js -->
-    <script src="js/custom.js"></script>
-   
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
-        // Dynamic text changing for events
-        const eventTypes = [
-            "EVENTS",
-            "MONATE",
-            "GROOVE",
-            "BRAAI",
-            "WEDDINGS",
-            "FUNCTIONS",
-            "FESTIVALS",
-            "NOMA-YINI",
-            "ICE MEN GOT YOU"  // Added as the final message
-        ];
-        
-        let currentIndex = 0;
-        const changingText = document.getElementById('changingText');
-        const questionMark = document.querySelector('.question-mark');
-        
-        function changeText() {
-            changingText.style.opacity = 0;
-            setTimeout(() => {
-                currentIndex = (currentIndex + 1) % eventTypes.length;
-                changingText.textContent = eventTypes[currentIndex];
-                
-                // Hide question mark when showing "ICE MEN GOT YOU"
-                if (eventTypes[currentIndex] === "ICE MEN GOT YOU") {
-                    questionMark.style.display = 'none';
-                } else {
-                    questionMark.style.display = 'inline-block';
-                }
-                
-                changingText.style.opacity = 1;
-                
-                // Reset to beginning after showing "ICE MEN GOT YOU"
-                if (eventTypes[currentIndex] === "ICE MEN GOT YOU") {
-                    setTimeout(() => {
-                        currentIndex = -1; // Will become 0 after increment
-                    }, 2000); // Show for 2 seconds before resetting
-                }
-            }, 500);
-        }
-        
-        // Change text every 3 seconds
-        setInterval(changeText, 2000);
-        
-        // Initialize first text
-        changingText.textContent = eventTypes[0];
-
         document.addEventListener('DOMContentLoaded', function() {
-            const steps = document.querySelectorAll('.step');
+            const menuToggle = document.getElementById('menuToggle');
+            const navMenu = document.getElementById('navMenu');
+            const contactListItem = document.getElementById('contact-list-item');
             
-            steps.forEach(step => {
-                // Add mouseenter event
-                step.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-10px)';
-                    this.querySelector('.step-content').style.boxShadow = '0 15px 30px rgba(0,0,0,0.15)';
-                    this.querySelector('.step-content').style.borderTopWidth = '6px';
-                });
-                
-                // Add mouseleave event
-                step.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
-                    this.querySelector('.step-content').style.boxShadow = '0 5px 15px rgba(0,0,0,0.08)';
-                    this.querySelector('.step-content').style.borderTopWidth = '4px';
-                });
-                
-                // Add touch effect for mobile
-                step.addEventListener('touchstart', function() {
-                    this.classList.add('hover-effect');
-                });
-                
-                step.addEventListener('touchend', function() {
-                    this.classList.remove('hover-effect');
-                });
-            });
-        });
-
-        // Features Carousel Functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const featureCards = document.querySelectorAll('.feature-card');
-            const videos = document.querySelectorAll('.feature-video');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            let currentFeature = 1; // Start with center card (index 1)
-
-            // Initialize videos
-            function initializeVideos() {
-                videos.forEach((video, index) => {
-                    video.load();
-                    if (index === currentFeature) {
-                        video.play().catch(e => console.log('Video play failed:', e));
-                    }
-                });
-            }
-
-            // Update carousel
-            function updateCarousel() {
-                featureCards.forEach((card, index) => {
-                    card.classList.remove('center');
-                    const video = card.querySelector('.feature-video');
-                    
-                    if (index === currentFeature) {
-                        card.classList.add('center');
-                        video.play().catch(e => console.log('Video play failed:', e));
-                    } else {
-                        video.pause();
-                    }
-                });
-            }
-
-            // Navigation functions
-            function nextFeature() {
-                currentFeature = (currentFeature + 1) % featureCards.length;
-                updateCarousel();
-            }
-
-            function prevFeature() {
-                currentFeature = (currentFeature - 1 + featureCards.length) % featureCards.length;
-                updateCarousel();
-            }
-
-            // Event listeners
-            nextBtn.addEventListener('click', nextFeature);
-            prevBtn.addEventListener('click', prevFeature);
-
-            // Auto-play carousel
-            let autoPlayInterval = setInterval(nextFeature, 5000);
-
-            // Pause auto-play on hover
-            const carousel = document.querySelector('.features-carousel');
-            carousel.addEventListener('mouseenter', () => {
-                clearInterval(autoPlayInterval);
-            });
-
-            carousel.addEventListener('mouseleave', () => {
-                autoPlayInterval = setInterval(nextFeature, 5000);
-            });
-
-            // Touch/Swipe support for mobile
-            let startX = 0;
-            let startY = 0;
-
-            carousel.addEventListener('touchstart', (e) => {
-                startX = e.touches[0].clientX;
-                startY = e.touches[0].clientY;
-            });
-
-            carousel.addEventListener('touchend', (e) => {
-                const endX = e.changedTouches[0].clientX;
-                const endY = e.changedTouches[0].clientY;
-                const diffX = startX - endX;
-                const diffY = startY - endY;
-
-                // Check if horizontal swipe is more significant than vertical
-                if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
-                    if (diffX > 0) {
-                        nextFeature();
-                    } else {
-                        prevFeature();
-                    }
-                }
-            });
-
-            // Initialize
-            initializeVideos();
-            updateCarousel();
-
-            // Play video on card hover
-            featureCards.forEach(card => {
-                card.addEventListener('mouseenter', () => {
-                    const video = card.querySelector('.feature-video');
-                    video.play().catch(e => console.log('Video play failed:', e));
-                });
-            });
-        });
-
-        // Enhanced Testimonials Carousel with manual scroll and auto-resume
-        document.addEventListener('DOMContentLoaded', function() {
-            const track = document.getElementById('testimonialsTrack');
-            if (!track) return;
-
-            let isDragging = false;
-            let startX;
-            let scrollLeft;
-            let animationId;
-            let isScrolling = false;
-            let autoScrollSpeed = 1; // pixels per frame
-            let direction = -1; // -1 for left, 1 for right
-            
-            // Duplicate testimonials for infinite loop
-            function duplicateTestimonials() {
-                const testimonials = track.querySelectorAll('.testimonial-card');
-                testimonials.forEach(card => {
-                    const clone = card.cloneNode(true);
-                    track.appendChild(clone);
-                });
-            }
-            
-            // Start auto-scrolling
-            function startAutoScroll() {
-                if (isScrolling) return;
-                
-                isScrolling = true;
-                
-                function animate() {
-                    if (!isDragging && isScrolling) {
-                        track.scrollLeft += autoScrollSpeed * direction;
-                        
-                        // Loop back to start when reaching end
-                        if (track.scrollLeft >= (track.scrollWidth - track.clientWidth)) {
-                            track.scrollLeft = 0;
-                        }
-                        // Loop to end when scrolling left from start
-                        else if (track.scrollLeft <= 0 && direction === 1) {
-                            track.scrollLeft = track.scrollWidth - track.clientWidth;
-                        }
-                        
-                        animationId = requestAnimationFrame(animate);
-                    }
-                }
-                
-                animate();
-            }
-            
-            // Stop auto-scrolling
-            function stopAutoScroll() {
-                isScrolling = false;
-                cancelAnimationFrame(animationId);
-            }
-            
-            // Resume auto-scrolling after pause
-            function resumeAutoScroll() {
-                if (!isDragging) {
-                    // Small delay before resuming
-                    setTimeout(startAutoScroll, 2000);
-                }
-            }
-            
-            // Mouse events for manual scrolling
-            track.addEventListener('mousedown', (e) => {
-                isDragging = true;
-                startX = e.pageX - track.offsetLeft;
-                scrollLeft = track.scrollLeft;
-                stopAutoScroll();
-                track.style.cursor = 'grabbing';
-            });
-            
-            track.addEventListener('mouseleave', () => {
-                if (isDragging) {
-                    isDragging = false;
-                    track.style.cursor = 'grab';
-                    resumeAutoScroll();
-                }
-            });
-            
-            track.addEventListener('mouseup', () => {
-                if (isDragging) {
-                    isDragging = false;
-                    track.style.cursor = 'grab';
-                    resumeAutoScroll();
-                }
-            });
-            
-            track.addEventListener('mousemove', (e) => {
-                if (!isDragging) return;
+            // Toggle menu visibility
+            menuToggle.addEventListener('click', function(e) {
                 e.preventDefault();
-                const x = e.pageX - track.offsetLeft;
-                const walk = (x - startX) * 2; // Scroll faster
-                track.scrollLeft = scrollLeft - walk;
+                const isExpanded = navMenu.classList.contains('active');
+                navMenu.classList.toggle('active');
+                menuToggle.setAttribute('aria-expanded', !isExpanded);
             });
             
-            // Touch events for mobile
-            track.addEventListener('touchstart', (e) => {
-                isDragging = true;
-                startX = e.touches[0].pageX - track.offsetLeft;
-                scrollLeft = track.scrollLeft;
-                stopAutoScroll();
-                track.style.cursor = 'grabbing';
-            });
-            
-            track.addEventListener('touchend', () => {
-                if (isDragging) {
-                    isDragging = false;
-                    track.style.cursor = 'grab';
-                    resumeAutoScroll();
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                    navMenu.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
                 }
             });
             
-            track.addEventListener('touchmove', (e) => {
-                if (!isDragging) return;
-                e.preventDefault();
-                const x = e.touches[0].pageX - track.offsetLeft;
-                const walk = (x - startX) * 2;
-                track.scrollLeft = scrollLeft - walk;
+            // Close menu when clicking a link
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    navMenu.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                });
             });
             
-            // Pause on hover
-            track.addEventListener('mouseenter', stopAutoScroll);
-            track.addEventListener('mouseleave', () => {
-                if (!isDragging) {
-                    resumeAutoScroll();
-                }
-            });
-            
-            // Initialize
-            duplicateTestimonials();
-            startAutoScroll();
-            
-            // Adjust speed based on container width
-            function adjustSpeed() {
-                autoScrollSpeed = track.clientWidth / 500; // Slower on wider screens
-            }
-            
-            window.addEventListener('resize', adjustSpeed);
-            adjustSpeed();
-        });
-
-        document.addEventListener('DOMContentLoaded', function() {
-            // Force video playback on mobile
-            const video = document.querySelector('.video-background video');
+            // Ensure video plays correctly
+            const video = document.querySelector('.video-background');
             if (video) {
-                video.setAttribute('playsinline', '');
-                video.setAttribute('webkit-playsinline', '');
-                video.setAttribute('muted', 'muted');
-                
-                // iOS requires explicit play() call
-                const playPromise = video.play();
-                
-                if (playPromise !== undefined) {
-                    playPromise.catch(error => {
-                        // Auto-play was prevented, show fallback
-                        console.log('Video autoplay prevented:', error);
-                        video.muted = true;
-                        video.play().catch(e => console.log('Fallback play failed:', e));
-                    });
-                }
+                video.play().catch(function(error) {
+                    console.log("Video autoplay failed:", error);
+                });
+            }
+            
+            // Smooth scroll to contact section when clicking the contact list item
+            if (contactListItem) {
+                contactListItem.addEventListener('click', function() {
+                    const contactSection = document.getElementById('contact');
+                    if (contactSection) {
+                        contactSection.scrollIntoView({ 
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
             }
         });
     </script>
 </body>
-
 </html>
