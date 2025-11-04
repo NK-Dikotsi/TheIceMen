@@ -973,6 +973,14 @@
                     </div>
 
                     <div class="form-group">
+                        <label class="form-label" for="customerEmail">
+                            Email Address
+                        </label>
+                        <input type="email" class="form-control" id="customerEmail" placeholder="your.email@example.com">
+                        <div class="error-message" id="emailError">Please enter a valid email address</div>
+                    </div>
+
+                    <div class="form-group">
                         <label class="form-label" for="customerPhone">
                             Phone Number <span class="required">*</span>
                         </label>
@@ -1104,7 +1112,7 @@
     const ICE_PRICE_PER_BAG = 7.00;
     const DELIVERY_FEE = 15.00;
     const MIN_QUANTITY = 10;
-    const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbzn67c8FLCtjZbZJdHn1ESYVRHESCOrwwujQzWeq0c-LK7xYyDSaRPZCqKzlMYTjqVl9g/exec';
+    const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbyJq7_1eUAFy3c7cX_2PNo0VJt3YxXBYrrcckcD-ICPsVdAPsMfHa4lTTBfvciFfQxP5A/exec';
     const SMS_SERVER_URL = 'https://icemenserver.onrender.com';
     const BETHLEHEM_POSTAL_CODES = ['9700', '9701', '9702'];
     const BETHLEHEM_KEYWORDS = ['bethlehem', 'free state'];
@@ -1468,6 +1476,7 @@
     function validateForm() {
         let isValid = true;
         const name = document.getElementById('customerName').value.trim();
+        const email = document.getElementById('customerEmail').value.trim();
         const phone = document.getElementById('customerPhone').value.trim();
         const address = document.getElementById('deliveryAddress').value.trim();
 
@@ -1479,6 +1488,13 @@
         if (!name) {
             document.getElementById('nameError').style.display = 'block';
             document.getElementById('customerName').classList.add('error');
+            isValid = false;
+        }
+
+        // Validate email (optional but must be valid if provided)
+        if (email && !isValidEmail(email)) {
+            document.getElementById('emailError').style.display = 'block';
+            document.getElementById('customerEmail').classList.add('error');
             isValid = false;
         }
 
@@ -1507,6 +1523,11 @@
         return isValid;
     }
 
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
     async function handleOrderSubmission(e) {
         e.preventDefault();
         
@@ -1516,6 +1537,7 @@
 
         const orderData = {
             name: document.getElementById('customerName').value.trim(),
+            email: document.getElementById('customerEmail').value.trim(),
             phone: document.getElementById('customerPhone').value.trim(),
             address: document.getElementById('deliveryAddress').value.trim(),
             instructions: document.getElementById('deliveryInstructions').value.trim(),
@@ -1557,7 +1579,7 @@
                         },
                         body: JSON.stringify({
                             name: orderData.name,
-                            email: '', // Your sheet expects email but it's not in the form
+                            email: orderData.email,
                             phone: orderData.phone,
                             quantity: orderData.quantity,
                             address: orderData.address,
