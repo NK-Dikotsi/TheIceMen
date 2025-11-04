@@ -1553,7 +1553,7 @@
             orderNumber = 'ICE-' + Date.now() + '-' + Math.random().toString(36).substr(2, 5).toUpperCase();
             
             // Prepare SMS message with proper structure
-            const smsMessage = `❄️ NEW ICE ORDER ❄️\n\nOrder #${orderNumber}\n${currentQuantity} bags of ice\nTotal: R ${orderData.total.toFixed(2)}\nLocation: ${orderData.address}\n\nCustomer: ${orderData.name}\nPhone: ${orderData.phone}${orderData.instructions ? '\nInstructions: ' + orderData.instructions : ''}`;
+           const smsMessage = `NEW ICE ORDER #${orderNumber}\n${currentQuantity} bags\nTotal: R ${orderData.total.toFixed(2)}\nLocation: ${orderData.address}\nCustomer: ${orderData.name}\nPhone: ${orderData.phone}${orderData.instructions ? '\nInstructions: ' + orderData.instructions : ''}`;
 
             // Add timeout to SMS fetch - increased to 60 seconds for Render cold starts
             const smsController = new AbortController();
