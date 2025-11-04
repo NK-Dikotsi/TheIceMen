@@ -453,9 +453,9 @@
                 </div>
                 
                 <ul class="nav-menu" id="navMenu">
-                    <li><a class="nav-link" href="/">Home</a></li>
-                    <li><a class="nav-link" href="/products">Products</a></li>
-                    <li><a class="nav-link" href="/about">About Us</a></li>
+                    <li><a class="nav-link" href="index.html">Home</a></li>
+                    <li><a class="nav-link" href="products.html">Products</a></li>
+                    <li><a class="nav-link" href="about.html">About Us</a></li>
                     <li><a class="nav-link" href="#contact">Contact</a></li>
                 </ul>
             </div>
@@ -654,6 +654,43 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
+        // ========================================
+        // IMAGE PRELOADING
+        // ========================================
+        const imageUrls = [
+            'images/img1.jpg',
+            'images/img2.jpg',
+            'images/img3.jpg',
+            'images/img4.jpg',
+            'images/img5.jpg',
+            'images/img6.jpg',
+            'images/img7.jpg'
+        ];
+        
+        let loadedImages = 0;
+        const totalImages = imageUrls.length;
+        
+        function preloadImages(callback) {
+            imageUrls.forEach(url => {
+                const img = new Image();
+                img.onload = img.onerror = function() {
+                    loadedImages++;
+                    if (loadedImages === totalImages) {
+                        callback();
+                    }
+                };
+                img.src = url;
+            });
+        }
+        
+        // Start preloading images immediately
+        preloadImages(function() {
+            console.log('All images preloaded successfully');
+        });
+        
+        // ========================================
+        // MAIN PAGE FUNCTIONALITY
+        // ========================================
         document.addEventListener('DOMContentLoaded', function() {
             const menuToggle = document.getElementById('menuToggle');
             const navMenu = document.getElementById('navMenu');
@@ -665,31 +702,32 @@
             
             let currentSection = 0;
             let isScrolling = false;
-            const scrollDelay = 1000; // Delay between scrolls in milliseconds
+            const scrollDelay = 1000;
             
-            // Menu toggle
+            // ========================================
+            // MENU FUNCTIONALITY
+            // ========================================
             menuToggle.addEventListener('click', function(e) {
                 e.stopPropagation();
                 navMenu.classList.toggle('active');
             });
             
-            // Close menu when clicking outside
             document.addEventListener('click', function(e) {
                 if (!menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
                     navMenu.classList.remove('active');
                 }
             });
             
-            // Close menu when clicking a link
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.addEventListener('click', function() {
                     navMenu.classList.remove('active');
                 });
             });
             
-            // Function to update active section
+            // ========================================
+            // SECTION NAVIGATION FUNCTIONS
+            // ========================================
             function updateActiveSection(index) {
-                // Update section classes
                 sections.forEach((section, i) => {
                     section.classList.remove('active', 'prev');
                     if (i === index) {
@@ -699,7 +737,6 @@
                     }
                 });
                 
-                // Update navigation dots
                 sectionDots.forEach((dot, i) => {
                     if (i === index) {
                         dot.classList.add('active');
@@ -708,7 +745,6 @@
                     }
                 });
                 
-                // Update arrows visibility
                 if (index === 0) {
                     navArrowUp.style.display = 'none';
                 } else {
@@ -721,28 +757,23 @@
                     navArrowDown.style.display = 'block';
                 }
                 
-                // Animate content
                 animateSectionContent(index);
             }
             
-            // Function to animate section content
             function animateSectionContent(index) {
                 const section = sections[index];
                 const title = section.querySelector('.section-title');
                 const text = section.querySelector('.section-text');
                 
-                // Reset animations
                 title.classList.remove('visible');
                 text.classList.remove('visible');
                 
-                // Trigger animations after a short delay
                 setTimeout(() => {
                     title.classList.add('visible');
                     text.classList.add('visible');
                 }, 300);
             }
             
-            // Function to navigate to next section
             function nextSection() {
                 if (currentSection < sections.length - 1 && !isScrolling) {
                     isScrolling = true;
@@ -755,7 +786,6 @@
                 }
             }
             
-            // Function to navigate to previous section
             function prevSection() {
                 if (currentSection > 0 && !isScrolling) {
                     isScrolling = true;
@@ -768,7 +798,9 @@
                 }
             }
             
-            // Handle dot clicks
+            // ========================================
+            // EVENT LISTENERS
+            // ========================================
             sectionDots.forEach((dot, index) => {
                 dot.addEventListener('click', function() {
                     if (!isScrolling) {
@@ -783,11 +815,9 @@
                 });
             });
             
-            // Handle arrow clicks
             navArrowDown.addEventListener('click', nextSection);
             navArrowUp.addEventListener('click', prevSection);
             
-            // Handle keyboard navigation
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'ArrowDown') {
                     e.preventDefault();
@@ -798,13 +828,10 @@
                 }
             });
             
-            // Handle mouse wheel
             let wheelTimeout;
             document.addEventListener('wheel', function(e) {
-                // Clear existing timeout
                 clearTimeout(wheelTimeout);
                 
-                // Set new timeout
                 wheelTimeout = setTimeout(function() {
                     if (e.deltaY > 0) {
                         nextSection();
@@ -814,7 +841,6 @@
                 }, 100);
             }, { passive: true });
             
-            // Handle touch swipe for mobile
             let touchStartY = 0;
             let touchEndY = 0;
             
@@ -828,18 +854,18 @@
             }, { passive: true });
             
             function handleSwipe() {
-                const swipeThreshold = 50; // Minimum swipe distance
+                const swipeThreshold = 50;
                 
                 if (touchEndY < touchStartY - swipeThreshold) {
-                    // Swipe up - next section
                     nextSection();
                 } else if (touchEndY > touchStartY + swipeThreshold) {
-                    // Swipe down - previous section
                     prevSection();
                 }
             }
             
-            // Initialize
+            // ========================================
+            // INITIALIZE
+            // ========================================
             updateActiveSection(currentSection);
         });
     </script>

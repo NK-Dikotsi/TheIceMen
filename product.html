@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- SEO Meta Tags -->
+    <title>Premium Ice Products | Ice Men Quality Ice Supply</title>
+    <meta name="description" content="Discover our premium ice products - block ice, cube ice, crushed ice, and specialty ice for all your needs in Bethlehem and the Free State.">
+    <meta name="keywords" content="ice products, block ice, cube ice, crushed ice, ice bags, ice delivery, Bethlehem ice, Free State ice">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-blue: #0f4286;
+            --light-blue: #e8f0fe;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            font-family: 'Montserrat', sans-serif;
+            color: #333333;
+            background-color: white;
+            overflow-x: hidden;
+            height: 100%;
+        }
+        
+        /* Header Styles */
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            padding: 8px 0;
+            height: 70px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1001;
+        }
+        
+        .navbar-brand img {
+            height: 60px;
+            width: auto;
+        }
+        
+        .menu-btn {
+            background: none;
+            border: 2px solid #000;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            color: #000000;
+        }
+        
+        .menu-btn:hover {
+            background-color: var(--primary-blue);
+            border-color: var(--primary-blue);
+            color: white;
+        }
+        
+        .nav-menu {
+            position: fixed;
+            top: 90px;
+            right: 40px;
+            background-color: rgba(255, 255, 255, 0.98);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            list-style: none;
+            display: none;
+            flex-direction: column;
+            gap: 12px;
+            backdrop-filter: blur(10px);
+            min-width: 200px;
+            z-index: 1000;
+        }
+        
+        .nav-menu.active {
+            display: flex;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: #000000 !important;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            padding: 12px 18px;
+            border-radius: 6px;
+            display: block;
+        }
+        
+        .nav-link:hover {
+            background-color: var(--primary-blue);
+            color: white !important;
+            transform: translateX(5px);
+        }
+        
+        /* Main Content */
+        .main-content {
+            margin-top: 70px;
+            min-height: calc(100vh - 70px);
+            padding: 40px 0;
+        }
+        
+        .page-header {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .page-title {
+            font-weight: 800;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .page-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Products Section */
+        .products-section {
+            padding: 40px 0;
+        }
+        
+        .section-heading {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary-blue);
+            font-weight: 700;
+            font-size: 2.2rem;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .product-body {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-title {
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--primary-blue);
+            font-size: 1.2rem;
+        }
+        
+        .product-description {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+            font-size: 0.9rem;
+        }
+        
+        .product-price {
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .sold-out {
+            color: #e74c3c;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .coming-soon {
+            color: #e74c3c;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .delivery-available {
+            color: #27ae60;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .btn-primary-custom {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-blue);
+            text-align: center;
+            cursor: pointer;
+            margin-top: auto;
+        }
+        
+        .btn-primary-custom:hover {
+            background-color: white;
+            color: var(--primary-blue);
+        }
+        
+        .btn-secondary-custom {
+            background-color: white;
+            color: var(--primary-blue);
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-blue);
+            text-align: center;
+            cursor: pointer;
+            margin-top: auto;
+        }
+        
+        .btn-secondary-custom:hover {
+            background-color: var(--primary-blue);
+            color: white;
+        }
+        
+        .btn-disabled {
+            background-color: #e0e0e0;
+            color: #999;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            border: 2px solid #e0e0e0;
+            text-align: center;
+            cursor: not-allowed;
+            margin-top: auto;
+        }
+        
+        /* Footer Styles */
+        .footer-divider {
+            width: 100%;
+            height: 1px;
+            background-color: #e0e0e0;
+            margin: 0;
+        }
+        
+        .footer {
+            background-color: white;
+            padding: 60px 0 20px;
+            text-align: left;
+        }
+        
+        .footer-logo img {
+            height: 60px;
+            width: auto;
+            margin-bottom: 20px;
+        }
+        
+        .footer-heading {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary-blue);
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-blue);
+        }
+        
+        .contact-info {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            color: #666;
+        }
+        
+        .contact-info i {
+            margin-right: 10px;
+            margin-top: 3px;
+            color: var(--primary-blue);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #e0e0e0;
+            padding-top: 20px;
+            text-align: center;
+            color: #666;
+            font-weight: 500;
+            margin-top: 40px;
+        }
+        
+        .footer-bottom p {
+            margin-bottom: 10px;
+            color: #666;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .navbar {
+                height: 60px;
+            }
+            
+            .navbar-brand img {
+                height: 50px;
+            }
+            
+            .main-content {
+                margin-top: 60px;
+            }
+            
+            .nav-menu {
+                top: 80px;
+                right: 20px;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .page-header {
+                padding: 40px 0;
+            }
+            
+            .section-heading {
+                font-size: 1.8rem;
+            }
+            
+            .filter-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .filter-btn {
+                width: 200px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .navbar-brand img {
+                height: 45px;
+            }
+            
+            .nav-menu {
+                top: 75px;
+                right: 15px;
+                left: 15px;
+                min-width: auto;
+            }
+            
+            .page-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-heading {
+                font-size: 1.6rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="/">
+                    <img src="logo1.png" alt="Ice Men Quality Ice Supply Logo">
+                </a>
+                
+                <div class="d-flex align-items-center">
+                    <button class="menu-btn" id="menuToggle">
+                        Menu
+                    </button>
+                </div>
+                
+                <ul class="nav-menu" id="navMenu">
+                    <li><a class="nav-link" href="/">Home</a></li>
+                    <li><a class="nav-link" href="/products">Products</a></li>
+                    <li><a class="nav-link" href="/about">About Us</a></li>
+                    <li><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Products Section -->
+        <section class="products-section">
+            <div class="container">
+                <h2 class="section-heading">Our Products</h2>
+                <div class="products-grid" id="productsGrid">
+                    <!-- Steel Bottle T -->
+                     <div class="product-card" data-category="ice">
+                        <img src="icebag.webp" alt="Standard Ice 2kg Bags" class="product-img">
+                        <div class="product-body">
+                            <h3 class="product-title">Standard Ice 2kg Bags</h3>
+                            <p class="product-description">Premium quality ice in convenient 2kg bags. Perfect for parties, events, and everyday use.</p>
+                            <div class="product-price">ZAR 7.00</div>
+                            <div class="delivery-available">Delivery Available</div>
+                            <button class="btn-primary-custom">Order Now</button>
+                        </div>
+                    </div>
+
+
+                    <div class="product-card" data-category="accessories">
+                        <img src="section1.png" alt="Steel Bottle T" class="product-img">
+                        <div class="product-body">
+                            <h3 class="product-title">Steel Bottle T™</h3>
+                            <p class="product-description">400ml Premium Stainless Steel Vessel. Keeps your drinks cold for hours with our premium insulated design.</p>
+                            <div class="product-price">ZAR 185.00</div>
+                            <div class="sold-out">Sold Out</div>
+                            <button class="btn-disabled">Add to Cart</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Monthly Subscription Ice -->
+                    <div class="product-card" data-category="ice">
+                        <img src="icecontract.jpg" alt="Monthly Subscription Ice" class="product-img">
+                        <div class="product-body">
+                            <h3 class="product-title">Monthly Ice Subscription</h3>
+                            <p class="product-description">Regular ice delivery service. Customize your plan based on your needs. Perfect for businesses and regular users.</p>
+                            <div class="product-price">ZAR 1500.00+</div>
+                            <div class="coming-soon">Coming Soon</div>
+                            <button class="btn-disabled">Create Plan</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Standard Ice 2kg Bags -->
+            
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Divider -->
+    <div class="footer-divider"></div>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-logo">
+                        <img src="logofooter.png" alt="Ice Men Logo">
+                    </div>
+                    <p style="color: #666;">Providing premium quality ice with reliable delivery service throughout the Free State.</p>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/products">Products</a></li>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <h3 class="footer-heading">Contact Us</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="bi bi-geo-alt"></i>
+                            <span>Bethlehem, Free State, South Africa, 9701</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-telephone"></i>
+                            <a href="tel:+27672939603" style="color: #666; text-decoration: none;">067 293 9603</a>
+                        </li>
+                        <li>
+                            <i class="bi bi-envelope"></i>
+                            <a href="mailto:icemengroup@gmail.com" style="color: #666; text-decoration: none;">icemengroup@gmail.com</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Ice Men Quality Ice Supply. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menuToggle');
+            const navMenu = document.getElementById('navMenu');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const products = document.querySelectorAll('.product-card');
+            
+            // Menu toggle
+            menuToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                navMenu.classList.toggle('active');
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                    navMenu.classList.remove('active');
+                }
+            });
+            
+            // Close menu when clicking a link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function() {
+                    navMenu.classList.remove('active');
+                });
+            });
+            
+            // Filter functionality
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Update active button
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Filter products
+                    products.forEach(product => {
+                        if (filter === 'all' || product.getAttribute('data-category') === filter) {
+                            product.style.display = 'flex';
+                        } else {
+                            product.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
