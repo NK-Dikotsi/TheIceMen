@@ -1557,7 +1557,7 @@
 
             // Add timeout to SMS fetch
             const smsController = new AbortController();
-            const smsTimeoutId = setTimeout(() => smsController.abort(), 100000); // 10-second timeout
+            const smsTimeoutId = setTimeout(() => smsController.abort(), 10000); // 10-second timeout
 
             // Send SMS to delivery guy FIRST (this works fine)
             const smsResponse = await fetch(`${SMS_SERVER_URL}/send-sms`, {
@@ -1592,7 +1592,7 @@
 
                     // Add timeout to Sheets fetch as well
                     const sheetsController = new AbortController();
-                    const sheetsTimeoutId = setTimeout(() => sheetsController.abort(), 100000); // 10-second timeout
+                    const sheetsTimeoutId = setTimeout(() => sheetsController.abort(), 10000); // 10-second timeout
 
                     const sheetResponse = await fetch(GOOGLE_SHEET_URL, {
                         method: 'POST',
