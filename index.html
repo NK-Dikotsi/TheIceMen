@@ -500,7 +500,7 @@
                 <ul class="nav-menu" id="navMenu" role="menu">
                     <li role="none"><a class="nav-link" href="/" role="menuitem">Buy</a></li>
                     <li role="none"><a class="nav-link" href="#shop" role="menuitem">Products</a></li>
-                    <li role="none"><a class="nav-link" href="#about" role="menuitem">About Us</a></li>
+                    <li role="none"><a class="nav-link" href="about.html" role="menuitem">About Us</a></li>
                     <li role="none"><a class="nav-link" href="#contact" role="menuitem">Contact</a></li>
                 </ul>
             </div>
@@ -518,19 +518,19 @@
         <div class="container content-overlay">
             <nav aria-label="Main sections">
                 <ul class="centered-list">
-                    <li>
+                    <li id="buy-list-item">
                         <span class="list-number" aria-hidden="true">01</span>
                         <span class="list-text-wrapper">
                             <span class="list-text">BUY</span><span class="blue-dot" aria-hidden="true">.</span>
                         </span>
                     </li>
-                    <li>
+                    <li id="products-list-item">
                         <span class="list-number" aria-hidden="true">02</span>
                         <span class="list-text-wrapper">
                             <span class="list-text">PRODUCTS</span><span class="blue-dot" aria-hidden="true">.</span>
                         </span>
                     </li>
-                    <li>
+                    <li id="about-list-item">
                         <span class="list-number" aria-hidden="true">03</span>
                         <span class="list-text-wrapper">
                             <span class="list-text">ABOUT US</span><span class="blue-dot" aria-hidden="true">.</span>
@@ -566,7 +566,7 @@
                     <ul class="footer-links">
                         <li><a href="#shop">Buy</a></li>
                         <li><a href="#products">Products</a></li>
-                        <li><a href="#about">About</a></li>
+                        <li><a href="about.html">About</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
@@ -603,6 +603,9 @@
         document.addEventListener('DOMContentLoaded', function() {
             const menuToggle = document.getElementById('menuToggle');
             const navMenu = document.getElementById('navMenu');
+            const buyListItem = document.getElementById('buy-list-item');
+            const productsListItem = document.getElementById('products-list-item');
+            const aboutListItem = document.getElementById('about-list-item');
             const contactListItem = document.getElementById('contact-list-item');
             
             // Toggle menu visibility
@@ -638,7 +641,27 @@
                 });
             }
             
-            // Smooth scroll to contact section when clicking the contact list item
+            // Navigation for list items
+            if (buyListItem) {
+                buyListItem.addEventListener('click', function() {
+                    window.location.href = '/';
+                });
+            }
+            
+            if (productsListItem) {
+                productsListItem.addEventListener('click', function() {
+                    // Navigate to products section or page
+                    // For now, using the same as in the menu
+                    window.location.href = '#shop';
+                });
+            }
+            
+            if (aboutListItem) {
+                aboutListItem.addEventListener('click', function() {
+                    window.location.href = 'about.html';
+                });
+            }
+            
             if (contactListItem) {
                 contactListItem.addEventListener('click', function() {
                     const contactSection = document.getElementById('contact');
