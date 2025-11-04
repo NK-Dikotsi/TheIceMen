@@ -1555,6 +1555,10 @@
             // Prepare SMS message with proper structure
             const smsMessage = `❄️ NEW ICE ORDER ❄️\n\nOrder #${orderNumber}\n${currentQuantity} bags of ice\nTotal: R ${orderData.total.toFixed(2)}\nLocation: ${orderData.address}\n\nCustomer: ${orderData.name}\nPhone: ${orderData.phone}${orderData.instructions ? '\nInstructions: ' + orderData.instructions : ''}`;
 
+            // Add timeout to SMS fetch
+            const smsController = new AbortController();
+            const smsTimeoutId = setTimeout(() => smsController.abort(), 10000); // 10-second timeout
+
             // Send SMS to delivery guy FIRST (this works fine)
             const smsResponse = await fetch(`${SMS_SERVER_URL}/send-sms`, {
                 method: 'POST',
@@ -1564,8 +1568,11 @@
                 body: JSON.stringify({
                     to: '+27672939603',
                     message: smsMessage
-                })
+                }),
+                signal: smsController.signal
             });
+
+            clearTimeout(smsTimeoutId);
 
             const smsResult = await smsResponse.json();
 
@@ -1583,10 +1590,17 @@
                     formData.append('orderStatus', 'Pending');
                     formData.append('orderId', orderNumber);
 
+                    // Add timeout to Sheets fetch as well
+                    const sheetsController = new AbortController();
+                    const sheetsTimeoutId = setTimeout(() => sheetsController.abort(), 10000); // 10-second timeout
+
                     const sheetResponse = await fetch(GOOGLE_SHEET_URL, {
                         method: 'POST',
-                        body: formData
+                        body: formData,
+                        signal: sheetsController.signal
                     });
+
+                    clearTimeout(sheetsTimeoutId);
 
                     // Try to parse response, but don't fail if it doesn't work
                     try {
@@ -1616,7 +1630,11 @@
             }
         } catch (error) {
             console.error('Error placing order:', error);
-            showNotification('Failed to place order. Please try again or call us directly.', false);
+            let errorMsg = 'Failed to place order. Please try again or call us directly.';
+            if (error.name === 'AbortError') {
+                errorMsg = 'Service timeout. Please try again.';
+            }
+            showNotification(errorMsg, false);
         } finally {
             submitOrder.disabled = false;
             submitOrder.textContent = 'Place Order';
