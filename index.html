@@ -14,7 +14,7 @@
     <meta name="language" content="English">
     <meta name="revisit-after" content="7 days">
     
-    <!-- Open Graph Meta Tags - Ready for when you add social media -->
+    <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Ice Men Quality Ice Supply | Premium Ice Delivery">
     <meta property="og:description" content="Providing premium quality ice with reliable delivery service throughout Bethlehem and the Free State, South Africa.">
     <meta property="og:type" content="website">
@@ -83,7 +83,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    <!-- Google Fonts - Preconnect for Performance -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -1162,8 +1162,8 @@
             currentQuantity = cart.quantity || MIN_QUANTITY;
             updateCartDisplay();
         } else {
-            // No cart data, set to 0
-            currentQuantity = 0;
+            // No cart data, set to minimum
+            currentQuantity = MIN_QUANTITY;
             updateCartDisplay();
         }
     }
@@ -1177,9 +1177,11 @@
     }
 
     function clearCart() {
-        currentQuantity = 0;
+        currentQuantity = MIN_QUANTITY;
         localStorage.removeItem(`iceMenCart_${sessionId}`);
         updateCartDisplay();
+        updateQuantityDisplay();
+        updatePriceDisplay();
     }
 
     function initializeEventListeners() {
@@ -1212,12 +1214,6 @@
         buyListItem.addEventListener('click', function() {
             orderModal.classList.add('active');
             document.body.style.overflow = 'hidden';
-            // Reset to minimum quantity when opening modal
-            if (currentQuantity === 0) {
-                currentQuantity = MIN_QUANTITY;
-                updateQuantityDisplay();
-                updatePriceDisplay();
-            }
         });
 
         // Close modal
@@ -1259,6 +1255,13 @@
             orderModal.classList.add('active');
             document.body.style.overflow = 'hidden';
         });
+
+        // Validate address on input
+        deliveryAddress.addEventListener('blur', function() {
+            if (this.value.trim()) {
+                validateLocation(this.value);
+            }
+        });
     }
 
     function closeOrderModal() {
@@ -1297,6 +1300,10 @@
         icePrice.textContent = `R ${subtotal.toFixed(2)}`;
         subtotalPrice.textContent = `R ${subtotal.toFixed(2)}`;
         totalPrice.textContent = `R ${total.toFixed(2)}`;
+        
+        // Update price breakdown text
+        document.querySelector('.price-row:first-child span:first-child').textContent = 
+            `Ice Bags (${currentQuantity} × R${ICE_PRICE_PER_BAG.toFixed(2)}):`;
     }
 
     function updateCartDisplay() {
@@ -1384,6 +1391,8 @@
             locationWarning.style.display = 'block';
             submitOrder.disabled = true;
         }
+        
+        return isLocationValid;
     }
 
     function getCurrentLocation() {
@@ -1475,7 +1484,8 @@
 
         // Validate phone (South African format)
         const phoneRegex = /^(\+27|0)[6-8][0-9]{8}$/;
-        if (!phone || !phoneRegex.test(phone.replace(/\s/g, ''))) {
+        const cleanPhone = phone.replace(/\s/g, '');
+        if (!phone || !phoneRegex.test(cleanPhone)) {
             document.getElementById('phoneError').style.display = 'block';
             document.getElementById('customerPhone').classList.add('error');
             isValid = false;
@@ -1489,7 +1499,7 @@
         }
 
         // Validate location
-        if (!isLocationValid) {
+        if (!validateLocation(address)) {
             locationWarning.style.display = 'block';
             isValid = false;
         }
@@ -1546,7 +1556,13 @@
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({
-                            ...orderData,
+                            name: orderData.name,
+                            email: '', // Your sheet expects email but it's not in the form
+                            phone: orderData.phone,
+                            quantity: orderData.quantity,
+                            address: orderData.address,
+                            instructions: orderData.instructions,
+                            orderStatus: 'Pending',
                             orderId: orderNumber
                         })
                     });
@@ -1564,7 +1580,7 @@
                     // Continue with order success even if sheets has issues
                 }
 
-                showNotification('Order placed successfully! We will contact you shortly.', true);
+                showNotification(`Order #${orderNumber} placed successfully! We will contact you shortly.`, true);
                 orderForm.reset();
                 clearCart();
                 locationWarning.style.display = 'none';
@@ -1573,7 +1589,7 @@
                 // Close modal after success
                 setTimeout(() => {
                     closeOrderModal();
-                }, 2000);
+                }, 3000);
             } else {
                 throw new Error('SMS failed: ' + smsResult.error);
             }
