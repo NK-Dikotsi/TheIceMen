@@ -8,7 +8,6 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
-
     
     <!-- SEO Meta Tags -->
     <title>Ice Men Quality Ice Supply | Premium Ice Delivery in Bethlehem, Free State</title>
@@ -41,7 +40,7 @@
       "email": "icemengroup@gmail.com",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Bethlehem",
+        "streetAddress": "496 Mlangeni St, Old Location, Bethlehem",
         "addressLocality": "Bethlehem",
         "addressRegion": "Free State",
         "postalCode": "9701",
@@ -940,6 +939,163 @@
             color: var(--primary-blue);
             text-decoration: underline;
         }
+
+        /* WhatsApp Icon Styles */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        
+        .whatsapp-float:hover {
+            background-color: #128c7e;
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .whatsapp-float:active {
+            transform: scale(0.95);
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+        
+        /* WhatsApp Tooltip */
+        .whatsapp-tooltip {
+            position: absolute;
+            right: 70px;
+            bottom: 20px;
+            background-color: #333;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateX(10px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .whatsapp-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -5px;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-left: 5px solid #333;
+        }
+        
+        .whatsapp-float:hover .whatsapp-tooltip {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Small Order Notification Modal Styles */
+        .notification-modal {
+            background: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 450px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        .notification-icon {
+            font-size: 50px;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+
+        .notification-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .notification-message {
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .notification-location {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .notification-location h4 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: var(--primary-blue);
+        }
+
+        .notification-location p {
+            margin: 0;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .notification-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .proceed-btn {
+            flex: 1;
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .proceed-btn:hover {
+            background: #0d376c;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(15, 66, 134, 0.3);
+        }
         
         /* Responsive Adjustments */
         @media (max-width: 768px) {
@@ -1003,6 +1159,29 @@
                 width: 70px;
                 height: 70px;
             }
+            
+            /* WhatsApp icon responsive */
+            .whatsapp-float {
+                width: 55px;
+                height: 55px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 28px;
+            }
+            
+            .whatsapp-tooltip {
+                font-size: 12px;
+                padding: 6px 10px;
+                right: 65px;
+            }
+
+            .notification-modal {
+                padding: 25px 20px;
+            }
+
+            .notification-actions {
+                flex-direction: column;
+            }
         }
         
         @media (max-width: 576px) {
@@ -1042,6 +1221,19 @@
             .quantity-btn {
                 width: 40px;
                 height: 40px;
+            }
+            
+            /* WhatsApp icon responsive */
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 15px;
+                right: 15px;
+                font-size: 26px;
+            }
+            
+            .whatsapp-tooltip {
+                display: none; /* Hide tooltip on very small screens */
             }
         }
     </style>
@@ -1184,15 +1376,15 @@
                                 <button type="button" class="quantity-btn" id="increaseBtn">+</button>
                             </div>
                         </div>
-                        <div class="price-display" id="icePrice">R 70.00</div>
+                        <div class="price-display" id="icePrice">R 80.00</div>
                         <small style="color: #666;">Minimum order: 10 bags</small>
                     </div>
 
                     <!-- Price Breakdown -->
                     <div class="price-breakdown">
                         <div class="price-row">
-                            <span>Ice Bags (10 × R7.00):</span>
-                            <span id="subtotalPrice">R 70.00</span>
+                            <span>Ice Bags (10 × R8.00):</span>
+                            <span id="subtotalPrice">R 80.00</span>
                         </div>
                         <div class="price-row">
                             <span>Delivery Fee:</span>
@@ -1200,7 +1392,7 @@
                         </div>
                         <div class="price-row total">
                             <span>Total Amount:</span>
-                            <span id="totalPrice">R 85.00</span>
+                            <span id="totalPrice">R 95.00</span>
                         </div>
                     </div>
 
@@ -1221,6 +1413,35 @@
         </div>
     </div>
 
+    <!-- Small Order Notification Modal -->
+    <div class="modal-overlay" id="notificationModal">
+        <div class="notification-modal">
+            <div class="notification-icon">
+                <i class="bi bi-info-circle"></i>
+            </div>
+            <h2 class="notification-title">Important Notice</h2>
+            <p class="notification-message">
+                For orders below 10 units, we recommend visiting our store directly for faster service and no delivery fees.
+            </p>
+            
+            <div class="notification-location">
+                <h4>Our Store Location</h4>
+                <p>
+                    <strong>Ice Men Quality Ice Supply</strong><br>
+                    496 Mlangeni St, Old Location<br>
+                    Bethlehem, 9701<br>
+                    Free State, South Africa
+                </p>
+            </div>
+
+            <div class="notification-actions">
+                <button class="proceed-btn" id="proceedBtn">
+                    Continue to Order 
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Status Modal -->
     <div class="status-modal" id="statusModal">
         <div class="status-modal-content">
@@ -1232,6 +1453,13 @@
             <button class="continue-btn" id="continueBtn">Continue</button>
         </div>
     </div>
+
+    <!-- WhatsApp Icon -->
+    <a href="https://wa.me/27681653614?text=Hi%20Ice%20Men%2C%20I%20would%20like%20to%20inquire%20about%20your%20ice%20products" 
+       class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp">
+        <i class="bi bi-whatsapp"></i>
+        <span class="whatsapp-tooltip">Chat with us on WhatsApp</span>
+    </a>
 
     <!-- Footer Divider -->
     <div class="footer-divider"></div>
@@ -1262,11 +1490,11 @@
                     <ul class="contact-info">
                         <li>
                             <i class="bi bi-geo-alt" aria-hidden="true"></i>
-                            <span>Bethlehem, Free State, South Africa, 9701</span>
+                            <span>496 Mlangeni St, Old Location, Bethlehem, 9701</span>
                         </li>
                         <li>
                             <i class="bi bi-telephone" aria-hidden="true"></i>
-                            <a href="tel:+27672939603" style="color: #666; text-decoration: none;">067 293 9603</a>
+                            <a href="tel:+27681653614" style="color: #666; text-decoration: none;">068 165 3614</a>
                         </li>
                         <li>
                             <i class="bi bi-envelope" aria-hidden="true"></i>
@@ -1286,8 +1514,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
    <script>
-    // Constants - UPDATED WITH LATEST GOOGLE SHEETS URL
-    const ICE_PRICE_PER_BAG = 7.00;
+    // Constants - UPDATED WITH LATEST GOOGLE SHEETS URL AND NEW PRICE
+    const ICE_PRICE_PER_BAG = 8.00; // Updated from 7.00 to 8.00
     const DELIVERY_FEE = 15.00;
     const MIN_QUANTITY = 10;
     const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwd8juhd2QyCd0ElkyxMMKw4GYOV21a0hJYUl8mMuG65FQKuTopYcjN9BW-Suu7oKuDKA/exec';
@@ -1306,6 +1534,7 @@
     const navMenu = document.getElementById('navMenu');
     const buyListItem = document.getElementById('buy-list-item');
     const orderModal = document.getElementById('orderModal');
+    const notificationModal = document.getElementById('notificationModal');
     const closeModal = document.getElementById('closeModal');
     const cartIcon = document.getElementById('cartIcon');
     const cartBadge = document.getElementById('cartBadge');
@@ -1328,6 +1557,7 @@
     const statusTitle = document.getElementById('statusTitle');
     const statusMessage = document.getElementById('statusMessage');
     const continueBtn = document.getElementById('continueBtn');
+    const proceedBtn = document.getElementById('proceedBtn');
 
     // Initialize
     document.addEventListener('DOMContentLoaded', function() {
@@ -1415,8 +1645,8 @@
                 
                 // Handle different navigation cases
                 if (href === '/') {
-                    // "Buy" link - open the order modal
-                    orderModal.classList.add('active');
+                    // "Buy" link - show notification modal first
+                    notificationModal.classList.add('active');
                     document.body.style.overflow = 'hidden';
                 } else if (href === 'product.html') {
                     // Navigate to products page
@@ -1437,18 +1667,30 @@
             });
         });
 
-        // Buy button - open modal
+        // Buy button - show notification modal first
         buyListItem.addEventListener('click', function() {
-            orderModal.classList.add('active');
+            notificationModal.classList.add('active');
             document.body.style.overflow = 'hidden';
         });
 
-        // Close modal
+        // Close modals
         closeModal.addEventListener('click', closeOrderModal);
         orderModal.addEventListener('click', function(e) {
             if (e.target === orderModal) {
                 closeOrderModal();
             }
+        });
+
+        notificationModal.addEventListener('click', function(e) {
+            if (e.target === notificationModal) {
+                closeNotificationModal();
+            }
+        });
+
+        // Proceed button in notification modal
+        proceedBtn.addEventListener('click', function() {
+            closeNotificationModal();
+            orderModal.classList.add('active');
         });
 
         // Cancel button
@@ -1485,7 +1727,7 @@
         // Cart icon
         cartIcon.addEventListener('click', function(e) {
             e.preventDefault();
-            orderModal.classList.add('active');
+            notificationModal.classList.add('active');
             document.body.style.overflow = 'hidden';
         });
 
@@ -1507,6 +1749,11 @@
         orderModal.classList.remove('active');
         document.body.style.overflow = 'auto';
         saveCartToStorage();
+    }
+
+    function closeNotificationModal() {
+        notificationModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
     }
 
     function decreaseQuantity() {
