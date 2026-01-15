@@ -1107,6 +1107,37 @@
             line-height: 1.5;
         }
 
+        .notification-payment-info {
+            background: #fff8e1;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: left;
+            border-left: 4px solid #ffc107;
+        }
+
+        .notification-payment-info h4 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: var(--primary-blue);
+        }
+
+        .notification-payment-info p {
+            margin: 0;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .notification-payment-info ul {
+            margin: 10px 0 0 0;
+            padding-left: 20px;
+            color: #666;
+        }
+
+        .notification-payment-info li {
+            margin-bottom: 5px;
+        }
+
         .notification-actions {
             display: flex;
             gap: 10px;
@@ -1266,6 +1297,7 @@
             text-decoration: none;
             transition: color 0.3s ease;
             font-weight: 500;
+            cursor: pointer;
         }
         
         .footer-links a:hover {
@@ -1302,6 +1334,25 @@
         .footer-bottom p {
             margin-bottom: 10px;
             color: #666;
+        }
+        
+        /* Payment Info Box */
+        .payment-info-box {
+            background-color: #e8f0fe;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .payment-info-box i {
+            color: var(--primary-blue);
+            margin-right: 8px;
+        }
+        
+        .payment-info-box span {
+            color: var(--primary-blue);
+            font-weight: 500;
         }
         
         /* Responsive Adjustments */
@@ -1515,7 +1566,6 @@
     <!-- Main Content -->
     <main class="main-content">
 
-
         <!-- Products Section -->
         <section class="products-section">
             <div class="container">
@@ -1568,7 +1618,7 @@
                 <div class="modal-logo">
                     <img src="logofooter.png" alt="Ice Men Logo">
                 </div>
-                <p class="modal-subtitle">Fill in your details for fast delivery</p>
+                <p class="modal-subtitle">Fill in your details for ice delivery</p>
                 <button class="close-modal" id="closeModal">&times;</button>
             </div>
             
@@ -1653,13 +1703,19 @@
                     <div class="location-warning" id="locationWarning">
                         We currently only deliver to Bethlehem, Free State 
                     </div>
+                    
+                    <!-- Payment Info Box -->
+                    <div class="payment-info-box">
+                        <i class="bi bi-info-circle"></i>
+                        <span>Payment upon delivery: EFT or Cash accepted</span>
+                    </div>
 
                     <div class="form-actions">
                         <button type="button" class="cancel-btn" id="cancelBtn">
                             Cancel
                         </button>
                         <button type="submit" class="submit-btn" id="submitOrder">
-                            Place Order
+                            Order Now
                         </button>
                     </div>
                 </form>
@@ -1688,9 +1744,19 @@
                 </p>
             </div>
 
+            <div class="notification-payment-info">
+                <h4>Payment Information</h4>
+                <p>All payments are completed upon delivery:</p>
+                <ul>
+                    <li>✓ EFT (Electronic Funds Transfer) accepted</li>
+                    <li>✓ Cash payments accepted</li>
+                    <li>✓ Delivery arrives in 2 days</li>
+                </ul>
+            </div>
+
             <div class="notification-actions">
                 <button class="proceed-btn" id="proceedBtn">
-                    Continue to Order
+                    Order Now
                 </button>
             </div>
         </div>
@@ -1733,6 +1799,7 @@
                     <h3 class="footer-heading">Quick Links</h3>
                     <ul class="footer-links">
                         <li><a href="index.html">Home</a></li>
+                        <li><a href="#" id="footerOrderLink">Order</a></li>
                         <li><a href="#productsGrid">Products</a></li>
                         <li><a href="about.html">About</a></li>
                         <li><a href="#contact">Contact</a></li>
@@ -1881,6 +1948,7 @@
         const continueBtn = document.getElementById('continueBtn');
         const orderNowButtons = document.querySelectorAll('.order-now-btn');
         const proceedBtn = document.getElementById('proceedBtn');
+        const footerOrderLink = document.getElementById('footerOrderLink');
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
@@ -2001,6 +2069,13 @@
                     notificationModal.classList.add('active');
                     document.body.style.overflow = 'hidden';
                 });
+            });
+
+            // Footer Order link
+            footerOrderLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                notificationModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
             });
 
             // Proceed button in notification modal
@@ -2360,8 +2435,8 @@
                 // Generate order number first
                 orderNumber = 'ICE-' + Date.now() + '-' + Math.random().toString(36).substr(2, 5).toUpperCase();
                 
-                // Prepare SMS message with proper structure
-                const smsMessage = `NEW ICE ORDER #${orderNumber}\n${currentQuantity} bags\nTotal: R ${orderData.total.toFixed(2)}\nLocation: ${orderData.address}\nCustomer: ${orderData.name}\nPhone: ${orderData.phone}${orderData.instructions ? '\nInstructions: ' + orderData.instructions : ''}`;
+                // Prepare SMS message with payment information
+                const smsMessage = `NEW ICE ORDER #${orderNumber}\n${currentQuantity} bags\nTotal: R ${orderData.total.toFixed(2)}\nLocation: ${orderData.address}\nCustomer: ${orderData.name}\nPhone: ${orderData.phone}${orderData.instructions ? '\nInstructions: ' + orderData.instructions : ''}\n\nPAYMENT UPON DELIVERY (EFT/CASH)\nDELIVERY IN 2 DAYS`;
 
                 // Add timeout to SMS fetch - increased to 60 seconds for Render cold starts
                 const smsController = new AbortController();
@@ -2395,7 +2470,7 @@
                         formData.append('quantity', orderData.quantity);
                         formData.append('address', orderData.address);
                         formData.append('instructions', orderData.instructions);
-                        formData.append('orderStatus', 'Pending');
+                        formData.append('orderStatus', 'Pending - Delivery in 2 days');
                         formData.append('orderId', orderNumber);
 
                         // Add timeout to Sheets fetch as well
@@ -2423,7 +2498,7 @@
                         // Continue with order success even if sheets has issues
                     }
 
-                    showStatusModal(`Order #${orderNumber} placed successfully! We will contact you shortly.`, true, 'success');
+                    showStatusModal(`Order #${orderNumber} placed successfully! Your ice will be delivered in 2 days. Payment upon delivery (EFT/Cash).`, true, 'success');
                     orderForm.reset();
                     clearCart();
                     locationWarning.style.display = 'none';
@@ -2443,7 +2518,7 @@
                 showStatusModal(errorMsg, false, 'error');
             } finally {
                 submitOrder.disabled = false;
-                submitOrder.textContent = 'Place Order';
+                submitOrder.textContent = 'Order Now';
             }
         }
 
