@@ -803,6 +803,119 @@
             to { transform: rotate(360deg); }
         }
 
+        /* Delivery/Pickup Modal Styles */
+        .delivery-modal {
+            background: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 450px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        .delivery-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .delivery-option {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .delivery-option:hover {
+            border-color: var(--primary-blue);
+            background-color: var(--light-blue);
+        }
+
+        .delivery-option.selected {
+            border-color: var(--primary-blue);
+            background-color: var(--light-blue);
+        }
+
+        .option-icon {
+            font-size: 24px;
+            margin-right: 15px;
+            color: var(--primary-blue);
+        }
+
+        .option-content {
+            flex: 1;
+        }
+
+        .option-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .option-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .option-price {
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+
+        .option-radio {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ccc;
+            border-radius: 50%;
+            position: relative;
+            margin-left: 10px;
+        }
+
+        .option-radio::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .delivery-option.selected .option-radio::after {
+            opacity: 1;
+        }
+
+        .earlier-delivery-notice {
+            background: #fff8e1;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #ffc107;
+            text-align: center;
+        }
+
+        .earlier-delivery-notice i {
+            color: #ffc107;
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        .earlier-delivery-notice span {
+            color: #333;
+            font-weight: 500;
+        }
+
         /* Status Modal Styles */
         .status-modal {
             display: none;
@@ -1324,6 +1437,14 @@
                 flex-direction: column;
             }
 
+            .delivery-modal {
+                width: 95%;
+            }
+
+            .delivery-option {
+                padding: 15px;
+            }
+
             .status-modal-content {
                 padding: 30px 20px;
             }
@@ -1595,6 +1716,12 @@
                         <textarea class="form-control" id="deliveryInstructions" placeholder="Any special delivery instructions..." rows="2"></textarea>
                     </div>
 
+                    <!-- Earlier Delivery Notice -->
+                    <div class="earlier-delivery-notice">
+                        <i class="bi bi-lightning-charge"></i>
+                        <span>Note: Requested quantity may be provided earlier if available in stock</span>
+                    </div>
+
                     <div class="quantity-section">
                         <label class="form-label">Quantity (Ice Bags)</label>
                         <div class="quantity-group">
@@ -1614,9 +1741,9 @@
                             <span>Ice Bags (10 × R8.00):</span>
                             <span id="subtotalPrice">R 80.00</span>
                         </div>
-                        <div class="price-row">
+                        <div class="price-row delivery-fee-row">
                             <span>Delivery Fee:</span>
-                            <span>R 15.00</span>
+                            <span id="deliveryFee">R 15.00</span>
                         </div>
                         <div class="price-row total">
                             <span>Total Amount:</span>
@@ -1638,10 +1765,66 @@
                             Cancel
                         </button>
                         <button type="submit" class="submit-btn" id="submitOrder">
-                            Order Now
+                            Place Order
                         </button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delivery/Pickup Modal -->
+    <div class="modal-overlay" id="deliveryModal">
+        <div class="delivery-modal">
+            <div class="modal-header">
+                <div class="modal-logo">
+                    <img src="logofooter.png" alt="Ice Men Logo">
+                </div>
+                <p class="modal-subtitle">Choose your delivery method</p>
+                <button class="close-modal" id="closeDeliveryModal">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="delivery-options">
+                    <div class="delivery-option" data-type="delivery" id="deliveryOption">
+                        <div class="option-icon">
+                            <i class="bi bi-truck"></i>
+                        </div>
+                        <div class="option-content">
+                            <div class="option-title">Home Delivery</div>
+                            <div class="option-description">We deliver directly to your address in Bethlehem</div>
+                            <div class="option-price">+ R 15.00 delivery fee</div>
+                        </div>
+                        <div class="option-radio"></div>
+                    </div>
+                    
+                    <div class="delivery-option" data-type="pickup" id="pickupOption">
+                        <div class="option-icon">
+                            <i class="bi bi-shop"></i>
+                        </div>
+                        <div class="option-content">
+                            <div class="option-title">Store Pickup</div>
+                            <div class="option-description">Pick up from our store with no delivery fee</div>
+                            <div class="option-price">Free pickup</div>
+                        </div>
+                        <div class="option-radio"></div>
+                    </div>
+                </div>
+
+                <!-- Earlier Delivery Notice -->
+                <div class="earlier-delivery-notice">
+                    <i class="bi bi-lightning-charge"></i>
+                    <span>Note: Requested quantity may be provided earlier if available in stock</span>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="cancel-btn" id="cancelDeliveryBtn">
+                        Back
+                    </button>
+                    <button type="button" class="submit-btn" id="confirmDeliveryBtn">
+                        Continue
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -1673,7 +1856,7 @@
                 <ul>
                     <li>✓ EFT (Electronic Funds Transfer) accepted</li>
                     <li>✓ Cash payments accepted</li>
-                    <li>✓ Delivery arrives in 2 days</li>
+                    <li>✓ Delivery arrives in 2 days (may be earlier if available)</li>
                 </ul>
             </div>
 
@@ -1771,14 +1954,17 @@
     let sessionId = '';
     let isLocationValid = false;
     let orderNumber = '';
+    let deliveryType = 'delivery'; // 'delivery' or 'pickup'
 
     // DOM Elements
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
     const buyListItem = document.getElementById('buy-list-item');
     const orderModal = document.getElementById('orderModal');
+    const deliveryModal = document.getElementById('deliveryModal');
     const notificationModal = document.getElementById('notificationModal');
     const closeModal = document.getElementById('closeModal');
+    const closeDeliveryModal = document.getElementById('closeDeliveryModal');
     const cartIcon = document.getElementById('cartIcon');
     const cartBadge = document.getElementById('cartBadge');
     const quantityDisplay = document.getElementById('quantityDisplay');
@@ -1786,6 +1972,7 @@
     const increaseBtn = document.getElementById('increaseBtn');
     const icePrice = document.getElementById('icePrice');
     const subtotalPrice = document.getElementById('subtotalPrice');
+    const deliveryFeeElement = document.getElementById('deliveryFee');
     const totalPrice = document.getElementById('totalPrice');
     const orderForm = document.getElementById('orderForm');
     const getLocationBtn = document.getElementById('getLocationBtn');
@@ -1802,6 +1989,12 @@
     const continueBtn = document.getElementById('continueBtn');
     const proceedBtn = document.getElementById('proceedBtn');
     const footerOrderLink = document.getElementById('footerOrderLink');
+    
+    // Delivery modal elements
+    const deliveryOption = document.getElementById('deliveryOption');
+    const pickupOption = document.getElementById('pickupOption');
+    const cancelDeliveryBtn = document.getElementById('cancelDeliveryBtn');
+    const confirmDeliveryBtn = document.getElementById('confirmDeliveryBtn');
 
     // Cookie Consent Elements
     const cookieConsentBanner = document.getElementById('cookieConsentBanner');
@@ -1816,6 +2009,7 @@
         updatePriceDisplay();
         updateCartDisplay();
         initializeCookieConsent();
+        initializeDeliveryOptions();
     });
 
     function initializeCookieConsent() {
@@ -1831,6 +2025,38 @@
             cookieConsentBanner.classList.remove('active');
             // Don't load tracking scripts
         });
+    }
+
+    function initializeDeliveryOptions() {
+        // Initialize delivery options
+        deliveryOption.addEventListener('click', function() {
+            selectDeliveryOption('delivery');
+        });
+        
+        pickupOption.addEventListener('click', function() {
+            selectDeliveryOption('pickup');
+        });
+        
+        // Default selection
+        selectDeliveryOption('delivery');
+    }
+
+    function selectDeliveryOption(type) {
+        deliveryType = type;
+        
+        // Remove selected class from all options
+        deliveryOption.classList.remove('selected');
+        pickupOption.classList.remove('selected');
+        
+        // Add selected class to chosen option
+        if (type === 'delivery') {
+            deliveryOption.classList.add('selected');
+        } else {
+            pickupOption.classList.add('selected');
+        }
+        
+        // Update price display if order modal is open
+        updatePriceDisplay();
     }
 
     function initializeSession() {
@@ -1876,6 +2102,8 @@
         clearCart();
         locationWarning.style.display = 'none';
         isLocationValid = false;
+        // Reset to default delivery type
+        selectDeliveryOption('delivery');
     }
 
     function initializeEventListeners() {
@@ -1953,6 +2181,13 @@
             }
         });
 
+        closeDeliveryModal.addEventListener('click', closeDeliveryModal);
+        deliveryModal.addEventListener('click', function(e) {
+            if (e.target === deliveryModal) {
+                closeDeliveryModal();
+            }
+        });
+
         notificationModal.addEventListener('click', function(e) {
             if (e.target === notificationModal) {
                 closeNotificationModal();
@@ -1962,13 +2197,24 @@
         // Proceed button in notification modal
         proceedBtn.addEventListener('click', function() {
             closeNotificationModal();
-            orderModal.classList.add('active');
+            deliveryModal.classList.add('active');
         });
 
-        // Cancel button
+        // Cancel button in order modal
         cancelBtn.addEventListener('click', function() {
             resetForm();
             closeOrderModal();
+        });
+
+        // Cancel button in delivery modal
+        cancelDeliveryBtn.addEventListener('click', function() {
+            closeDeliveryModal();
+        });
+
+        // Confirm delivery button
+        confirmDeliveryBtn.addEventListener('click', function() {
+            closeDeliveryModal();
+            orderModal.classList.add('active');
         });
 
         // Quantity controls
@@ -2023,6 +2269,11 @@
         saveCartToStorage();
     }
 
+    function closeDeliveryModal() {
+        deliveryModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
     function closeNotificationModal() {
         notificationModal.classList.remove('active');
         document.body.style.overflow = 'auto';
@@ -2053,15 +2304,34 @@
 
     function updatePriceDisplay() {
         const subtotal = currentQuantity * ICE_PRICE_PER_BAG;
-        const total = subtotal + DELIVERY_FEE;
+        const deliveryFee = deliveryType === 'delivery' ? DELIVERY_FEE : 0;
+        const total = subtotal + deliveryFee;
 
         icePrice.textContent = `R ${subtotal.toFixed(2)}`;
         subtotalPrice.textContent = `R ${subtotal.toFixed(2)}`;
+        deliveryFeeElement.textContent = deliveryFee === 0 ? 'Free' : `R ${deliveryFee.toFixed(2)}`;
         totalPrice.textContent = `R ${total.toFixed(2)}`;
         
         // Update price breakdown text
         document.querySelector('.price-row:first-child span:first-child').textContent = 
             `Ice Bags (${currentQuantity} × R${ICE_PRICE_PER_BAG.toFixed(2)}):`;
+        
+        // Show/hide delivery address field based on delivery type
+        const addressField = document.querySelector('[for="deliveryAddress"]');
+        const addressInput = document.getElementById('deliveryAddress');
+        const locationGroup = document.querySelector('.location-group');
+        
+        if (deliveryType === 'pickup') {
+            addressField.textContent = 'Pickup Address (Store Location)';
+            addressInput.value = 'Ice Men Quality Ice Supply, 496 Mlangeni St, Old Location, Bethlehem, 9701';
+            addressInput.readOnly = true;
+            locationGroup.style.display = 'none';
+        } else {
+            addressField.textContent = 'Delivery Address *';
+            addressInput.value = '';
+            addressInput.readOnly = false;
+            locationGroup.style.display = 'block';
+        }
     }
 
     function updateCartDisplay() {
@@ -2082,7 +2352,7 @@
 
     async function handleAddressInput() {
         const query = deliveryAddress.value.trim();
-        if (query.length < 3) {
+        if (query.length < 3 || deliveryType === 'pickup') {
             addressSuggestions.style.display = 'none';
             return;
         }
@@ -2106,7 +2376,7 @@
     }
 
     function displayAddressSuggestions(addresses) {
-        if (addresses.length === 0) {
+        if (addresses.length === 0 || deliveryType === 'pickup') {
             addressSuggestions.style.display = 'none';
             return;
         }
@@ -2128,6 +2398,14 @@
     }
 
     function validateLocation(address) {
+        // Skip validation for pickup orders
+        if (deliveryType === 'pickup') {
+            isLocationValid = true;
+            locationWarning.style.display = 'none';
+            submitOrder.disabled = false;
+            return true;
+        }
+        
         const addressLower = address.toLowerCase();
         
         // Check for Bethlehem keywords
@@ -2154,7 +2432,7 @@
     }
 
     function getCurrentLocation() {
-        if (!navigator.geolocation) {
+        if (!navigator.geolocation || deliveryType === 'pickup') {
             showStatusModal('Geolocation is not supported by your browser', false, 'location');
             return;
         }
@@ -2264,8 +2542,8 @@
             isValid = false;
         }
 
-        // Validate location
-        if (!validateLocation(address)) {
+        // Validate location (only for delivery)
+        if (deliveryType === 'delivery' && !validateLocation(address)) {
             locationWarning.style.display = 'block';
             isValid = false;
         }
@@ -2292,7 +2570,10 @@
             address: document.getElementById('deliveryAddress').value.trim(),
             instructions: document.getElementById('deliveryInstructions').value.trim(),
             quantity: currentQuantity,
-            total: (currentQuantity * ICE_PRICE_PER_BAG) + DELIVERY_FEE
+            deliveryType: deliveryType,
+            subtotal: currentQuantity * ICE_PRICE_PER_BAG,
+            deliveryFee: deliveryType === 'delivery' ? DELIVERY_FEE : 0,
+            total: (currentQuantity * ICE_PRICE_PER_BAG) + (deliveryType === 'delivery' ? DELIVERY_FEE : 0)
         };
 
         submitOrder.disabled = true;
@@ -2302,8 +2583,13 @@
             // Generate order number first
             orderNumber = 'ICE-' + Date.now() + '-' + Math.random().toString(36).substr(2, 5).toUpperCase();
             
-            // Prepare SMS message with payment information
-            const smsMessage = `NEW ICE ORDER #${orderNumber}\n${currentQuantity} bags\nTotal: R ${orderData.total.toFixed(2)}\nLocation: ${orderData.address}\nCustomer: ${orderData.name}\nPhone: ${orderData.phone}${orderData.instructions ? '\nInstructions: ' + orderData.instructions : ''}\n\nPAYMENT UPON DELIVERY (EFT/CASH)\nDELIVERY IN 2 DAYS`;
+            // Prepare SMS message with payment information and delivery type
+            const deliveryMethod = orderData.deliveryType === 'delivery' ? 'DELIVERY' : 'STORE PICKUP';
+            const deliveryInfo = orderData.deliveryType === 'delivery' ? 
+                `Delivery Address: ${orderData.address}` : 
+                'Pickup at store: 496 Mlangeni St, Old Location, Bethlehem';
+            
+            const smsMessage = `NEW ICE ORDER #${orderNumber}\n${orderData.quantity} bags\n${deliveryMethod}\n${deliveryInfo}\nSubtotal: R ${orderData.subtotal.toFixed(2)}\nDelivery Fee: R ${orderData.deliveryFee.toFixed(2)}\nTotal: R ${orderData.total.toFixed(2)}\nCustomer: ${orderData.name}\nPhone: ${orderData.phone}${orderData.instructions ? '\nInstructions: ' + orderData.instructions : ''}\n\nPAYMENT UPON ${orderData.deliveryType === 'delivery' ? 'DELIVERY' : 'PICKUP'} (EFT/CASH)\nDELIVERY IN 2 DAYS (MAY BE EARLIER IF AVAILABLE)`;
 
             // Add timeout to SMS fetch - increased to 60 seconds for Render cold starts
             const smsController = new AbortController();
@@ -2337,7 +2623,8 @@
                     formData.append('quantity', orderData.quantity);
                     formData.append('address', orderData.address);
                     formData.append('instructions', orderData.instructions);
-                    formData.append('orderStatus', 'Pending - Delivery in 2 days');
+                    formData.append('deliveryType', orderData.deliveryType);
+                    formData.append('orderStatus', 'Pending - Delivery in 2 days (may be earlier)');
                     formData.append('orderId', orderNumber);
 
                     // Add timeout to Sheets fetch as well
@@ -2365,7 +2652,11 @@
                     // Continue with order success even if sheets has issues
                 }
 
-                showStatusModal(`Order #${orderNumber} placed successfully! Your ice will be delivered in 2 days. Payment upon delivery (EFT/Cash).`, true, 'success');
+                const successMessage = deliveryType === 'delivery' ?
+                    `Order #${orderNumber} placed successfully! Your ice will be delivered in 2 days (may be earlier if available). Payment upon delivery (EFT/Cash).` :
+                    `Order #${orderNumber} placed successfully! Please pickup from our store in 2 days (may be earlier if available). Payment upon pickup (EFT/Cash).`;
+                
+                showStatusModal(successMessage, true, 'success');
                 orderForm.reset();
                 clearCart();
                 locationWarning.style.display = 'none';
@@ -2385,7 +2676,7 @@
             showStatusModal(errorMsg, false, 'error');
         } finally {
             submitOrder.disabled = false;
-            submitOrder.textContent = 'Order Now';
+            submitOrder.textContent = 'Place Order';
         }
     }
 
