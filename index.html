@@ -1939,7 +1939,7 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
-   <script>
+ <script>
     // Constants - UPDATED WITH LATEST GOOGLE SHEETS URL AND NEW PRICE
     const ICE_PRICE_PER_BAG = 8.00; // Updated from 7.00 to 8.00
     const DELIVERY_FEE = 15.00;
@@ -1956,51 +1956,6 @@
     let orderNumber = '';
     let deliveryType = 'delivery'; // 'delivery' or 'pickup'
 
-    // DOM Elements
-    const menuToggle = document.getElementById('menuToggle');
-    const navMenu = document.getElementById('navMenu');
-    const buyListItem = document.getElementById('buy-list-item');
-    const orderModal = document.getElementById('orderModal');
-    const deliveryModal = document.getElementById('deliveryModal');
-    const notificationModal = document.getElementById('notificationModal');
-    const closeModal = document.getElementById('closeModal');
-    const closeDeliveryModal = document.getElementById('closeDeliveryModal');
-    const cartIcon = document.getElementById('cartIcon');
-    const cartBadge = document.getElementById('cartBadge');
-    const quantityDisplay = document.getElementById('quantityDisplay');
-    const decreaseBtn = document.getElementById('decreaseBtn');
-    const increaseBtn = document.getElementById('increaseBtn');
-    const icePrice = document.getElementById('icePrice');
-    const subtotalPrice = document.getElementById('subtotalPrice');
-    const deliveryFeeElement = document.getElementById('deliveryFee');
-    const totalPrice = document.getElementById('totalPrice');
-    const orderForm = document.getElementById('orderForm');
-    const getLocationBtn = document.getElementById('getLocationBtn');
-    const deliveryAddress = document.getElementById('deliveryAddress');
-    const deliveryInstructions = document.getElementById('deliveryInstructions');
-    const addressSuggestions = document.getElementById('addressSuggestions');
-    const locationWarning = document.getElementById('locationWarning');
-    const submitOrder = document.getElementById('submitOrder');
-    const cancelBtn = document.getElementById('cancelBtn');
-    const statusModal = document.getElementById('statusModal');
-    const statusIcon = document.getElementById('statusIcon');
-    const statusTitle = document.getElementById('statusTitle');
-    const statusMessage = document.getElementById('statusMessage');
-    const continueBtn = document.getElementById('continueBtn');
-    const proceedBtn = document.getElementById('proceedBtn');
-    const footerOrderLink = document.getElementById('footerOrderLink');
-    
-    // Delivery modal elements
-    const deliveryOption = document.getElementById('deliveryOption');
-    const pickupOption = document.getElementById('pickupOption');
-    const cancelDeliveryBtn = document.getElementById('cancelDeliveryBtn');
-    const confirmDeliveryBtn = document.getElementById('confirmDeliveryBtn');
-
-    // Cookie Consent Elements
-    const cookieConsentBanner = document.getElementById('cookieConsentBanner');
-    const acceptCookiesBtn = document.getElementById('acceptCookies');
-    const rejectCookiesBtn = document.getElementById('rejectCookies');
-
     // Initialize
     document.addEventListener('DOMContentLoaded', function() {
         initializeSession();
@@ -2014,26 +1969,26 @@
 
     function initializeCookieConsent() {
         // Add event listeners for cookie buttons
-        acceptCookiesBtn.addEventListener('click', function() {
+        document.getElementById('acceptCookies').addEventListener('click', function() {
             setCookie('iceMen_cookie_consent', 'accepted', 365);
-            cookieConsentBanner.classList.remove('active');
+            document.getElementById('cookieConsentBanner').classList.remove('active');
             loadTrackingScripts(); // Load tracking scripts after acceptance
         });
 
-        rejectCookiesBtn.addEventListener('click', function() {
+        document.getElementById('rejectCookies').addEventListener('click', function() {
             setCookie('iceMen_cookie_consent', 'rejected', 30);
-            cookieConsentBanner.classList.remove('active');
+            document.getElementById('cookieConsentBanner').classList.remove('active');
             // Don't load tracking scripts
         });
     }
 
     function initializeDeliveryOptions() {
         // Initialize delivery options
-        deliveryOption.addEventListener('click', function() {
+        document.getElementById('deliveryOption').addEventListener('click', function() {
             selectDeliveryOption('delivery');
         });
         
-        pickupOption.addEventListener('click', function() {
+        document.getElementById('pickupOption').addEventListener('click', function() {
             selectDeliveryOption('pickup');
         });
         
@@ -2045,14 +2000,14 @@
         deliveryType = type;
         
         // Remove selected class from all options
-        deliveryOption.classList.remove('selected');
-        pickupOption.classList.remove('selected');
+        document.getElementById('deliveryOption').classList.remove('selected');
+        document.getElementById('pickupOption').classList.remove('selected');
         
         // Add selected class to chosen option
         if (type === 'delivery') {
-            deliveryOption.classList.add('selected');
+            document.getElementById('deliveryOption').classList.add('selected');
         } else {
-            pickupOption.classList.add('selected');
+            document.getElementById('pickupOption').classList.add('selected');
         }
         
         // Update price display if order modal is open
@@ -2098,9 +2053,9 @@
     }
 
     function resetForm() {
-        orderForm.reset();
+        document.getElementById('orderForm').reset();
         clearCart();
-        locationWarning.style.display = 'none';
+        document.getElementById('locationWarning').style.display = 'none';
         isLocationValid = false;
         // Reset to default delivery type
         selectDeliveryOption('delivery');
@@ -2108,15 +2063,17 @@
 
     function initializeEventListeners() {
         // Menu toggle
-        menuToggle.addEventListener('click', function(e) {
+        document.getElementById('menuToggle').addEventListener('click', function(e) {
             e.preventDefault();
-            const isExpanded = navMenu.classList.contains('active');
-            navMenu.classList.toggle('active');
-            menuToggle.setAttribute('aria-expanded', !isExpanded);
+            const isExpanded = document.getElementById('navMenu').classList.contains('active');
+            document.getElementById('navMenu').classList.toggle('active');
+            document.getElementById('menuToggle').setAttribute('aria-expanded', !isExpanded);
         });
 
         // Close menu when clicking outside
         document.addEventListener('click', function(e) {
+            const menuToggle = document.getElementById('menuToggle');
+            const navMenu = document.getElementById('navMenu');
             if (!menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
                 navMenu.classList.remove('active');
                 menuToggle.setAttribute('aria-expanded', 'false');
@@ -2130,8 +2087,8 @@
                 e.preventDefault();
                 
                 // Close menu
-                navMenu.classList.remove('active');
-                menuToggle.setAttribute('aria-expanded', 'false');
+                document.getElementById('navMenu').classList.remove('active');
+                document.getElementById('menuToggle').setAttribute('aria-expanded', 'false');
                 
                 // Get the href attribute
                 const href = this.getAttribute('href');
@@ -2139,7 +2096,7 @@
                 // Handle different navigation cases
                 if (href === '/') {
                     // "Order" link - show notification modal first
-                    notificationModal.classList.add('active');
+                    document.getElementById('notificationModal').classList.add('active');
                     document.body.style.overflow = 'hidden';
                 } else if (href === 'product.html') {
                     // Navigate to products page
@@ -2161,70 +2118,74 @@
         });
 
         // Order button - show notification modal first
-        buyListItem.addEventListener('click', function() {
-            notificationModal.classList.add('active');
+        document.getElementById('buy-list-item').addEventListener('click', function() {
+            document.getElementById('notificationModal').classList.add('active');
             document.body.style.overflow = 'hidden';
         });
 
         // Footer Order link
-        footerOrderLink.addEventListener('click', function(e) {
+        document.getElementById('footerOrderLink').addEventListener('click', function(e) {
             e.preventDefault();
-            notificationModal.classList.add('active');
+            document.getElementById('notificationModal').classList.add('active');
             document.body.style.overflow = 'hidden';
         });
 
-        // Close modals
-        closeModal.addEventListener('click', closeOrderModal);
-        orderModal.addEventListener('click', function(e) {
-            if (e.target === orderModal) {
+        // Close modals - FIXED: Use document.getElementById directly
+        document.getElementById('closeModal').addEventListener('click', closeOrderModal);
+        document.getElementById('orderModal').addEventListener('click', function(e) {
+            if (e.target === document.getElementById('orderModal')) {
                 closeOrderModal();
             }
         });
 
-        closeDeliveryModal.addEventListener('click', closeDeliveryModal);
-        deliveryModal.addEventListener('click', function(e) {
-            if (e.target === deliveryModal) {
+        // FIXED: Use getElementById directly instead of storing in variable
+        document.getElementById('closeDeliveryModal').addEventListener('click', closeDeliveryModal);
+        document.getElementById('deliveryModal').addEventListener('click', function(e) {
+            if (e.target === document.getElementById('deliveryModal')) {
                 closeDeliveryModal();
             }
         });
 
-        notificationModal.addEventListener('click', function(e) {
-            if (e.target === notificationModal) {
+        document.getElementById('notificationModal').addEventListener('click', function(e) {
+            if (e.target === document.getElementById('notificationModal')) {
                 closeNotificationModal();
             }
         });
 
         // Proceed button in notification modal
-        proceedBtn.addEventListener('click', function() {
+        document.getElementById('proceedBtn').addEventListener('click', function() {
             closeNotificationModal();
-            deliveryModal.classList.add('active');
+            document.getElementById('deliveryModal').classList.add('active');
         });
 
         // Cancel button in order modal
-        cancelBtn.addEventListener('click', function() {
+        document.getElementById('cancelBtn').addEventListener('click', function() {
             resetForm();
             closeOrderModal();
         });
 
         // Cancel button in delivery modal
-        cancelDeliveryBtn.addEventListener('click', function() {
+        document.getElementById('cancelDeliveryBtn').addEventListener('click', function() {
             closeDeliveryModal();
         });
 
         // Confirm delivery button
-        confirmDeliveryBtn.addEventListener('click', function() {
+        document.getElementById('confirmDeliveryBtn').addEventListener('click', function() {
             closeDeliveryModal();
-            orderModal.classList.add('active');
+            document.getElementById('orderModal').classList.add('active');
         });
 
         // Quantity controls
-        decreaseBtn.addEventListener('click', decreaseQuantity);
-        increaseBtn.addEventListener('click', increaseQuantity);
+        document.getElementById('decreaseBtn').addEventListener('click', decreaseQuantity);
+        document.getElementById('increaseBtn').addEventListener('click', increaseQuantity);
 
         // Location detection
-        getLocationBtn.addEventListener('click', getCurrentLocation);
+        document.getElementById('getLocationBtn').addEventListener('click', getCurrentLocation);
 
         // Address input with autocomplete
+        const deliveryAddress = document.getElementById('deliveryAddress');
+        const addressSuggestions = document.getElementById('addressSuggestions');
+        
         deliveryAddress.addEventListener('input', debounce(handleAddressInput, 500));
         deliveryAddress.addEventListener('focus', function() {
             if (deliveryAddress.value.length >= 3) {
@@ -2240,12 +2201,12 @@
         });
 
         // Form submission
-        orderForm.addEventListener('submit', handleOrderSubmission);
+        document.getElementById('orderForm').addEventListener('submit', handleOrderSubmission);
 
         // Cart icon
-        cartIcon.addEventListener('click', function(e) {
+        document.getElementById('cartIcon').addEventListener('click', function(e) {
             e.preventDefault();
-            notificationModal.classList.add('active');
+            document.getElementById('notificationModal').classList.add('active');
             document.body.style.overflow = 'hidden';
         });
 
@@ -2257,25 +2218,54 @@
         });
 
         // Continue button in status modal
-        continueBtn.addEventListener('click', function() {
-            statusModal.classList.remove('active');
+        document.getElementById('continueBtn').addEventListener('click', function() {
+            document.getElementById('statusModal').classList.remove('active');
             document.body.style.overflow = 'auto';
         });
+
+        // Navigation for other list items
+        const productsListItem = document.getElementById('products-list-item');
+        const aboutListItem = document.getElementById('about-list-item');
+        const contactListItem = document.getElementById('contact-list-item');
+
+        if (productsListItem) {
+            productsListItem.addEventListener('click', function() {
+                window.location.href = 'product.html';
+            });
+        }
+
+        if (aboutListItem) {
+            aboutListItem.addEventListener('click', function() {
+                window.location.href = 'about.html';
+            });
+        }
+
+        if (contactListItem) {
+            contactListItem.addEventListener('click', function() {
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                    contactSection.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        }
     }
 
     function closeOrderModal() {
-        orderModal.classList.remove('active');
+        document.getElementById('orderModal').classList.remove('active');
         document.body.style.overflow = 'auto';
         saveCartToStorage();
     }
 
     function closeDeliveryModal() {
-        deliveryModal.classList.remove('active');
+        document.getElementById('deliveryModal').classList.remove('active');
         document.body.style.overflow = 'auto';
     }
 
     function closeNotificationModal() {
-        notificationModal.classList.remove('active');
+        document.getElementById('notificationModal').classList.remove('active');
         document.body.style.overflow = 'auto';
     }
 
@@ -2298,8 +2288,8 @@
     }
 
     function updateQuantityDisplay() {
-        quantityDisplay.textContent = currentQuantity;
-        decreaseBtn.disabled = currentQuantity <= MIN_QUANTITY;
+        document.getElementById('quantityDisplay').textContent = currentQuantity;
+        document.getElementById('decreaseBtn').disabled = currentQuantity <= MIN_QUANTITY;
     }
 
     function updatePriceDisplay() {
@@ -2307,10 +2297,10 @@
         const deliveryFee = deliveryType === 'delivery' ? DELIVERY_FEE : 0;
         const total = subtotal + deliveryFee;
 
-        icePrice.textContent = `R ${subtotal.toFixed(2)}`;
-        subtotalPrice.textContent = `R ${subtotal.toFixed(2)}`;
-        deliveryFeeElement.textContent = deliveryFee === 0 ? 'Free' : `R ${deliveryFee.toFixed(2)}`;
-        totalPrice.textContent = `R ${total.toFixed(2)}`;
+        document.getElementById('icePrice').textContent = `R ${subtotal.toFixed(2)}`;
+        document.getElementById('subtotalPrice').textContent = `R ${subtotal.toFixed(2)}`;
+        document.getElementById('deliveryFee').textContent = deliveryFee === 0 ? 'Free' : `R ${deliveryFee.toFixed(2)}`;
+        document.getElementById('totalPrice').textContent = `R ${total.toFixed(2)}`;
         
         // Update price breakdown text
         document.querySelector('.price-row:first-child span:first-child').textContent = 
@@ -2335,7 +2325,7 @@
     }
 
     function updateCartDisplay() {
-        cartBadge.textContent = currentQuantity > MIN_QUANTITY ? currentQuantity : '0';
+        document.getElementById('cartBadge').textContent = currentQuantity > MIN_QUANTITY ? currentQuantity : '0';
     }
 
     function debounce(func, wait) {
@@ -2351,9 +2341,10 @@
     }
 
     async function handleAddressInput() {
+        const deliveryAddress = document.getElementById('deliveryAddress');
         const query = deliveryAddress.value.trim();
         if (query.length < 3 || deliveryType === 'pickup') {
-            addressSuggestions.style.display = 'none';
+            document.getElementById('addressSuggestions').style.display = 'none';
             return;
         }
 
@@ -2371,11 +2362,12 @@
             
         } catch (error) {
             console.error('Error fetching address suggestions:', error);
-            addressSuggestions.style.display = 'none';
+            document.getElementById('addressSuggestions').style.display = 'none';
         }
     }
 
     function displayAddressSuggestions(addresses) {
+        const addressSuggestions = document.getElementById('addressSuggestions');
         if (addresses.length === 0 || deliveryType === 'pickup') {
             addressSuggestions.style.display = 'none';
             return;
@@ -2387,7 +2379,7 @@
             suggestion.className = 'address-suggestion';
             suggestion.textContent = address.display_name;
             suggestion.addEventListener('click', function() {
-                deliveryAddress.value = address.display_name;
+                document.getElementById('deliveryAddress').value = address.display_name;
                 addressSuggestions.style.display = 'none';
                 validateLocation(address.display_name);
             });
@@ -2401,8 +2393,8 @@
         // Skip validation for pickup orders
         if (deliveryType === 'pickup') {
             isLocationValid = true;
-            locationWarning.style.display = 'none';
-            submitOrder.disabled = false;
+            document.getElementById('locationWarning').style.display = 'none';
+            document.getElementById('submitOrder').disabled = false;
             return true;
         }
         
@@ -2421,11 +2413,11 @@
         isLocationValid = hasBethlehem || hasPostalCode;
         
         if (isLocationValid) {
-            locationWarning.style.display = 'none';
-            submitOrder.disabled = false;
+            document.getElementById('locationWarning').style.display = 'none';
+            document.getElementById('submitOrder').disabled = false;
         } else {
-            locationWarning.style.display = 'block';
-            submitOrder.disabled = true;
+            document.getElementById('locationWarning').style.display = 'block';
+            document.getElementById('submitOrder').disabled = true;
         }
         
         return isLocationValid;
@@ -2437,6 +2429,7 @@
             return;
         }
 
+        const getLocationBtn = document.getElementById('getLocationBtn');
         getLocationBtn.disabled = true;
         getLocationBtn.innerHTML = '<div class="loading-spinner"></div> Locating...';
 
@@ -2456,7 +2449,7 @@
                     const data = await response.json();
                     
                     if (data.display_name) {
-                        deliveryAddress.value = data.display_name;
+                        document.getElementById('deliveryAddress').value = data.display_name;
                         validateLocation(data.display_name);
                         showStatusModal('Location detected successfully!', true, 'location');
                     } else {
@@ -2544,7 +2537,7 @@
 
         // Validate location (only for delivery)
         if (deliveryType === 'delivery' && !validateLocation(address)) {
-            locationWarning.style.display = 'block';
+            document.getElementById('locationWarning').style.display = 'block';
             isValid = false;
         }
 
@@ -2576,8 +2569,9 @@
             total: (currentQuantity * ICE_PRICE_PER_BAG) + (deliveryType === 'delivery' ? DELIVERY_FEE : 0)
         };
 
-        submitOrder.disabled = true;
-        submitOrder.innerHTML = '<div class="loading-spinner"></div> Processing...';
+        const submitOrderBtn = document.getElementById('submitOrder');
+        submitOrderBtn.disabled = true;
+        submitOrderBtn.innerHTML = '<div class="loading-spinner"></div> Processing...';
 
         try {
             // Generate order number first
@@ -2657,9 +2651,9 @@
                     `Order #${orderNumber} placed successfully! Please pickup from our store in 2 days (may be earlier if available). Payment upon pickup (EFT/Cash).`;
                 
                 showStatusModal(successMessage, true, 'success');
-                orderForm.reset();
+                document.getElementById('orderForm').reset();
                 clearCart();
-                locationWarning.style.display = 'none';
+                document.getElementById('locationWarning').style.display = 'none';
                 isLocationValid = false;
                 
                 // Close order modal after success
@@ -2675,13 +2669,14 @@
             }
             showStatusModal(errorMsg, false, 'error');
         } finally {
-            submitOrder.disabled = false;
-            submitOrder.textContent = 'Place Order';
+            document.getElementById('submitOrder').disabled = false;
+            document.getElementById('submitOrder').textContent = 'Place Order';
         }
     }
 
     function showStatusModal(message, isSuccess, type) {
         // Set the icon based on type and success
+        const statusIcon = document.getElementById('statusIcon');
         statusIcon.innerHTML = '';
         
         if (type === 'success') {
@@ -2692,7 +2687,7 @@
                     <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
                 </svg>
             `;
-            statusTitle.textContent = 'Success!';
+            document.getElementById('statusTitle').textContent = 'Success!';
         } else if (type === 'error') {
             statusIcon.className = 'status-icon error';
             statusIcon.innerHTML = `
@@ -2701,15 +2696,15 @@
                     <path class="x-mark-line" fill="none" d="M16 16l20 20M36 16L16 36"/>
                 </svg>
             `;
-            statusTitle.textContent = 'Error';
+            document.getElementById('statusTitle').textContent = 'Error';
         } else if (type === 'location') {
             statusIcon.className = 'status-icon location';
             statusIcon.innerHTML = '<i class="bi bi-geo-alt-fill"></i>';
-            statusTitle.textContent = isSuccess ? 'Location Found' : 'Location Error';
+            document.getElementById('statusTitle').textContent = isSuccess ? 'Location Found' : 'Location Error';
         }
         
-        statusMessage.textContent = message;
-        statusModal.classList.add('active');
+        document.getElementById('statusMessage').textContent = message;
+        document.getElementById('statusModal').classList.add('active');
         document.body.style.overflow = 'hidden';
     }
 
@@ -2732,35 +2727,6 @@
     if (video) {
         video.play().catch(function(error) {
             console.log("Video autoplay failed:", error);
-        });
-    }
-
-    // Navigation for other list items
-    const productsListItem = document.getElementById('products-list-item');
-    const aboutListItem = document.getElementById('about-list-item');
-    const contactListItem = document.getElementById('contact-list-item');
-
-    if (productsListItem) {
-        productsListItem.addEventListener('click', function() {
-            window.location.href = 'product.html';
-        });
-    }
-
-    if (aboutListItem) {
-        aboutListItem.addEventListener('click', function() {
-            window.location.href = 'about.html';
-        });
-    }
-
-    if (contactListItem) {
-        contactListItem.addEventListener('click', function() {
-            const contactSection = document.getElementById('contact');
-            if (contactSection) {
-                contactSection.scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
         });
     }
 </script>
